@@ -5,3 +5,15 @@ Data Structures
 - A data structure is a collection of data values, the 
 relationships among them, and the functions or operations 
 that can be applied to the data. 
+
+Complexity Analysis 
+
+- a problem can have multiple solutions, but some are better than others
+- the bedrock of coding interviews
+- time complexity
+	- measure of how fast an algorithm runs
+- space complexity 
+	- how much memory or space an algorithm uses up 
+- referred together as space-time complexity
+- different data structures are going to have different
+time and space complexity ramifications

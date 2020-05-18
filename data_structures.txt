@@ -17,3 +17,19 @@ Complexity Analysis
 - referred together as space-time complexity
 - different data structures are going to have different
 time and space complexity ramifications
+
+Memory
+
+- why is space important? memory is not unlimited. 
+- comprised of bits, 0s and 1s. 8 bits = byte.
+- byte e.g. 0000 0001 
+- this is (2^7 2^6 2^5 2^4  2^3 2^2 2^1 2^0) binary number format (base-2 format)
+- 256 possible values in a byte
+- how to store more than value 256? increase the number of bits
+that are stored in a data value. for 16- or 32- or 64-bit 
+architecture 
+- can point to another memory address from current memory address.
+this is a pointer.
+- a list of items needs to be stored back-to-back in memory slots
+that must be free
+

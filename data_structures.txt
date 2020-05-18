@@ -1,0 +1,7 @@
+Data Structures
+
+- Coding is manipulating data to accomplish something.
+- Data structures are a way to organize and manage data. 
+- A data structure is a collection of data values, the 
+relationships among them, and the functions or operations 
+that can be applied to the data. 

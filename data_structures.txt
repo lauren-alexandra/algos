@@ -33,3 +33,11 @@ this is a pointer.
 - a list of items needs to be stored back-to-back in memory slots
 that must be free
 
+Big O Notation
+
+Time complexity: measuring the change in speed of the algorithm with respect to the size of the input. 
+Asymptotic analysis: study the behavior of a function f(n) as the value n moves towards infinity. 
+
+O(1) Constant Time. Meaning N/space is irrelevant to performance.
+O(N) Linear Time Complexity. As size of N input increases, the speed of the algorithm increases linearly. Every single element traversed through.
+O(N^2).    Every single element traversed through twice. 

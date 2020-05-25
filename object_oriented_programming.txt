@@ -1,0 +1,10 @@
+Pillars of OOP
+
+- Encapsulation: hide details about our code. Access modifiers like public/private give 
+explicit control of our encapsulation. The key to good software design.
+
+- Inheritance: the ability to reuse code across similar classes.
+
+- Polymorphism: allows us to have objects of the same type that behave differently.
+
+

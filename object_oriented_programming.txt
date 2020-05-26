@@ -8,3 +8,9 @@ explicit control of our encapsulation. The key to good software design.
 - Polymorphism: allows us to have objects of the same type that behave differently.
 
 
+Inheritance
+
+- Allows you to define a base class.
+- Any members of a base class can be inherited by a derived class.
+- e.g. 
+public class Book : NamedObject

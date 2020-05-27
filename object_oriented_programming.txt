@@ -40,3 +40,26 @@ public class Book : BookBase
 // must use same parameters: double grade 
 public override void AddGrade(double grade) {} 
 
+Encapsulation
+
+- An Interface is like a class but it contains no implementation details. No methods.
+It will only describe the members that will be available on a specific type.
+
+
+e.g. 
+
+public interface IBook {
+	void AddGrade(double grade);
+	Statistics GetStatistics();
+	string Name { get; }
+	event GradeAddedDelegate GradeAdded; 
+} 
+
+
+// this class must implement all members of IBook. members can be abstract. 
+public class Book : NamedObject, IBook 
+{}
+
+
+
+

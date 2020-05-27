@@ -14,3 +14,29 @@ Inheritance
 - Any members of a base class can be inherited by a derived class.
 - e.g. 
 public class Book : NamedObject
+
+Polymorphism
+
+- An abstract class can be used as a base class. Derived classes can use 
+different implementations of class methods.  
+
+e.g.
+
+public abstract class BookBase
+{
+	public abstract void AddGrade(double grade); 
+}
+
+public class Book : BookBase 
+{}
+
+// because Book derives from BookBase, the Book class must implement an AddGrade method
+
+// in Book class:
+
+// use override keyword so C# compiler knows we will override what is in abstract BookBase class
+// note: you can only override abstract and virtual methods.
+// must use same return type: void
+// must use same parameters: double grade 
+public override void AddGrade(double grade) {} 
+

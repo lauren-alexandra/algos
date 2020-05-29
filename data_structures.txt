@@ -38,9 +38,18 @@ Big O Notation
 Time complexity: measuring the change in speed of the algorithm with respect to the size of the input. 
 Asymptotic analysis: study the behavior of a function f(n) as the value n moves towards infinity. 
 
+Best to worst complexity (given the worst-case scenario): 
 O(1) Constant Time. Meaning N/space is irrelevant to performance.
+O(log(N))
 O(N) Linear Time Complexity. As size of N input increases, the speed of the algorithm increases linearly. Every single element traversed through.
+O(2N) = O(N) 
+O(N log(N)) 
 O(N^2).    Every single element traversed through twice. 
+O(N^3).
+O(N^4 + N^2) = O(N^4) 
+O(2^N) 
+O(N!) // N factorial 
 
+note: if have two inputs: O(N + M) for example. 
 
 

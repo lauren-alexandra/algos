@@ -25,3 +25,10 @@ Proof. [black | white] domino.
 
 Takeaways
 - proofs can be convincing 
+
+Existence Proofs
+
+- Existential statements
+- claim: object with given properties exists
+- one example is enough
+

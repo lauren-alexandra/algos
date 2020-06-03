@@ -52,4 +52,32 @@ O(N!) // N factorial
 
 note: if have two inputs: O(N + M) for example. 
 
+Logarithm 
+
+log sub b (x) = y iif b^y = x 
+
+- the log of the number X given a base b is equal to y 
+"aka what is the exponent/power needed to get x value if starting with b value"
+if and only if 
+b to the power of y is equal to x 
+
+we always assume that we are dealing with base 2 unless otherwise specified.
+binary logarithm.
+e.g.
+read "log base 2 of (N) is equal to y iif 2^y = N"
+because we can assume: "log of N equals y if and only if 2 to the power of y equals N"
+
+whenever you increase the y exponent, you are doubling N (given base 2) 
+e.g. 2^2 = 4, 2^3 = 8....
+
+--> This means as the input increases, as the input doubles, the number y of elementary
+operations we are performing in the algorithm only increases by 1. 
+A log(N) complexity is much better than linear complexity which would increase by 
+N operations as the input increases.
+
+--> As the input doubles in size, we only do one additional operation. This is 
+a time complexity of log(N) "log of N". 
+
+
+
 

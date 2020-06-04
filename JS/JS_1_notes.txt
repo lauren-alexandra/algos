@@ -1,0 +1,103 @@
+Types and Coercion
+
+FALSE: Everything in JavaScript is an object.
+
+
+There are primitive types (types that are not collections of values)
+Undefined
+String
+Number
+Boolean
+Object 
+Null
+Symbol - not used that often. Var x = Symbol();
+
+Subtypes of the Object type
+Function
+Array
+
+
+Variables don’t have types, values do.
+
+Var v; 
+// this is undefined. Value not defined 
+
+NaN
+// not a number value 
+
+When to use the new keyword for fundamental objects:
+
+Do (
+e.g. 
+new Object();
+new Date(“March 6, 2020”); 
+)
+
+Object()
+Array()
+Function()
+Date()
+RegExp()
+Error()
+
+Don’t
+E.g. (
+Var myNum = 2;
+String(myNum);
+// “2” 
+
+String()
+Number()
+Boolean() 
+
+---
+Coercion 
+// in a dynamically typed language like JS we can convert types with coercion
+
+E.g. string concatenation
+Number to string 
+
+Booleans - Falsy and Truthy
+
+Falsy
+“”
+0
+-0
+Null
+NaN
+False
+undefined
+
+Truthy 
+“Foo”
+23
+{a:1}
+[1,3]
+True
+function(){}
+
+Coercion with operators
+
+If comparing a string to a number, the string will be converted to number
+myVar > 2 // numeric comparison. This is implicit coercion
+Number(myVar) > 2 // this is explicit coercion 
+
+What == vs. === in JS really means:
+Coercive equality vs. Non-coercive equality
+==	allows coercion. Types different
+=== 	does not allow coercion. Types same 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

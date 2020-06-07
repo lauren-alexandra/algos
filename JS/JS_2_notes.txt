@@ -1,0 +1,20 @@
+JS fundamentals to functional
+
+Functional programming is a programming style and about verbs
+Includes pure functions without side effects. Makes code easier to test and trust.
+They can’t affect any other data outside the scope of that function
+
+
+
+Object oriented programming is about nouns
+
+Primitive values get passed by value, e.g. string , number, boolean
+Non-primitive values get passed by reference, e.g. arrays, objects, functions. It’s important that you don’t mutate your data (unintentionally by modifying the referenced/pointed at value). It is recommended to make copies of your data. 
+
+Objects
+
+Var person = {};		// object literal notation
+Person.name = ‘mrs.white’;
+Var person = {
+	“Name”: “mrs.white”
+};

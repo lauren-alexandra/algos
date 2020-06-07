@@ -92,3 +92,21 @@ console.log(x)
 => 5
 
 
+List Transformations - Nested Data Structures
+
+forEach() calls a provided callback function once for each element in an array in ascending order.
+[‘a’, ‘b’, ‘c’].forEach(function(value, index, list){ … }); 
+callback is invoked with three arguments:
+the value of the element
+the index of the element
+the Array object being traversed
+
+items.forEach(function(item){ copyItems.push(item) })
+
+.map() function
+Produces a new array of values by mapping each value in list through a transformation function (iterator)
+Each invocation of iterator is called with three arguments: (element, index, list). If list is a JavaScript object, iterator’s arguments will be (value, key, list) 
+
+let numbers = [1, 4, 9] let roots = numbers.map(function(num) { return Math.sqrt(num) }) // roots is now [1, 2, 3] // numbers is still [1, 4, 9]
+
+

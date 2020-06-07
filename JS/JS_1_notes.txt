@@ -87,12 +87,97 @@ Coercive equality vs. Non-coercive equality
 ==	allows coercion. Types different
 === 	does not allow coercion. Types same 
 
+Function expressions:
+Is a function that is assigned as a value.
+Functions are first-class citizens which mean they can be passed as values.
+A programming language is said to have First-class functions when functions in that language are treated like any other variable.
+Anonymous function expression is a func exp w/o a name
+Named function expression e.g. function myNamedFunc() {}
+
+IIFE “iffy” Immediately Invoked Function Expression
+
+Wrapped in () 
+
+Var greet = ‘hello’; 
+
+( function myFunc() {
+	Var greet = ‘hi’; 
+	Return greet; 
+})(); 
+
+There is a block of scope inside myFunc() 
+
+Instead of using IIFE, can use block scope with let.
+
+Var greet = ‘hello’;
+
+{ 
+	Let greet = ‘hi’;
+	console.log(greet);
+} 
+
+When to use let keyword: 
+Just use it for block scope. Anytime you see { … } 
+For function scope use const unless there is use case for var. 
 
 
+Closure
+Is when a function “remembers” the variables outside of it, even if you pass that function elsewhere. 
 
+Function myFunc(apple) {
+	anotherFunc() {			// anotherFunc has closure over apple variable 
+		console.log(apple);
+	}
+} 
 
+---
+This keyword
 
+A function’s this references the execution context for that call, determined entirely by how the function was called. 
 
+This produces a dynamic context. A func can have a dif context each time its called making it more flexible and reusable.
+
+E.g.
+
+Var workshop = {
+	Teacher: ‘john’,
+	ask(question) {
+		console.log(this.teacher, question);
+	}
+};
+
+workshop.ask(‘Who is the teacher?’); 	
+// workshop.ask() is an implicit binding of the this keyword
+
+Prototypes
+Prototypes are the mechanism by which JavaScript objects inherit features from one another.
+
+Function Workshop(teacher) {
+	This.teacher = teacher;		// constructor for new Workshop objects
+} 
+Workshop.prototype.ask = function(question) {
+	console.log(this.teacher, question)		// 
+};
+Var deepJS = new Workshop(‘john’);
+deepJS.ask(‘what is a prototype?’); 		
+// has implicit this binding 
+// when we call deepJS.ask(), deepJS will delegate up the prototype chain up to Workshop.prototype
+
+---
+class {} 		// es6
+ES6 Classes formalize the common JavaScript pattern of simulating class-like inheritance hierarchies using functions and prototypes.
+The class function basically creates a template that we can use to create objects later.
+
+class Workshop {
+	constructor(teacher) {
+		this.teacher = teacher;
+	}
+	ask(question) {
+		console.log(this.teacher, question);
+	}
+}
+Var deepJS = new Workshop(‘john’);
+deepJS.ask(‘what is a class?’); 	
 
 
 

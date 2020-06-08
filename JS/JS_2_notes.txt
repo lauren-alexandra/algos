@@ -109,4 +109,12 @@ Each invocation of iterator is called with three arguments: (element, index, lis
 
 let numbers = [1, 4, 9] let roots = numbers.map(function(num) { return Math.sqrt(num) }) // roots is now [1, 2, 3] // numbers is still [1, 4, 9]
 
+.filter() 
+The filter() method creates a new array with all elements that pass the test implemented by the provided function.
+
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.filter(word => word.length > 6);
+
+console.log(result);
 

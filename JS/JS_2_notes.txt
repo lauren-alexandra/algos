@@ -168,6 +168,57 @@ reduce()
 // 0 is the initial value
 // => 6 
 
+Currying
+// a functional technique
+currying is when you create a function that can be called 
+multiple times with different arguments
+
+Composing
+// a functional technique
+when you take two or more functions and combine them
+
+e.g.
+f(g(x)) 
+
+In short, compose will accept any number of functions as long as they respect a few simple rules:
+- Each function needs to return a result that can be consumed as an argument by the next function in line
+
+- The first function to be called can accept any number of parameters
+
+- The rest of the functions need to accept just one argument
+
+- Functions are applied right to left, so the first function to accept arguments is the right-most function
+
+const consider = (name) => {
+	return `I think it could be... ${name}`;
+}; 
+
+const exclaim = (statement) => {
+	return `${statement.toUpperCase()}!`;
+};
+
+const blame = _.compose(consider, exclaim); 
+
+blame('you'); 
+
+=> 'I think it could be... YOU!' 
+
+// what happens is: 
+first exclaim() is called with 'you' argument
+next the result of exclaim() is passed as an argument to consider()
+consider() takes an argument of name which in this case will be 'YOU'
+finally the string interpolated result is returned. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 

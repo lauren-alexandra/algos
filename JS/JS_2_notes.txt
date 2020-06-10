@@ -215,6 +215,11 @@ finally the string interpolated result is returned.
 Closure
 Occurs when one function returns another function and the nested function has access to the parent function's scope.
 
+Closure Recipe: 
+1. Create your parent function. 
+2. Define some variables in the parent's local scope. 
+3. Define a function inside the parent function. We call this a child function. 
+4. Return the child function from inside the parent function. 
 
 Example
 
@@ -234,19 +239,4 @@ didDoIt
 
 didDoIt('candlestick'); // didDoIt sets weapon as 'candlestick' 
 false
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -212,8 +212,28 @@ consider() takes an argument of name which in this case will be 'YOU'
 finally the string interpolated result is returned. 
 
 
+Closure
+Occurs when one function returns another function and the nested function has access to the parent function's scope.
 
 
+Example
+
+const newClue = (name) => { 
+	const length = name.length; 
+	return (weapon) => { 
+		let clue = length + weapon.length; 
+		return !!(clue % 1); 
+	}; 
+}; 
+
+
+const didDoIt = newClue('green'); // green is set as name
+
+didDoIt
+// returns: (weapon) => { let clue = length + weapon.length; return !!(clue % 1); }
+
+didDoIt('candlestick'); // didDoIt sets weapon as 'candlestick' 
+false
 
 
 

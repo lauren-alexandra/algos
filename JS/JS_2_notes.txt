@@ -118,3 +118,33 @@ const result = words.filter(word => word.length > 6);
 
 console.log(result);
 
+
+Functions In-Depth
+
+ES6 arrow functions
+
+() => {} 
+
+var myFunc = (name, number) => {} 
+
+Arrow functions do not have a keyword this that is bound at call time.
+Arrow functions do not have a keyword arguments.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

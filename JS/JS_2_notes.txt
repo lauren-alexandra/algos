@@ -171,7 +171,9 @@ reduce()
 Currying
 // a functional technique
 currying is when you create a function that can be called 
-multiple times with different arguments
+multiple times with different arguments.
+currying waits until it receives all the specified arguments
+and then it will run the function.
 
 Composing
 // a functional technique

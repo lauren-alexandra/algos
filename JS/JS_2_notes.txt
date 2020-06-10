@@ -130,6 +130,15 @@ var myFunc = (name, number) => {}
 Arrow functions do not have a keyword this that is bound at call time.
 Arrow functions do not have a keyword arguments.
 
+Spread operator
+
+var myFunc = (name, ...number) => {} 
+// this will gather extra arguments in number and store them
+in an array
+
+e.g. myFunc('john', 2, 3)
+// number = [2, 3] 
+
 
 
 

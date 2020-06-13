@@ -1,3 +1,5 @@
+Week 1
+
 Proofs
 
 - A proof is an argument that is so convincing that you are ready to use it to convince
@@ -25,10 +27,23 @@ Proof. [black | white] domino.
 
 Takeaways
 - proofs can be convincing 
+- the structure of the proof reflects the structure of the claim
+- claim: an object with some property exists
+- proof: an example
+- one example is enough. 
+- you do not need to note how you found the example
+- beware: a claim may be false
 
 Existence Proofs
 
 - Existential statements
 - claim: object with given properties exists
 - one example is enough
+
+
+Week 2
+
+Give examples of proving optimality
+Practice finding optimal solutions
+
 

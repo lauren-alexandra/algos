@@ -30,3 +30,90 @@ Variable has been initialized but not defined.
 
 Undeclared
 Variable has never been created. 
+
+Special Values:
+NaN and isNan
+
+NaN "not a number" 
+Means value is an invalid number.
+
+In JS,
+NaN !== NaN
+
+NaN does not have the identity property, i.e. it is not equal to itself.
+So, you need to use Number.isNaN() to check.
+
+instead of 
+
+var myAge = Number("age"); // NaN 
+myAge === NaN // this will return false 
+
+so use
+
+Number.isNaN(myAge) // true 
+
+
+Negative Zero (-0)
+
+In JS, -0 is valid. It also does weird stuff.
+
+To check for it:
+
+var myNegZero = -0;
+Object.is(myNegZero, -0); // true 
+
+
+Fundamental Objects (Built-In Objects)
+
+Use the new keyword for these: 
+
+Object()
+Array()
+Function()
+Date()		// e.g. new Date(); 
+RegExp()
+Error() 
+
+Do not use the new keyword for these:
+
+String()	// e.g. String(myVariable) 
+Number()
+Boolean()
+
+
+Coercion 
+
+Abstract Operations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

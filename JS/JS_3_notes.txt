@@ -1,0 +1,32 @@
+Types
+
+Most of the values in JavaScript can behave
+like an object but that does not make them objects.
+This is not true: "everything is an object."
+
+Primitive Types
+- undefined
+- string
+- number
+- boolean
+- object 
+- symbol (es6). used to create pseudo-private keys on objects.
+Symbol(); 
+
+Variables do not have types. Values do.
+
+typeof null // returns "object" 
+// this is a historical bug in JS. should return "null"
+
+
+Emptiness 
+undefined vs undeclared vs uninitialized (temporal dead zone - TDZ)
+
+TDZ
+Certain variables like block scope ones never get initialized as undefined.
+
+Undefined
+Variable has been initialized but not defined.
+
+Undeclared
+Variable has never been created. 

@@ -84,6 +84,37 @@ Boolean()
 Coercion 
 
 Abstract Operations
+They are the fundamental building block of how we deal with type conversion ("coercion").
+
+ToPrimitive(hint)  
+// takes a function, array, etc. and turns into primitive value
+// accepts a "type hint" where you tell the func what type you would like the value to be converted to
+// whatever value you provide will be run through one or both functions:
+valueOf() and toString()
+
+
+ToString()
+// takes any value and gives the representation of that value in String form
+
+ToNumber()
+// takes a value, returns a number. e.g. 
+ToNumber("") // 0 
+
+ToBoolean() 
+// is the value falsy or truthy? 
+Falsy
+"" 
+0, -0
+null
+NaN
+false
+undefined
+
+Everything else is "truthy", will return true.
+
+
+
+
 
 
 

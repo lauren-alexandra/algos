@@ -113,8 +113,12 @@ undefined
 Everything else is "truthy", will return true.
 
 
+Coercion
 
+A quality JS program embraces coercions AND makes sure the types involved in every operation are clear.
+This effort can be aided by typed libraries like Typescript
 
+JavaScript's dynamic typing is not a weakness, it's one of its strong qualities.
 
 
 

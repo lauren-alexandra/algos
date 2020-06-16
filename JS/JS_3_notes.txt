@@ -121,6 +121,35 @@ This effort can be aided by typed libraries like Typescript
 JavaScript's dynamic typing is not a weakness, it's one of its strong qualities.
 
 
+Equality
+== vs. ===
+
+=== if the types are different, there is no way the two values can be equal.
+Disallows coercion
+
+== 
+Allows coercion if types different 
+Only compares primitive values. If values are not primitive, ToPrimitive() is called.
+If the values are primitive, the double equals algorithm prefers to use ToNumber(). 
+
+
+The case for preferring double equals ==
+ 
+Knowing types is always better than not knowing them
+Static Types is not the only (or even necessarily best) way to know your types 
+-->Only use == when comparing known types.
+Why: If you know the types in a comparison: If the types are different, the equivalent
+of one == would be two (or more!) === (ie, "slower") 
+
+Note: not knowing the types means not fully understaind that code.
+So best to refactor so you can know the types.
+
+The usage of === should be reserved for when you do not know the types.
+
+
+
+
+
 
 
 

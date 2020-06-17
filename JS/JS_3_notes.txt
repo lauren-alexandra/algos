@@ -147,10 +147,28 @@ So best to refactor so you can know the types.
 The usage of === should be reserved for when you do not know the types.
 
 
+Scope
+
+JavaScript is parsed/processed before line by line execution occurs. 
 
 
 
+Closures are frequently used in JavaScript for:
+object data privacy, in event handlers and callback functions,
+and in partial applications, currying, and other functional
+programming patterns.
 
+Why understand closures?
+Understanding how variables and functions relate to each other is 
+critical to understanding what's going on in your code, in both
+functional and object oriented programming styles.
+
+Closures are important because they control what is and isn't in scope
+in a particular function, along with which variables are shared between
+sibling functions in the same containing scope. 
+
+With closures, the inner function will have access to the variables in the outer function
+scope, even after the outer function has returned.
 
 
 

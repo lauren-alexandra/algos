@@ -171,27 +171,54 @@ With closures, the inner function will have access to the variables in the outer
 scope, even after the outer function has returned.
 
 
+Pure functions
 
+A pure function is a function which given the same input, will always produce the same output. 
+It produces no side effects.
 
+Pure functions are essential for a variety of purposes, including functional programming,
+reliable concurrency, and React+Redux apps. Note: reducers must be pure functions.
 
+If a function were to mutate a property on an object or array parameter that would mutate state
+that is accessible outside the function. Pure functions must not mutate external state.
 
+When passing an object to an array to a function, you are passing a reference. You don't
+want to mutate the original object or array. Instead, make a copy of the argument. 
+e.g. 
+const newObject = (value) => Object.assign({}, value); 
 
+Redux
 
+Redux lets you compose reducers rather than deal with the entire app state inside each reducer.
 
+Why compose reducers? You don't have to create a deep clone of the entire app state every time you
+want to update just a small part of it. Instead, you can use non-destructive array methods, or 
+`Object.assign()` to update a small part of the app state. 
 
+Misc - Functions
 
+Function procedures: 
+A function may be called to perform a sequence of steps. The sequence is
+known as a procedure, and programming in this style is known as procedural programming. 
 
+Function I/O:
+Some functions exist to communicate with other parts of the system, such as the screen, storage,
+system logs, or network. 
 
+Program determinism: 
+A deterministic algorithm is an algorithm which, given a particular input, will always produce the same
+output, with the underlying machine always passing through the same sequence of states. 
 
+Single threaded JS:
+A single threaded JS engine does not imply that there is no concurrency. On the contrary, there are many
+sources of concurrency in JavaScript. API I/O, event listeners, web workers, iframes, and timeouts can all
+introduce indeterminism into your program. 
 
+Concurrency: 
+When two tasks can start, run, and complete in overlapping time periods. 
 
-
-
-
-
-
-
-
+Parallelism:
+When tasks literally run at the same time, e.g. on a multi-core processor.  
 
 
 

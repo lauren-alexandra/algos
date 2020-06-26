@@ -1,0 +1,42 @@
+* The 5 major browsers today
+
+Chrome (open source)
+IE Internet Explorer
+Firefox (open source)
+Safari (partly open source)
+Opera 
+
+* The browser's functionality
+
+Browsers present the web resource (HTML document,
+PDF, or other content) you choose by making a
+request to a server and displaying the resource
+in the browser window. 
+
+The resource location is the URI (uniform
+resource identifier).
+
+* The browser's high level structure
+
+1. The UI
+2. The browser engine: controls the ordering of
+actions between UI and rendering engine
+3. The rendering engine: responsible for 
+displaying requested content. e.g. If 
+content is HTML, the rendering engine parses the
+HTML and displays the content. 
+4. Networking: for network calls such as HTTP
+requests, using different implementations for
+different platform behind a platform-independent
+interface. 
+5. UI backend: used for drawing basic widgets like
+combo boxes and windows. This backend exposes 
+a generic interface that is not platform specific.
+Underneath it uses operating system user interface methods.
+6. JavaScript interpreter: Used to parse and execute JS code.
+7. Data storage: This is a persistance layer.
+the browser may need to save all sorts of data locally,
+such as cookies. Browsers also support storage mechanisms
+such as localStorage, IndexedDB, WebSQL, and FileSystem.
+
+

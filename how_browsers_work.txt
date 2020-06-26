@@ -40,3 +40,107 @@ such as cookies. Browsers also support storage mechanisms
 such as localStorage, IndexedDB, WebSQL, and FileSystem.
 
 
+The rendering engine
+
+Note: Chrome runs multiple instances of the rendering engine, one for each tab. Each tab
+runs in a separate process.
+
+The rendering engine renders the requested contents on the browser screen. It can display
+by default HTML and XML documents and images. It can display other data with plug-ins and 
+extensions e.g. PDF docs.
+
+
+Rendering engines
+
+Different browsers use different rendering engines. 
+IE uses Trident
+Firefox uses Gecko
+Safari uses WebKit
+Chrome and Opera use Blink, a form of WebKit
+
+
+The main flow
+
+The rendering engine will start getting the contents of the requested document from the
+networking layer. This will be done in 8 kb chunks. 
+
+Flow:
+Parsing the HTML to construct the DOM tree --> Render tree construction --> Layout of the
+render tree --> Painting the render tree
+
+The rendering engine will parse the HTML document to convert elements to DOM nodes.
+The nodes compose a content tree. 
+The engine will also parse the style data, both in external CSS files and in style elements.
+
+The styling information (CSS) along with visual instructions in the HTML compose the render tree.
+The render tree contains rectangles with attributes like color and size. 
+
+The layout process gives exact coordinates for where it should appear on the screen. 
+
+The painting process: the render tree will be traversed and each node will be painted using
+the UI backend layer. 
+
+The rendering engine will try to display content asap. If not everything is parsed yet,
+only parsed content will appear. 
+
+
+DOM (Document Object Model):
+The output tree (parse tree) is a tree of DOM element and attribute nodes. DOM is short 
+for Document Object Model. It is the object presentation of the HTML document and the interface
+of HTML elemetns to the outside world like JS. The root of the tree is the "Document" object.
+
+
+Event loop
+
+The browser main thread is an event loop. It's an infinite loop that keeps the process alive.
+It waits for events (like layout and paint events) and processes them.
+
+
+CSS Box Model
+
+[Content] - [Padding] - [Border] - [Margin]
+
+
+CSS Positioning Scheme:
+
+1. Normal: the object is positioned according to it's place in the document. This means its 
+place in the render tree is like its place in the DOM tree and laid out according to its box
+type and dimensions. 
+2. Float: the object is first laid out like normal flow, then moved as far left or right as
+possible.
+3. Absolute: the object is put in the render tree in a different place than in the DOM tree.
+
+The positioning scheme is set by the position property and the float attribute.
+- static and relative cause a normal flow
+- absolute and fixed cause absolute positioning 
+
+Relative positioning:
+positioned like usual then moved by the required delta, e.g. left: 5px; 
+
+Absolute and fixed positioning:
+The layout is defined exactly regardless of the normal flow. The element does not participate
+in the normal flow. The dimensions are relative to the container. 
+In fixed, the container is the viewport. 
+
+Float:
+a float box is shifted to the left or right of a line. The other boxes flow around it. 
+
+Box types 
+
+Block box: forms a block--has its own rectangle in the browser window.
+
+Inline box: does not have its own block, but is inside a containing block.
+
+
+Layered representation
+
+This is specified by the z-index property. It represents the third 
+dimension of the box (the z axis). 
+
+The boxes are divided into stacks (called stacking contexts). 
+In each stack the back elements will be painted first and the forward elements 
+on top, closer to the user. In case of overlap the foremost element will
+hide the former element. 
+The stacks are ordered according to the z-index property. 
+Boxes with "z-index" property form a local stack. The viewport
+has the outer stack.

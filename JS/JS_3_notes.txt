@@ -147,12 +147,6 @@ So best to refactor so you can know the types.
 The usage of === should be reserved for when you do not know the types.
 
 
-Scope
-
-JavaScript is parsed/processed before line by line execution occurs. 
-
-
-
 Closures are frequently used in JavaScript for:
 object data privacy, in event handlers and callback functions,
 and in partial applications, currying, and other functional
@@ -221,7 +215,9 @@ Parallelism:
 When tasks literally run at the same time, e.g. on a multi-core processor.  
 
 
+Scope
 
+JavaScript is parsed/processed before line by line execution occurs. 
 
 
 

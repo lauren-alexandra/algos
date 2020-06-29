@@ -266,6 +266,38 @@ Promise.race() takes an array (or any iterable) and returns a promise that resol
 Promise.all() takes an array (or any iterable) and returns a promise that resolves when all of the promises in the iterable argument have resolved, or rejects with the reason of the first passed promise that rejects.
 
 
+Functional Programming
+
+Functional programming (often abbreviated FP) is the process of building software by composing pure functions, avoiding shared state, mutable data, and side-effects. 
+
+Functional programming is declarative rather than imperative
+
+Application state flows through pure functions. 
+
+Functional programming is a programming paradigm, meaning that it is a way of thinking about software construction based on some fundamental, defining principles.
+
+Functional code tends to be more concise, more predictable, and easier to test than imperative or object oriented code.
+
+A pure function is a function which:
+Given the same inputs, always returns the same output, and
+Has no side-effects
+Function composition is the process of combining two or more functions in order to produce a new function or perform some computation. 
+
+
+For example, the composition f . g (the dot means “composed with”) is equivalent to f(g(x)) in JavaScript.
+
+Shared state is any variable, object, or memory space that exists in a shared scope, or as the property of an object being passed between scopes. 
+
+A shared scope can include global scope or closure scopes.
+
+Shared state common problems:
+Race conditions
+changing the order in which functions are called can cause a cascade of failures because functions which act on shared state are timing dependent
+
+
+
+
+
 Scope
 
 JavaScript is parsed/processed before line by line execution occurs. 

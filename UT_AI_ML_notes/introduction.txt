@@ -131,6 +131,9 @@ Once you complete 60% of the program you will get access to:
 - CV Review and Guidance from Industry Experts
 
 
+All projects are REQUIRED to belong in the same repo. 
+While submitting a project for evaluation on Olympus, just provide the link of this repository in the notebook itself.
+
 
 
 

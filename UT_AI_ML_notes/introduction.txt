@@ -1,0 +1,28 @@
+AI vs. ML vs. DL vs. DS
+
+Artificial Intelligence
+
+a machine can mimic human behavior
+
+
+Machine Learning
+
+a machine learns from historical data and using statistical models it is able to 
+predict future outcomes
+
+
+Deep Learning
+
+a subset of machine learning that specifically deals with neural networks and can
+perform human tasks
+
+
+Data Science
+
+a combination of three skills
+1) Computer Science and technology
+2) Math & Statistics
+3) Domain/Business Knowledge
+
+encompasses humans making decisions as the result of using the above three skills
+to produce e.g. a business outcome

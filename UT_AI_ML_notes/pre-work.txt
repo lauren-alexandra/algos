@@ -1,0 +1,35 @@
+Python
+
+Why?
+
+Easy to implement. Dev time is quick.
+Easy debugging.
+Readability. 
+
+Con: execution of python code is slow compared to C++, Java.
+It's a high-level language. 
+
+Python is open source.
+Packages are freely available. 
+Python is not restricted to data science.
+
+
+Python or R?
+
+R is a little better if you are doing statistics only work
+If you need to write broad programs, Python is the winner
+
+
+IDE - Integrated Development Environment, the program you use to write programs
+
+PyCharm
+Jupyter Notebooks  --> in tandem with Anaconda.
+Sypder
+
+You can use Python without an IDE 
+
+
+Anaconda
+
+A popular distribution of Python that comes with several
+different tools to use with Python. 

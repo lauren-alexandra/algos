@@ -295,10 +295,25 @@ Race conditions
 changing the order in which functions are called can cause a cascade of failures because functions which act on shared state are timing dependent
 
 
-
-
-
 Scope
 
-JavaScript is parsed/processed before line by line execution occurs. 
+JavaScript is parsed/processed BEFORE line by line execution occurs. 
+
+Note: if a variable is referenced within some local scope outside in the 
+global scope AND that variable has not been formally declared, instead of 
+an error being thrown, the JS interpreter will create a variable declaration
+in the GLOBAL scope 
+HOWEVER:
+if you are using a transpiler like Babel, the interpretation is in strict mode
+and if we attempted the case above, we would get a ReferenceError.
+
+
+undefined vs. undeclared:
+
+undefined: a variable exists but has no value. 
+
+undeclared: a variable is never formally declared
+in any scope we have access to.
+
+
 

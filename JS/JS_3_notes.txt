@@ -297,6 +297,13 @@ changing the order in which functions are called can cause a cascade of failures
 
 Scope
 
+scope: is the region of a computer program where the binding is valid: where the name can be used to refer to the entity.
+
+Lexical scope: Lexical scope means that in a nested group of functions, the inner functions have access to the variables and other 
+resources of their parent scope. This means that the child functions are lexically bound to the execution context of their parents. 
+
+Closure is when a function “remembers” its lexical scope even when the function is executed outside that lexical scope.
+
 JavaScript is parsed/processed BEFORE line by line execution occurs. 
 
 Note: if a variable is referenced within some local scope outside in the 
@@ -314,6 +321,101 @@ undefined: a variable exists but has no value.
 
 undeclared: a variable is never formally declared
 in any scope we have access to.
+
+
+Modules encapsulate data and behavior (methods) together. The state (data) of a module is held by its methods via closure.
+
+
+this keyword
+
+A function's this references the execution context for that call, determined entirely by how the function was called.
+
+
+Binding
+
+implicit binding:
+
+var workshop = { 
+	teacher: 'bob',
+	ask(question) {
+		console.log(this.teacher, question);
+	}
+};
+
+workshop.ask('what is implicit binding?'); 
+
+
+dynamic binding:
+
+function ask(question) {
+	console.log(this.teacher, question);
+}
+
+var workshop1 = {
+	teacher: 'bob',
+	ask: ask
+};
+
+workshop1.ask('how do i share a method?'); 
+
+
+explicit binding:
+
+function ask(question) {
+	console.log(this.teacher, question);
+}
+
+var workshop1 = {
+	teacher: 'bob'
+}; 
+
+ask.call(workshop1, 'can i explicitly set context?'); 
+
+
+hard binding:
+
+var workshop = {
+	teacher: 'bob',
+	ask(question) {
+		console.log(this.teacher, question);
+	}
+};
+
+setTimeout(workshop.ask.bind(workshop), 10, 'hard bound this?'); 
+
+
+this and arrow functions:
+An arrow function doesn't define a this, so it's like any normal
+variable, and resolves lexically (aka "lexical this")
+
+
+let and var
+- use var to declare at the top of the function. to signal to
+be used throughout the function. 
+- use let inside a for loop or block scope. why? semantics.
+signal to the reader variable is for block scope. 
+
+Block Scope. A block scope is the area within if, switch 
+conditions or for and while loops. Generally speaking, 
+whenever you see {curly brackets}, it is a block. In ES6, 
+const and let keywords allow developers to declare variables 
+in the block scope, which means those variables exist only 
+within the corresponding block.
+
+
+const: use when you know you won't reassign a value.
+
+
+Hoisting:
+Hoisting is the JavaScript interpreter’s action of moving all 
+variable and function declarations to the top of the current 
+scope. However, only the actual declarations are hoisted. Any 
+assignments are left where they are.
+
+Note: can write your executable code first and any declared 
+functions can be written at the bottom of a page and hoisted. 
+
+
 
 
 

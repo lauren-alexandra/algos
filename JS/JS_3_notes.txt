@@ -416,6 +416,63 @@ Note: can write your executable code first and any declared
 functions can be written at the bottom of a page and hoisted. 
 
 
+ES6 Classes
+
+class Workshop {
+	constructor(teacher) {
+		this.teacher = teacher;
+	}
+	ask(question) {
+		console.log(this.teacher, question);
+	}
+}
+var deepJS = new Workshop('bob'); 
+deepJS.ask('is class a class?'); 
+
+
+The class keyword is syntactic sugar over the JS prototype.
+
+The super keyword can also be used to call functions on a parent object.
+
+e.g.
+class Workshop { 
+	ask(question) {
+		console.log(question);
+	}
+} 
+class WorkshopC extends Workshop {
+	ask(msg) {
+		super.ask(msg.toUpperCase());
+	}
+}; 
+
+extends keyword: inheritance. 
+e.g. class WorkshopB extends Workshop
+
+Note: the class system is built upon the idea that your methods
+don't exist on your instances, they exist on your prototype. 
+This can be overriden by declaring functions in the class 
+constructor like
+
+this.ask = question => {
+	console.log(this.question);
+}; 
+
+
+Again, this can be done (legal) but it defeats the idea behind
+the class system. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

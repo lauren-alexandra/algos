@@ -464,15 +464,34 @@ the class system.
 
 
 
+Prototypes
+
+Prototypes are the mechanism by which JavaScript objects inherit 
+features from one another.
+
+Objects are built by 'constructor calls' via new keyword.
+
+A constructor call makes an object linked to its own prototype. 
+
+e.g.
+
+function Workshop(teacher) {
+	this.teacher = teacher; 
+}
+
+Workshop.prototype.ask = function(question) {
+	console.log(this.teacher, question);
+}; 
+
+var deepJS = new Workshop('Lily'); 
+
+deepJS.ask(', is prototype a class?');
+// Lily, is prototype a class? 
 
 
 
+Prototypal Inheritance aka Behavior Delegation 
 
-
-
-
-
-
-
-
-
+e.g.
+AnotherWorkshop.prototype = Object.create(Workshop.prototype); 
+// Object.create() creates an object and links an object to another object.

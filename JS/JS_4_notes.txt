@@ -1,0 +1,39 @@
+Execution Contexts
+
+manage the complexity of interpreting and running code
+Contexts get placed on the execution stack
+
+
+This keyword
+Allows use to reuse functions with different contexts 
+Note: if this keyword is not bound, it will default to window
+Implicit Binding
+Left of the . dot at call time to see what the this keyword references
+person.sayHello(); 
+Explicit Binding
+Call, apply, bind
+
+E.g. Call a function in the context of a given object 
+
+Function sayHello() {
+	console.log(“Hello, “ + this.name);
+}
+
+Var bob= {
+	Name: ‘Bob’,
+	Age: 20
+}
+
+sayHello.call(bob); // the this keyword in sayHello() func will reference bob
+
+E.g. Apply 
+
+Var languages = [l1, l2, l3]; 
+sayHello.apply(bob, languages);  // allows you to pass in an array of arguments.
+
+
+E.g. Bind
+// is the same as call but instead of immediately invoking the function it will return a new 
+// function that you can invoke later
+
+Var newFunc = sayHello.bind(bob, l1, l2, l3);  	// also like Call can pass in arguments 

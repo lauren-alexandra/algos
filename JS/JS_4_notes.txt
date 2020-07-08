@@ -37,3 +37,69 @@ E.g. Bind
 // function that you can invoke later
 
 Var newFunc = sayHello.bind(bob, l1, l2, l3);  	// also like Call can pass in arguments 
+
+
+
+Async JavaScript - Callbacks, Promises, Async/Await
+
+Callbacks: 
+When you have a function that accepts another function as an argument, the 
+function is a higher order function and the argument is a callback. 
+
+e.g. 
+function myHigherOrderFunc(callback) {
+	return callback(); 
+} 
+
+or 
+
+[1, 2, 3].map((i) => i + 5) // with map being the higher order function and the 
+anonymous function being the callback. 
+
+
+Promises:
+// The promise object takes a callback as an arugment 
+// When resolve() invoked, status of promise becomes fulfilled
+// When reject() invoked, status of promise becomes rejected
+
+e.g.
+const promise = new Promise((resolve, reject) => {
+	setTimeout(() => { 
+		resolve()
+	}, 2000) 
+}); 
+
+function onSuccess() {
+	console.log('Success');
+}
+
+function onError() {
+	console.log('Error');
+}
+
+promise.then(onSuccess); 	// this should be called
+promise.catch(onError); 	// if the promise instead invoked reject(), this would log
+
+
+Async/Await:
+// the benefit? we can write asynchronous code as if it were synchronous
+
+$('#myButton').on('click', async () => {
+	const userData = await getUserData('jill')
+
+	updateUI(userData); 
+}); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

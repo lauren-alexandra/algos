@@ -146,7 +146,30 @@ So arrow functions don’t have a prototype property.
 
 
 
+Inheritance and the Prototype Chain
 
+function Animal (name, energy) {
+  this.name = name
+  this.energy = energy
+}
+
+Bind the this context with .call() 
+
+.call is a method on every function that allows you to invoke the function specifying in what context the function will be invoked.
+
+e.g. 
+
+function Dog (name, energy, breed) {
+  Animal.call(this, name, energy)
+
+  this.breed = breed
+}
+
+const charlie = new Dog('Charlie', 10, 'Goldendoodle')
+
+charlie.name // Charlie
+charlie.energy // 10
+charlie.breed // Goldendoodle
 
 
 

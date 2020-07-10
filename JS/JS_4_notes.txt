@@ -204,6 +204,52 @@ Animal.call(this, name, energy)
 
 
 
+Composition vs. Inheritance
+
+Composition vs. Inheritance
+What something does vs. what something is
+
+Instead of having methods defined and coupled to a particular class, if we abstract them into their own functions we can now compose them together with any type that needs them.
+
+Instead of operating on an instance like:
+
+eat(amount) {
+  console.log(`${this.name} is eating.`)
+  this.energy += amount
+}
+We can operate on state that is passed in:
+
+const eater = (state) => ({
+  eat(amount) {
+    console.log(`${state.name} is eating.`)
+    state.energy += amount
+  }
+})
+
+Composition in practice:
+function Dog (name, energy, breed) {
+  let dog = {
+    name,
+    energy,
+    breed,
+  }
+
+  return Object.assign(
+    dog,
+    eater(dog),
+    sleeper(dog),
+    player(dog),
+    barker(dog),
+  )
+}
+
+const leo = Dog('Leo', 10, 'Goldendoodle')
+leo.eat(10) // Leo is eating
+leo.bark() // Woof Woof!
+
+
+
+
 
 
 

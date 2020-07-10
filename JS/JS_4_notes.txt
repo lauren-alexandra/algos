@@ -696,7 +696,26 @@ sumArgs(1,2,3) // 6
 
 
 
+JavaScript Modules
 
+We should design our software separated into different pieces where each piece has a specific purpose and clear boundaries for how it interacts with other pieces. In software, these pieces are called modules.
+
+Module components:
+Imports - dependencies
+Code
+Exports 
+
+Benefits
+Reusability
+Composability
+Leverage 
+Isolation
+Organization
+
+ES6 Modules
+Support asynchronous loading of modules
+Instead of ‘require’ (CommonJS) uses ‘import’
+Instead of doing ‘module.exports’ (CommonJS) uses ‘export’ 
 
 
 

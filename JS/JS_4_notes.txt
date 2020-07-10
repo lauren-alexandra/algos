@@ -171,6 +171,38 @@ charlie.name // Charlie
 charlie.energy // 10
 charlie.breed // Goldendoodle
 
+OR
+
+function Animal (name, energy) {
+  this.name = name
+  this.energy = energy
+}
+
+function Dog (name, energy, breed) {
+  Animal.call(this, name, energy)
+
+  this.breed = breed
+}
+
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.bark = function() {
+	this.energy = 1;
+	console.log(‘Woof!’); 
+} 
+
+Const bailey = new Dog(5); 
+
+bailey.bark();
+// Woof! 
+
+
+NOTE: when creating an ES6 class, calling super() calling the constructor of the base
+class like this: 
+Animal.call(this, name, energy)
+
+
 
 
 

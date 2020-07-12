@@ -21,3 +21,78 @@ ANATOMY OF A PYTHON PROGRAM
 - """ for multi-line comments. Include info about program at the top of the file
 - # for single line comments
 - import requests library // use to make API calls
+
+
+BASIC DATA TYPES
+
+VARIABLES AND TYPES
+
+- variables can not start with a number
+- names are lower case and separated by underscores my_variable
+- long names ok 
+
+- Open a Python REPL (read evaluate print loop) with ctrl shift P 
+- close the REPL with ctrl ' (single quote)
+
+- assign values on right hand side of = 
+- Since Python is a dynamic language, we don't need to declare the type of variables
+before we store data in them.
+
+- can do a type check with type()
+- in Python, the "Null" type is None 
+
+
+NUMBERS
+
+- int e.g. 3, -23442, 0
+- float e.g. 3.2, -9.8, 0. 
+- complex e.g. 42j 
+
+- Python also provides a decimal library which has benefits over the float datatype
+
+
+BOOLEANS
+
+- True is 1
+- False is 0 
+
+
+STRINGS
+
+- 'hello'
+- "hello"
+- strings can be concatenated with + operator
+- to use a ' within a '' use a \' to escape the quote. don't need if single ' within ""
+- multi-line strings can be represented between """ but the whitespace will be 
+a part of the string e.g. 
+
+hello = """
+	Hi everyone!
+	Welcome to the show!
+	"""
+
+- strings can be printed using the print() function in Python. 
+- In Python 3.7+ you can use f-strings for string formatting. e.g. 
+
+name = 'Tanya'
+hello = f'Hello, {name}' 
+print(hello)
+// Hello, Tanya 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

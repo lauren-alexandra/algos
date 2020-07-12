@@ -1,0 +1,23 @@
+WHY PYTHON
+
+- language created in the late 1980s by Guido Van Rossum
+- Python 2 reaches it's end of life in 2020
+- Python 3 is latest
+- it's open source language
+
+- Python has varied applications:
+	- AI/ML: SciPi, NumPy...
+	- Hardware & Micro-controllers: Raspberry Pi
+	- Web Development: Django, Flask
+	- Scripting: Dev Ops Configuration scripts
+
+- Python has fully featured standard library
+- Python has the PyPI Package Index for 3rd party packages
+
+- PEP8 is a Python coding standard
+
+ANATOMY OF A PYTHON PROGRAM
+
+- """ for multi-line comments. Include info about program at the top of the file
+- # for single line comments
+- import requests library // use to make API calls

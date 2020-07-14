@@ -79,5 +79,14 @@ N operations as the input increases.
 a time complexity of log(N) "log of N". 
 
 
+Strings
+
+- differ a bit given programming language
+- a string is stored in memory as an array of integers where each character is mapped 
+to an integer using an encoding standard like ASCII, e.g. A => 65.
+- traversing a string is O(N) in Time Complexity and O(1) Space Complexity operation
+- copy a string is O(N) in space time complexity
+- getting a string is O(1) in space time complexity 
+
 
 

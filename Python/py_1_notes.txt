@@ -80,6 +80,45 @@ print(hello)
 // Hello, Tanya 
 
 
+FUNCTIONS
+
+ANATOMY OF A FUNCTION
+
+- def hello(): 
+	return 'Hello' // optional. If a func does not have a return statement, it returns None
+
+- Python knows what code is related by how it's indented. Indent with Tab
+
+- calling functions e.g. hello(), add2(5) 
+
+- store a returned value like
+new_number = add_numbers(3, 5) 
+new_number 
+
+FUNCTIONAL ARGUMENTS
+
+- arguments that have default values are called keyword arguments and can be overriden 
+when needed
+e.g. 
+def hello(say='hi'): 
+	print(f'{say}') 
+
+hello()
+# hi
+hello('helloooo')
+# helloooo
+
+- arguments without defaults are required
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -89,4 +89,20 @@ to an integer using an encoding standard like ASCII, e.g. A => 65.
 - getting a string is O(1) in space time complexity 
 
 
+Stacks and Queues
+
+Stack. Think of a book stack. Stacking a book on top and then removing it would mean
+the book is last in, first out LIFO. 
+
+Queue. Think of people waiting in line to order coffee. The first person in line will
+be the first person to order coffee. First in, first out. FIFO.
+
+Insertions and deletions in stacks and queues run in constant space time O(1)
+Searches are O(N) time and constant space O(1) 
+To store data O(N) space
+
+
+
+
+
 

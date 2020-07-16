@@ -102,6 +102,48 @@ Searches are O(N) time and constant space O(1)
 To store data O(N) space
 
 
+Hash Tables
+
+- A key/value store 
+- Searching for a value, inserting, and deleting given a key runs on constant time O(1)
+  on average 
+- under the hood of a hash table is an array. a key, a string, is transformed by a hash 
+  function into a index.  
+- the hash function find the ascii value for each character in a string e.g. "foo" and
+  adds them up. e.g. 301. This number is used to find the index using the modulo operator
+  and the length of the underlying array (hash table). e.g. if the array is length 3, then
+  301 % 3. This is equal to 1. So the key "foo" would be transformed into index 1. 
+- what happens if two or more keys are transformed into the same index? then you get 
+  a linked list. e.g. given a hash table:
+
+  "abc" => 1  // goes through hash function: 302 % 3 === 2
+  "def" => 2  // goes through hash function: 302 % 3 === 2
+  "ghi" => 3  // goes through hash function: 300 % 3 === 0
+
+            [ ,  ,  ]
+   "ghi" <-- 3	   1 --> "abc"
+                   |		// this is a linked list
+                   +
+	           2 --> "def" 
+
+- Searching for a value, inserting, and deleting given a key runs on constant time O(N)
+  on worst case. That is if all the key values have the same index under the hood, 
+  then you have a linked list the same length as the hash table. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

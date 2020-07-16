@@ -131,6 +131,55 @@ Hash Tables
   then you have a linked list the same length as the hash table. 
 
 
+Arrays 
+
+64 bit integers take 8 bytes, 8 'memory slots'. 
+
+So storing an array like [1, 2, 3] would take up 8 x 3 = 24 memory slots. 
+This would be a static array, an array with an exact length, in this case, 24. 
+
+get is O(1) space time
+set is O(1) space time
+initialize an array is O(N) space time
+copying an array is O(N) space time!
+traverse is O(N) time and constant space O(1)
+
+Dynamic arrays (can change in length) are standard in JavaScript and Python.
+Generally when an array is initialized it will be the length of the initialization 
+plus approximately double the length. This creates 'free slots' and thus allows for
+quick insertions. Once the end of the array filled up, then the array is copied and the
+length of the filled up array is added to the end of the copied array. 
+
+For dynamic arrays, std arrays in JS and Python: 
+
+Inserting at the end of an array is O(1) constant time and O(1) space. 
+Inserting at the beginning or middle of an array is O(N) space time. 
+
+In JS and Python when removing the first item of an array, the time is O(N) because
+you are shifting all of the elements in the array. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

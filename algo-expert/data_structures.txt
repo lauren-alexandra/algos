@@ -134,6 +134,7 @@ Hash Tables
 Arrays 
 
 64 bit integers take 8 bytes, 8 'memory slots'. 
+Arrays require contiguous memory slots.
 
 So storing an array like [1, 2, 3] would take up 8 x 3 = 24 memory slots. 
 This would be a static array, an array with an exact length, in this case, 24. 
@@ -157,6 +158,30 @@ Inserting at the beginning or middle of an array is O(N) space time.
 
 In JS and Python when removing the first item of an array, the time is O(N) because
 you are shifting all of the elements in the array. 
+
+
+Linked Lists 
+
+Is a popular data structure for being reversed.
+Elements are connected using pointers. 
+e.g. memory slot 1 points to memory slot 20, etc.
+This is unlike arrays which requires contiguous memory slots. 
+
+Node --> Node --> Node 
+
+Each node has a value and a pointer to the next node in a linked list. 
+The first node is the 'head.' Last node is the 'tail.'
+
+You have to traverse an entire linked list to get to a value at index x. 
+
+Getting a node: O(i) time and O(1) space complexity. That is, i is the 'index'
+Setting a node: O(i) time and O(1) space.
+
+Initializing a linked list: O(N) space time
+Copying a linked list: O(N) space time
+
+Insertion - O(N) space time 
+Deletion - O(N) space time 
 
 
 

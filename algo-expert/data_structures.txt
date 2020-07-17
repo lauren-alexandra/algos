@@ -206,56 +206,28 @@ Storing a graph is O(V + E) space. V being vertices and E edges.
 
 
 
+Trees
 
+Are a special type of graph. They store data hierarchically. 
 
+Often are used to test your knowledge of recursion during coding interviews.
 
+Have a single 'root' aka top node. 
 
+Each node in the tree can have only one parent.
 
+A branch is a path that starts at the root and goes to the bottom of the tree. 
 
+Bottom nodes are called leaf nodes. 
 
+Depth: the number of levels in a tree. 
 
+Traverse the tree (if on AVERAGE the tree is balanced): 
+O(N) space and O(log(N)) time.
+Worst case: O(N) time where N is the number of nodes in the tree. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+e.g.
+		
+	A
+    B       C
+  D   E   F   G

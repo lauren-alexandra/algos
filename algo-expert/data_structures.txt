@@ -184,6 +184,43 @@ Insertion - O(N) space time
 Deletion - O(N) space time 
 
 
+Graphs
+
+A graph is a collection of nodes that may or may not be related to one another.
+
+Nodes = vertices
+Connections = edges
+
+Nodes may have values e.g. integer values.
+
+A graph is 'connected' if any two nodes can reach each other.
+
+Note: some graphs are directive meaning the edges in the graph have directions.
+
+e.g. (Node A) ---> (Node B) <---> (Node C) 
+
+A cycle in the graph is when you can traverse 3 nodes in a circular direction.
+e.g. A to B to C to A. 
+
+Storing a graph is O(V + E) space. V being vertices and E edges.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

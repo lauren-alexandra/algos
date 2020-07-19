@@ -34,3 +34,28 @@ Domain Name System: it describes the entities and protocols involved in the tran
 from domain names to IP addresses. Typically machines make a DNS query to a well known
 entity which is responsible for returning the IP address (or multiple ones) of the 
 requested domain name in the response. 
+A DNS query is made when you enter www.google.com in a browser. 
+
+
+What are load balancers? 
+
+Client		Load Balancer		Server
+
+Balancing: rerouting traffic from clients so it doesn't go directly to one server but
+to many load balancers. 
+
+Load Balancer: a type of reverse proxy that distributes traffic across servers. Load 
+balancers can be found in many parts of a system from the DNS layer all the way to the
+database layer. 
+
+Reverse Proxy: a server that sits between clients and servers and acts on behalf of the 
+servers, typically used for logging, load balancing, or caching. 
+
+Server-selection strategy: A strategy for how a load balancer chooses servers when 
+distributing traffic amongst multiple servers. e.g. random selection, performance-based
+selection (choose the server with the best peformance like fastest response time or 
+least amount of traffic), and IP-based routing.
+
+Hot Spot: Some servers will receive more traffic than others, creating a "hot spot."
+
+Nginx: "engine X" is a webserver that is often used as a reverse proxy and load balancer.

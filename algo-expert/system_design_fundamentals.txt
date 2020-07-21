@@ -59,3 +59,49 @@ least amount of traffic), and IP-based routing.
 Hot Spot: Some servers will receive more traffic than others, creating a "hot spot."
 
 Nginx: "engine X" is a webserver that is often used as a reverse proxy and load balancer.
+
+
+
+Caching 
+
+Latency: the time it takes for a certain operation to complete in a system. A measure
+of time - duration in milliseconds or seconds. 
+
+Throughput: the number of operations that a system can handle properly per time unit. 
+Can be measured in requests per second (RPS).
+
+Memory: short for Random Access Memory RAM. Data stored in memory will be lost when the 
+process that has written that data dies. 
+
+Cache: a piece of hardware or software that stores data typically meant to retrieve that
+data faster than otherwise. 
+
+Cache Hit: when requested data is found in a cache. 
+
+Cache Miss: When requested data could have been found in a cache but isn't. e.g. If a server
+goes down, a load balancer will have to forward requests to a new server, which results
+in a cache miss.
+
+Cache Eviction Policy: The policy by which values get evicted or removed from a cache. 
+LRU - least-recently used
+FIFO - first in first out
+LFU - least-frequently used 
+
+Content Delivery Network (CDN):
+A third-party service like Cloudfare or Google Cloud CDN that acts like a cache for your
+servers. A CDN has servers all around the world, meaning that the latency to a CDN's servers 
+will almost always be better than the latency to your servers. A CDN's servers are often
+referred to as PoPs (Points of Presence). 
+
+
+
+
+
+
+
+
+
+
+
+
+

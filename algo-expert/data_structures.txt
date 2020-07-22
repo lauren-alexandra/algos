@@ -231,3 +231,18 @@ e.g.
 	A
     B       C
   D   E   F   G
+
+
+Key-Value Store:
+Is a flexible NoSQL database that's often used for caching and dynamic configuration.
+
+Redis:
+An in-memory key-value store. Does offer some persistent storage options but is typically
+used as a really fast, best-effort caching solution. 
+
+Relational Database:
+A type of structured database in which data is stored following a tabular format; often
+supports powerful querying using SQL.
+
+Non-Relational Database:
+A database that is free of imposed, tabular-like structure. NoSQL databases. 

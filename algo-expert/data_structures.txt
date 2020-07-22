@@ -337,3 +337,33 @@ milliseconds.
 Throughput:
 The number of operations that a system can handle properly per time unit. For instance
 the throughput of a server can be measured in requests per second RPS.
+
+
+Availability
+
+Process: 
+A program currently running on a machine. 
+
+Node/Instance/Host:
+A virtual or physical machine on which the developer runs processes. 
+
+Availability:
+The odds of a particular server or service being up and running at any point in time, 
+usually measured in percentages. A server that has 99% availability will be operational
+99% of the time. (2 nines of availability). 
+
+Nines:
+Refers to percentages of availability. 
+e.g. 5 nines of availability is 99.999% is high availability. 
+
+Redundancy:
+The process of replicating parts of a system in an effort to make it more reliable.
+
+SLA:
+A service-level agreement. A collection of guarantees given to a customer by a service
+provider. Makes guarantees on a system's availability. SLAs are made up of one or 
+multiple SLOs. 
+
+SLO:
+A service-level objective. A guarantee given to a customer by a service provider. SLOs
+constitute an SLA.

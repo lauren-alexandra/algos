@@ -321,3 +321,19 @@ Persistent Storage:
 Refers to disk, but in general it is any form of storage that persists if the process
 in charge of managing it dies.
 
+
+Latency and Throughput
+
+Latency:
+The time it takes for certain operations to complete in a system, measured in seconds or
+milliseconds.
+
+- Reading 1 MB from RAM 0.25 ms
+- Reading 1 MB from SSD 1 ms
+- Transfer 1 MB over Network 10 ms
+- Reading 1 MB from HDD 20 ms
+- Inter-Continental Round Trip: 150 ms
+
+Throughput:
+The number of operations that a system can handle properly per time unit. For instance
+the throughput of a server can be measured in requests per second RPS.

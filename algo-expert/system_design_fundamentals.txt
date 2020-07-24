@@ -94,14 +94,15 @@ will almost always be better than the latency to your servers. A CDN's servers a
 referred to as PoPs (Points of Presence). 
 
 
+Proxies
 
+Reverse Proxy:
+A server that sits between clients and servers and acts on behalf of the servers,
+typically used for logging, load balancing, or caching. 
 
+Forward Proxy:
+A server that sits between a client and servers and acts on behalf of the client, typically
+used to mask the client's identity (IP address). Often just referred to as proxies. 
 
-
-
-
-
-
-
-
-
+Nginx:
+"engine X" is a webserver that is often used as a load balancer or reverse proxy. 

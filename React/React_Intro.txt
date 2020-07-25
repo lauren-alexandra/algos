@@ -77,3 +77,57 @@ Testing in React:
 - fast
 - can write reliable, deterministic unit tests
 - write quickly, update easily 
+
+
+Tradeoffs
+
+Cons: because React is not a framework but a library:
+- does not have clear opinions
+- decision fatigue
+- overhead setup is required (ecosystem). 
+React is a component library. routing not there etc.
+- less cross-team consistency
+- Also: React is JavaScript-centric. JS knowledge is
+required. 
+
+Pros:
+- light-weight
+- can add on to existing apps 
+- pick only what you need
+- popular boilerplates exist
+- one-way binding: more control, more explicit, easy
+to debug
+- little framework-specific syntax
+- there are fewer concepts to learn. It's JS
+- to get better at React, you have to get better 
+at modern es6 JS 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

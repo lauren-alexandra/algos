@@ -1,0 +1,79 @@
+History
+
+2011 Created by Facebook
+2013 Open sourced 
+2014 Embraced by large companies
+2015 React Native released
+
+
+Why choose React?
+
+1) Flexibility: 
+Can use it for a variety of platforms and 
+use cases.
+Less opinionated than Angular.
+Is a library not a framework.
+
+Where can I use React?
+- web apps
+- static sites like Gatsby
+- mobile - react native
+- desktop
+- VR (virtual reality)
+
+
+React Renderers 
+- react-dom
+- react-native
+- react-vr 	
+
+
+2) Developer Experience
+It offers a simple API that is very easy to learn.
+You'll rarely use the docs.
+
+JSX compiles to JS.
+<h1>my title</h1>
+is compiled to 
+React.createElement("h1", "my title")
+
+Unlike Angular and Vue which use directives
+to make HTML more powerful, React just includes
+embedded JS e.g. {user.map(createUser)} 
+
+
+3) Corporate Investment
+- created and maintained by Facebook
+- Microsoft open sourced UI Fabric, a 
+React component library that is a collection 
+of UX frameworks that look like Microsoft Office
+- Material UI has react components that use Google's
+Material Design 
+
+Community
+- huge popularity 
+- answers on stack overflow
+
+4) Ecosystem
+- React Router - routes
+- Redux - state management, handle data flow
+- Jest (FB) - automated testing 
+- GraphQL - an alternative to RESTful API calls
+where you can declare you API calls on the client
+
+
+5) Performance
+- Why a virtual DOM? 
+Updating the DOM is expensive. So React minimizes
+DOM changes. 
+
+Lightweight library: ~35Kb minified.
+
+
+6) Testability
+Testing in React:
+- little to no config required
+- run in-memory via Node
+- fast
+- can write reliable, deterministic unit tests
+- write quickly, update easily 

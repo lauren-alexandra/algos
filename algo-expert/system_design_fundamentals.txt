@@ -131,5 +131,56 @@ used in the industry.
 
 
 
+Relational Databases
+
+Databases:
+Are programs that use disk or memory to record data and query data. In general, they are
+themselves servers that are long lived and interact with the rest of your application
+through network calls, with protocols on top of TCP or even HTTP. 
+
+For the most part, databases need to persist records and thus cannot use memory. You
+have to write data to your disk. 
 
 
+Disk: 
+Refers to HDD (hard-disk drive) or SSD (solid-state drive). Data written to disk will
+persist through power failures and general machine crashes. 
+
+Disk is referred to as non-volatile storage. 
+
+
+Relational Database: 
+a type of structured db (SQL db)
+
+Non-relational: NoSQL
+
+SQL: 
+structured query language. relational databases can be used using a derivative of SQL 
+such as PostgreSQL in the case of Postgres. 
+ 
+Postgres:
+a relational database that uses a dialect of SQL called PostgreSQL. Provides ACID transactions.
+
+ACID transaction: 
+Atomicity: 
+the transaction operations will all success or all fail. 
+
+Consistency:
+the transaction cannot bring the database to an invalid state. 
+after a transaction is committed or rolled back, the rules for each record will still apply,
+and all future transactions will see the effect of the transaction. This is Strong Consistency.
+
+Isolation:
+the execution of multiple transactions concurrently will have the same effect as if they
+had been executed sequentially. 
+
+Durability: 
+any committed transaction is written to non-volatile storage. so it won't be overwritten by power-loss
+or a crash.
+
+
+Database Index: a special data structure that allows your db to perform certain queries faster like reads,
+but writes to db take longer. 
+
+Eventual Consistency:
+reads of db might return a view of the system that is stale. which could be 10 seconds or minutes.

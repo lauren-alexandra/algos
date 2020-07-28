@@ -184,3 +184,10 @@ but writes to db take longer.
 
 Eventual Consistency:
 reads of db might return a view of the system that is stale. which could be 10 seconds or minutes.
+
+
+
+Hot Spot: 
+When distributing a workload across a set of servers, that workload might be spread unevenly.
+More traffic = hot spot
+

@@ -186,6 +186,17 @@ Eventual Consistency:
 reads of db might return a view of the system that is stale. which could be 10 seconds or minutes.
 
 
+Replication and Sharding
+
+Replication:
+The act of duplicating the data from one database server to others. This is sometimes used
+to increase the redundancy of your system and tolerate regional failures for instance. Other
+times you can use replication to move data closer to your clients, thus decreasing the latency
+of accessing specific data.
+
+Sharding:
+aka data partitioning, the act of splitting a database into two or more pieces (shards) and is
+typically done to increase the throughput of a database. 
 
 Hot Spot: 
 When distributing a workload across a set of servers, that workload might be spread unevenly.

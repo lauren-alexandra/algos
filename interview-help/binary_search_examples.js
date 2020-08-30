@@ -1,7 +1,5 @@
 /*
-1) Read Binary Search
-
-2) Solve: Binary Search problems
+Solve: Binary Search problems
 https://leetcode.com/problems/binary-search/
 https://leetcode.com/problems/fixed-point/
 https://leetcode.com/problems/valid-perfect-square/
@@ -32,5 +30,49 @@ index: the current location that you are searching
 left, right: the indicies from which we use to maintain our search space
 mid: the index that we use to apply a condition to determine if we should
 search left or right
+the condition: if target smaller than middle, set index as middle + 1. if greater, middle - 1. 
+
+time: O(log N) (good) - dividing the problem up into subproblems
+space: O(1)    (good)
 */ 
 
+// #704 Binary Search
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var binaryRecursiveSearch = function(arr, target, left, right) {
+    // if left greater than right, return -1  
+    if(left > right) {
+        return -1; 
+    }
+    
+    // find middle 
+    let middle = Math.floor((left + right) / 2); // rounds down
+
+    // compare target and middle
+    if(arr[middle] === target){
+        // return index of target 
+        return arr.indexOf(target); 
+    } 
+    // if middle is greater than target, go left of middle and search
+    else if (arr[middle] > target) {
+        // recursive call 
+        return binaryRecursiveSearch(arr, target, left, middle - 1); 
+    } 
+    // if middle is less than target, go right of middle and search 
+    else {
+        // recursive call 
+        return binaryRecursiveSearch(arr, target, middle + 1, right) 
+    }
+}
+
+var search = function(nums, target) {
+    // left initialized as nums start
+    // right initialized as nums end 
+    let left = 0;
+    let right = nums.length - 1; 
+
+    return binaryRecursiveSearch(nums, target, left, right); 
+};

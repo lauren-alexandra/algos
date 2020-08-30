@@ -1,7 +1,5 @@
 /*
 Solve: Binary Search problems
-https://leetcode.com/problems/binary-search/
-https://leetcode.com/problems/fixed-point/
 https://leetcode.com/problems/valid-perfect-square/
 https://leetcode.com/problems/sqrtx/
 https://leetcode.com/problems/squares-of-a-sorted-array/
@@ -37,6 +35,16 @@ space: O(1)    (good)
 */ 
 
 // #704 Binary Search
+/*
+Given a sorted (in ascending order) integer array nums of n elements and a target value, write a function to search target in nums. If target exists, then return its index, otherwise return -1.
+
+
+Example 1:
+
+Input: nums = [-1,0,3,5,9,12], target = 9
+Output: 4
+Explanation: 9 exists in nums and its index is 4
+*/ 
 /**
  * @param {number[]} nums
  * @param {number} target
@@ -76,3 +84,46 @@ var search = function(nums, target) {
 
     return binaryRecursiveSearch(nums, target, left, right); 
 };
+
+// #1064 Fixed Point 
+/*
+Given an array A of distinct integers sorted in ascending order, return the smallest index i that satisfies A[i] == i.  Return -1 if no such i exists.
+
+Example 1:
+
+Input: [-10,-5,0,3,7]
+Output: 3
+Explanation: 
+For the given array, A[0] = -10, A[1] = -5, A[2] = 0, A[3] = 3, thus the output is 3.
+*/ 
+
+/* 
+Solved without binary search. Since I am 
+returning the smallest index I search 
+in consecutive ascending order rather
+than divide and conquer search. 
+*/
+
+/**
+ * @param {number[]} A
+ * @return {number}
+ */
+var fixedPoint = function(A) {
+    for(let j = 0; j < A.length; j++){
+        if(A[j] === j) {
+            return j; 
+        }
+    }
+    return -1; 
+};
+
+
+
+
+
+
+
+
+
+
+

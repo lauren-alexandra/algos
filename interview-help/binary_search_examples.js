@@ -117,13 +117,114 @@ var fixedPoint = function(A) {
     return -1; 
 };
 
+// #367 Valid Perfect Square 
+/*
+Given a positive integer num, write a function which returns True if num is a perfect square else False.
 
+Follow up: Do not use any built-in library function such as sqrt.
 
+Example 1:
 
+Input: num = 16
+Output: true
 
+Example 2:
 
+Input: num = 14
+Output: false
+*/ 
 
+/**
+ * @param {number} num
+ * @return {boolean}
+ */
+var isPerfectSquare = function(num) {
+    
+};
 
+// #69 Sqrt(x)
+/*
+Implement int sqrt(int x).
 
+Compute and return the square root of x, where x is guaranteed to be a non-negative integer.
 
+Since the return type is an integer, the decimal digits are truncated and only the integer part of the result is returned.
 
+Example 1:
+
+Input: 4
+Output: 2
+Example 2:
+
+Input: 8
+Output: 2
+Explanation: The square root of 8 is 2.82842..., and since 
+             the decimal part is truncated, 2 is returned.
+*/ 
+
+// given x, the square root will be smaller than x/2 and larger than 0
+// x is greater than or equal to 2 
+// 0 < sqrt < x/2
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var mySqrt = function(x) {
+    if (x < 2) {
+        return x;  
+    }
+    // set left to 2 
+    // set right to x/2
+    var left = 2; 
+    var right = Math.floor(x / 2); // round down 
+    var guess; 
+    var pivot; 
+
+    while (left <= right) {
+        pivot = left + (right - left) / 2; 
+        guess = Math.floor(pivot); // round down
+        guessSquared = guess * guess; 
+
+        // if product is greater than x, decrease right
+        if (guessSquared > x) {
+          right = guess - 1;         
+        }
+        // if product is less than x, increase left
+        else if (guessSquared < x) {
+            left = guess + 1; 
+        }
+        else {
+            return guess; 
+        }
+    }
+    
+    return right; 
+};
+
+// #977 Squares of a Sorted Array 
+/*
+Given an array of integers A sorted in non-decreasing order, return an array of the squares of each number, also in sorted non-decreasing order.
+
+Example 1:
+
+Input: [-4,-1,0,3,10]
+Output: [0,1,9,16,100]
+
+Example 2:
+
+Input: [-7,-3,2,3,11]
+Output: [4,9,9,49,121]
+*/ 
+
+/**
+ * @param {number[]} A
+ * @return {number[]}
+ */
+var sortedSquares = function(A) {
+    
+};

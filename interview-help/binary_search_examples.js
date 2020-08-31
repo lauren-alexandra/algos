@@ -246,6 +246,11 @@ Output: [4,9,9,49,121]
  * @param {number[]} A
  * @return {number[]}
  */
-var sortedSquares = function(A) {
-    
+var sortedSquares = function(A) {                   // not solved with binary search
+    for (let num = 0; num < A.length; num++) {
+      A[num] = A[num] * A[num]; 
+    }
+    return A.sort(function(a, b) {
+      return a - b;
+    }); 
 };

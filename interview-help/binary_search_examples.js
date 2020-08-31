@@ -1,10 +1,3 @@
-/*
-Solve: Binary Search problems
-https://leetcode.com/problems/valid-perfect-square/
-https://leetcode.com/problems/sqrtx/
-https://leetcode.com/problems/squares-of-a-sorted-array/
-*/ 
-
 /* Binary Search
 
 An algorithm for searching for a specific value in an ordered collection.
@@ -139,7 +132,35 @@ Output: false
  * @return {boolean}
  */
 var isPerfectSquare = function(num) {
-    
+    if (num < 2) {
+        return true;  
+    }
+    // set left to 2 
+    // set right to num/2
+    var left = 2; 
+    var right = Math.floor(num / 2); 
+    var guess; 
+    var pivot; 
+
+    while (left <= right) {
+        pivot = left + (right - left) / 2; 
+        guess = Math.floor(pivot);  
+        guessSquared = guess * guess; 
+
+        // if product is greater than num, decrease right
+        if (guessSquared > num) {
+          right = guess - 1;         
+        }
+        // if product is less than num, increase left
+        else if (guessSquared < num) {
+            left = guess + 1; 
+        }
+        else {
+            return true; 
+        }
+    }
+    // no perfect square
+    return false;      
 };
 
 // #69 Sqrt(x)

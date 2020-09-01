@@ -53,5 +53,16 @@ rotate 3 steps to the right: [5,6,7,1,2,3,4]
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var rotate = function(nums, k) {
+    var newArr = []; 
+    var index;
+    for(var i = 0; i < nums.length; i++){
+        index = (i + k) % nums.length; 
+        newArr[index] = nums[i];
+    }
+    var end = nums.length; 
+    nums.splice(0, end);
     
-};
+    for(var j = 0; j < newArr.length; j++) {
+        nums.push(newArr[j]); 
+    }
+}

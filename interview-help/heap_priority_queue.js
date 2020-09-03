@@ -146,9 +146,221 @@ var lastStoneWeight = function(stones) {
   return heap.pop(); 
 };  
 
-/*
-HW
+K Closest Points to Origin
 
-https://leetcode.com/problems/k-closest-points-to-origin/
-https://leetcode.com/problems/kth-largest-element-in-a-stream/
-*/ 
+We have a list of points on the plane.  Find the K closest points to the origin (0, 0).
+
+(Here, the distance between two points on a plane is the Euclidean distance.)
+
+You may return the answer in any order.  The answer is guaranteed to be unique (except for the order that it is in.)
+
+Example 1:
+
+Input: points = [[1,3],[-2,2]], K = 1
+Output: [[-2,2]]
+Explanation: 
+The distance between (1, 3) and the origin is sqrt(10).
+The distance between (-2, 2) and the origin is sqrt(8).
+Since sqrt(8) < sqrt(10), (-2, 2) is closer to the origin.
+We only want the closest K = 1 points from the origin, so the answer is just [[-2,2]].
+
+/* this can probably be solved with a priority queue. */
+
+var kClosest = function(points, K) {
+  var pointCollection = []; 
+  var result; 
+  
+  // associate each point with a distance 
+  points.forEach(function(point) {
+    let distance = point[0]**2 + point[1]**2; 
+    pointCollection.push({p: point, value: distance}); 
+  }); 
+  
+  pointCollection.sort(function (a, b) {
+    return a.value - b.value;
+  });
+    
+  // the first k points 
+  kPoints = pointCollection[:K]; 
+  
+  kPoints.map(function(point){
+    result = list[point.value];
+  });
+  
+  return result; 
+};
+
+
+Kth Largest Element in a Stream
+
+Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+Your KthLargest class will have a constructor which accepts an integer k and an integer array nums, which contains initial elements from the stream. For each call to the method KthLargest.add, return the element representing the kth largest element in the stream.
+
+Example:
+
+int k = 3;
+int[] arr = [4,5,8,2];
+KthLargest kthLargest = new KthLargest(3, arr);
+kthLargest.add(3);   // returns 4
+kthLargest.add(5);   // returns 5
+kthLargest.add(10);  // returns 5
+kthLargest.add(9);   // returns 8
+kthLargest.add(4);   // returns 8
+Note: 
+You may assume that nums' length ≥ k-1 and k ≥ 1.
+
+/* the k'th largest element in a list will be the top of the min-heap when we restrict  the size of the heap to k*/
+
+/**
+ * @param {number} k
+ * @param {number[]} nums
+ */
+var KthLargest = function(k, nums) {
+    this.k = k;
+  
+    this.tree = new BH();
+    this.tree.enqueue(nums);
+};
+
+/** 
+ * @param {number} val
+ * @return {number}
+ */
+KthLargest.prototype.add = function(val) {
+  this.tree.add(val);  
+  
+  // if the heap is bigger than k, remove elements until the heap is size k
+  while (this.tree.values.length > this.k) {
+      this.tree.values.pop(); 
+  }
+  
+  // return the smallest number in the heap
+  return this.tree.extractMin()
+};
+
+
+
+
+// binary heap
+class BH {
+  constructor() {
+    this.values = [];
+  }
+  add(element) {
+    this.values.push(element);
+    let index = this.values.length - 1;
+    const current = this.values[index];
+
+    while (index > 0) {
+      let parentIndex = Math.floor((index - 1) / 2);
+      let parent = this.values[parentIndex];
+
+      if (parent <= current) {
+        this.values[parentIndex] = current;
+        this.values[index] = parent;
+        index = parentIndex;
+      } else break;
+    }
+  }
+  extractMin() {
+    const min = this.values[0];
+    const end = this.values.pop();
+    this.values[0] = end;
+
+    let index = 0;
+    const length = this.values.length;
+    const current = this.values[0];
+    while (true) {
+      let leftChildIndex = 2 * index + 1;
+      let rightChildIndex = 2 * index + 2;
+      let leftChild, rightChild;
+      let swap = null;
+
+      if (leftChildIndex < length) {
+        leftChild = this.values[leftChildIndex];
+        if (leftChild < current) swap = leftChildIndex;
+      }
+      if (rightChildIndex < length) {
+        rightChild = this.values[rightChildIndex];
+        if (
+          (swap === null && rightChild < current) ||
+          (swap !== null && rightChild < leftChild)
+        )
+          swap = rightChildIndex;
+      }
+
+      if (swap === null) break;
+      this.values[index] = this.values[swap];
+      this.values[swap] = current;
+      index = swap;
+    }
+
+    return min;
+  }
+}
+
+class Node {
+  constructor(val, priority) {
+    this.val = val;
+    this.priority = priority;
+  }
+}
+// priority queue
+class PQ {
+  constructor() {
+    this.values = [];
+  }
+  enqueue(val, priority) {
+    let newNode = new Node(val, priority);
+    this.values.push(newNode);
+    let index = this.values.length - 1;
+    const current = this.values[index];
+
+    while (index > 0) {
+      let parentIndex = Math.floor((index - 1) / 2);
+      let parent = this.values[parentIndex];
+
+      if (parent.priority >= current.priority) {
+        this.values[parentIndex] = current;
+        this.values[index] = parent;
+        index = parentIndex;
+      } else break;
+    }
+  }
+  dequeue() {
+    const min = this.values[0];
+    const end = this.values.pop();
+    this.values[0] = end;
+
+    let index = 0;
+    const length = this.values.length;
+    const current = this.values[0];
+    while (true) {
+      let leftChildIndex = 2 * index + 1;
+      let rightChildIndex = 2 * index + 2;
+      let leftChild, rightChild;
+      let swap = null;
+
+      if (leftChildIndex < length) {
+        leftChild = this.values[leftChildIndex];
+        if (leftChild.priority < current.priority) swap = leftChildIndex;
+      }
+      if (rightChildIndex < length) {
+        rightChild = this.values[rightChildIndex];
+        if (
+          (swap === null && rightChild.priority < current.priority) ||
+          (swap !== null && rightChild.priority < leftChild.priority)
+        )
+          swap = rightChildIndex;
+      }
+
+      if (swap === null) break;
+      this.values[index] = this.values[swap];
+      this.values[swap] = current;
+      index = swap;
+    }
+
+    return min;
+  }
+}

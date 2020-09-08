@@ -56,60 +56,114 @@ Second connected component 4 -> 5
 Third connected component is vertex 6
 In DFS, if we start from a start node it will mark all the nodes connected to the start node as visited. Therefore, if we choose any node in a connected component and run DFS on that node it will mark the whole connected component as visited.
 */ 
+class Graph { 
+    constructor(noOfVertices) 
+    { 
+        this.noOfVertices = noOfVertices; 
+        this.AdjList = new Map(); // holds key/val pairs
+    } 
+  
+    addVertex(v) 
+    { 
+        this.AdjList.set(v, []); 
+    } 
+  
+    addEdge(v, w) 
+    { 
+        // get the list for vertex v and put the 
+        // vertex w denoting edge between v and w 
+        this.AdjList.get(v).push(w); 
+
+        // Since graph is undirected, 
+        // add an edge from w to v also 
+        this.AdjList.get(w).push(v); 
+    }
+  
+    DFS(node) {
+     // create a Stack and add our initial node in it
+     let s = new Array(this.nodes.length);
+     let visited = new Set();
+     s.push(node);
+
+     // mark the first node as visited
+     visited.add(node);
+
+     // continue till our Stack gets empty
+      while (!s.isEmpty()) {
+        let t = s.pop();
+
+        // Log every element that comes out of the Stack
+          console.log(t);
+
+        // 1. In the edges object, we search for nodes this node is directly connected to.
+        // 2. We filter out the nodes that have already been visited.
+        // 3. Then we mark each unvisited node as visited and push it to the Stack.
+        this.edges[t]
+        .filter(n => !visited.has(n))
+        .forEach(n => {
+           visited.add(n);
+           s.push(n);
+           });
+      }
+    }
+  
+    BFS(node) {
+       // create a Queue and add initial node
+       let q = new Array(this.nodes.length);
+       let visited = new Set();
+       q.push(node);
+
+       // mark the first node as visited
+       add(node);
+
+       // continue till our queue gets empty
+       while (!q.isEmpty()) {
+          let t = q.shift(); // dequeue
+
+          // Log every element that comes out of the Queue
+          console.log(t);
+
+          // 1. In the edges object, we search for nodes this node is directly connected to.
+          // 2. We filter out the nodes that have already been visited.
+          // 3. Then we mark each unvisited node as visited and add it to the queue.
+          this.edges[t]
+          .filter(n => !visited.has(n))
+          .forEach(n => {
+             visited.add(n);
+             q.push(n);
+          });
+       }
+    }
+} 
+
+// example 
+var g = new Graph(6); 
+var vertices = [ 'A', 'B', 'C', 'D', 'E', 'F' ]; 
+  
+// adding vertices 
+for (var i = 0; i < vertices.length; i++) { 
+    g.addVertex(vertices[i]); 
+} 
+  
+// adding edges 
+g.addEdge('A', 'B'); 
+g.addEdge('A', 'D'); 
+g.addEdge('A', 'E'); 
+g.addEdge('B', 'C'); 
+g.addEdge('D', 'E'); 
+g.addEdge('E', 'F'); 
+g.addEdge('E', 'C'); 
+g.addEdge('C', 'F'); 
 
 
-
-/* 
-#463 Island Perimeter
-
-You are given a map in form of a two-dimensional integer grid where 1 represents land and 0 represents water.
-
-Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells).
-
-The island doesn't have "lakes" (water inside that isn't connected to the water around the island). One cell is a square with side length 1. The grid is rectangular, width and height don't exceed 100. Determine the perimeter of the island.
-
- 
-
-Example:
-
-Input:
-[[0,1,0,0],
- [1,1,1,0],
- [0,1,0,0],
- [1,1,0,0]]
-
-Output: 16
-*/
-
-
-
-
-
-
-/*
-#733 Flood Fill
-
-An image is represented by a 2-D array of integers, each integer representing the pixel value of the image (from 0 to 65535).
-
-Given a coordinate (sr, sc) representing the starting pixel (row and column) of the flood fill, and a pixel value newColor, "flood fill" the image.
-
-To perform a "flood fill", consider the starting pixel, plus any pixels connected 4-directionally to the starting pixel of the same color as the starting pixel, plus any pixels connected 4-directionally to those pixels (also with the same color as the starting pixel), and so on. Replace the color of all of the aforementioned pixels with the newColor.
-
-At the end, return the modified image.
-
-Example 1:
-Input: 
-image = [[1,1,1],[1,1,0],[1,0,1]]
-sr = 1, sc = 1, newColor = 2
-Output: [[2,2,2],[2,2,0],[2,0,1]]
-Explanation: 
-From the center of the image (with position (sr, sc) = (1, 1)), all pixels connected 
-by a path of the same color as the starting pixel are colored with the new color.
-Note the bottom corner is not colored 2, because it is not 4-directionally connected
-to the starting pixel.
-Note:
-
-The length of image and image[0] will be in the range [1, 50].
-The given starting pixel will satisfy 0 <= sr < image.length and 0 <= sc < image[0].length.
-The value of each color in image[i][j] and newColor will be an integer in [0, 65535].
-*/ 
+// DFS depth first search
+// Time complexity O(V+E) - for BFS too. vertices/nodes + edges
+g.DFS("A");
+// output
+A
+D
+E
+F
+B
+G
+C

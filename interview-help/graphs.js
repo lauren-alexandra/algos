@@ -360,4 +360,32 @@ var findJudge = function(N, trust) {
     The graph is undirected: if any element j is in graph[i], then i will be in graph[j].
   */
   
+ var isBipartite = function(graph) {
+    var color = {};
+    var stack = []; 
+    for (let node of graph) {
+      if(color.hasOwnProperty(node)) {
+        stack = [node];
+        color[node] = 0; 
+        while(stack.length > 0){
+            node = stack.pop(); 
+            for (let val of graph[node]) {
+                if(!color.hasOwnProperty(val)) {
+                    // val to color
+                    stack.append(val);
+                    // color opposite current node
+                    color[val] = (color[node] && !1) || (!color[node] && 1);
+                }
+                else if (color[val] == color[node]) {
+                    return false;
+                }
+            }
+        }  
+      }
+        
+      return true; 
+    }
+};  
   
+// time O(N+E). space O(N).    
+// dfs  

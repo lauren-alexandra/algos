@@ -152,3 +152,120 @@ var mergeTwoLists = function(l1, l2) {
    return l2;
   }
 };
+
+
+/*
+HW:
+- do single pass for 
+
+19. Remove Nth Node From End of List
+
+https://leetcode.com/problems/linked-list-cycle/ 
+https://leetcode.com/problems/partition-list/
+https://leetcode.com/problems/rotate-list/
+*/ 
+
+/*
+Linked lists big O
+
+Time complexity 
+Singly-Linked List	Θ(n)	Θ(n)	Θ(1)	Θ(1)
+Space
+O(n)
+
+Doubly-Linked List	Θ(n)	Θ(n)	Θ(1)	Θ(1)
+Space
+O(n)
+*/
+
+/*
+141. Linked List Cycle
+
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
+
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+
+Return true if there is a cycle in the linked list. Otherwise, return false.
+
+Follow up:
+
+Can you solve it using O(1) (i.e. constant) memory?
+
+
+Example 1:
+Input: head = [3,2,0,-4], pos = 1
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+
+
+Two Pointers
+Intuition
+
+Imagine two runners running on a track at different speed. What happens when the track is actually a circle?
+
+Algorithm
+
+The space complexity can be reduced to O(1)O(1) by considering two pointers at different speed - a slow pointer and a fast pointer. The slow pointer moves one step at a time while the fast pointer moves two steps at a time.
+
+If there is no cycle in the list, the fast pointer will eventually reach the end and we can return false in this case.
+
+Now consider a cyclic list and imagine the slow and fast pointers are two runners racing around a circle track. The fast runner will eventually meet the slow runner. Why? Consider this case (we name it case A) - The fast runner is just one step behind the slow runner. In the next iteration, they both increment one and two steps respectively and meet each other.
+
+How about other cases? For example, we have not considered cases where the fast runner is two or three steps behind the slow runner yet. This is simple, because in the next or next's next iteration, this case will be reduced to case A mentioned above.
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+  if (head == null || head.next == null) {
+      return false;
+  }
+  let slow = head;
+  let fast = head.next;
+  while (slow != fast) {
+      if (fast == null || fast.next == null) {
+          return false;
+      }
+      slow = slow.next;
+      fast = fast.next.next;
+  }
+  return true;
+};
+
+/*
+86. Partition List
+
+Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+
+You should preserve the original relative order of the nodes in each of the two partitions.
+
+Example:
+
+Input: head = 1->4->3->2->5->2, x = 3
+Output: 1->2->2->4->3->5
+*/
+
+
+/*
+61. Rotate List
+
+Given a linked list, rotate the list to the right by k places, where k is non-negative.
+
+Example 1:
+
+Input: 1->2->3->4->5->NULL, k = 2
+Output: 4->5->1->2->3->NULL
+Explanation:
+rotate 1 steps to the right: 5->1->2->3->4->NULL
+rotate 2 steps to the right: 4->5->1->2->3->NULL
+*/ 
+

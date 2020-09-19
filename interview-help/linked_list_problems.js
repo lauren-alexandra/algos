@@ -345,3 +345,51 @@ var getIntersectionNode = function(headA, headB) {
   // no intersection  
   return null; 
 };
+
+/*
+83. Remove Duplicates from Sorted List
+
+Given a sorted linked list, delete all duplicates such that each element appear only once.
+
+Example 1:
+
+Input: 1->1->2
+Output: 1->2
+*/
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteDuplicates = function(head) {
+  /*iterate over list
+  for each node check its next value
+  if same
+  then 
+  set node.next to node.next.next 
+  check if same
+  then again
+  node.next to node.next.next
+  else
+  continue to next node in traversal*/
+  
+  var currNode = head; 
+  
+  while(currNode != null && currNode.next != null) {
+      if(currNode.next.val == currNode.val) {
+          currNode.next = currNode.next.next; 
+      }
+      else {
+          currNode = currNode.next; 
+      }
+  }
+
+  return head; 
+};

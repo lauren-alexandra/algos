@@ -269,3 +269,79 @@ rotate 1 steps to the right: 5->1->2->3->4->NULL
 rotate 2 steps to the right: 4->5->1->2->3->NULL
 */ 
 
+/* 
+160. Intersection of Two Linked Lists
+
+Write a program to find the node at which the intersection of two singly linked lists begins.
+
+Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+Output: Reference of the node with value = 8
+Input Explanation: The intersected node's value is 8 (note that this must not be 0 if the two lists intersect). 
+From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes 
+before the intersected node in A; There are 3 nodes before the intersected node in B.
+*/
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function(headA, headB) {
+  var hPointerA = headA;
+  var hPointerB = headB; 
+  var ALength = 0; 
+  var BLength = 0;
+  while(headA.next != null) {
+    ALength++;
+    headA = headA.next;
+  }
+  while(headB.next != null) {
+    BLength++;
+    headB = headB.next;
+  }
+
+  // adjust length by step
+  if(ALength > BLength) {
+   var step = ALength - BLength;
+   // step for A 
+    while(step) {
+     hPointerA = hPointerA.next; 
+     step--; 
+    }
+  } 
+  else {
+   var step = BLength - ALength;   
+   while(step) {
+    hPointerB = hPointerB.next;
+    step--;  
+   }
+  }
+
+  // then traverse both lists 
+  var currANode;
+  var currBNode;
+
+  while(hPointerA.next != null && hPointerB.next != null) {
+   currANode = hPointerA; 
+   currBNode = hPointerB; 
+   if(currANode === currBNode) {
+     // return intersection node 
+     return hPointerA;
+   }
+   else {
+     hPointerA = hPointerA.next;
+     hPointerB = hPointerB.next;
+   }
+  }    
+   
+  // no intersection  
+  return null; 
+};

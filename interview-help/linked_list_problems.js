@@ -393,3 +393,67 @@ var deleteDuplicates = function(head) {
 
   return head; 
 };
+
+/*
+369. Plus One Linked List
+
+Given a non-negative integer represented as non-empty a singly linked list of digits, plus one to the integer.
+
+You may assume the integer do not contain any leading zero, except the number 0 itself.
+
+The digits are stored such that the most significant digit is at the head of the list.
+
+Example :
+
+Input: [1,2,3]
+Output: [1,2,4]
+*/
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var plusOne = function(head) {
+  // pseudocode
+  /*identify the rightmost digit not equal to 9
+  and increase by 1
+  each node equal to 9 should be set to 0*/
+  
+  var sentinelHead = new ListNode(0);
+  sentinelHead.next = head;
+  var notNine = sentinelHead; 
+  
+  // find rightmost (not nine)
+  while(head) {
+   if(head.val != 9) {
+     notNine = head;
+   }
+    
+   head = head.next;  
+  }
+  
+  // notNine increase by 1
+  notNine.val += 1;
+  
+  // set following 9s to 0
+  notNine = notNine.next 
+  while(notNine) {
+   notNine.val = 0;
+   notNine = notNine.next; 
+  }
+  
+  if(sentinelHead.val) {
+    return sentinelHead;
+  } 
+  else {
+    return sentinelHead.next; 
+  }
+  
+};

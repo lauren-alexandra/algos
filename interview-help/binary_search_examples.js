@@ -254,3 +254,64 @@ var sortedSquares = function(A) {                   // not solved with binary se
       return a - b;
     }); 
 };
+
+/*
+#74 Search a 2D Matrix
+Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+
+Integers in each row are sorted from left to right.
+The first integer of each row is greater than the last integer of the previous row.
+Example 1:
+
+Input:
+matrix = [
+  [1,   3,  5,  7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 50]
+]
+target = 3
+Output: true
+*/ 
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix = function(matrix, target) {
+  // binary search 
+  var row = matrix.length; 
+  var first; 
+  if(matrix[0]) {
+      first = matrix[0];   // need to check for this 
+  } else {
+      return false; 
+  }
+  var col = first.length; 
+  
+  var left = 0;
+  var right = (row * col) - 1;
+  var pivotIndex, pivotVal, r, c; 
+  
+  while(left <= right) {
+    pivotIndex = Math.floor((left + right) / 2);
+    r = Math.floor(pivotIndex / col); // gives integer not float 
+    c = Math.floor(pivotIndex % col); // same int
+    pivotVal = matrix[r][c];
+    
+    if (pivotVal == target) {
+      return true; 
+    }
+    else if(target < pivotVal) {
+      right = pivotIndex - 1; // shorten search space on right
+    }
+    else {
+      left = pivotIndex + 1; // shorten search space on left 
+    }       
+  }
+  
+  return false; 
+};
+/* // m - row. n - col. 
+Time complexity : O(log(mn)) since it's a standard binary search.
+Space complexity : O(1).
+*/

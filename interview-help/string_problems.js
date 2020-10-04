@@ -228,3 +228,74 @@ var checkRecord = function(s) {
   // attendance good 
   return count < 2 && notMoreThanTwoLate; 
 };
+
+/*
+debug 
+
+#394 Decode String
+
+Given an encoded string, return its decoded string.
+
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.
+
+You may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc.
+
+Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there won't be input like 3a or 2[4].
+
+ 
+
+Example 1:
+
+Input: s = "3[a]2[bc]"
+Output: "aaabcbc"
+Example 2:
+
+Input: s = "3[a2[c]]"
+Output: "accaccacc"
+*/
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var decodeString = function(s) {
+  var stack = new Array(); 
+  var alphaString = ''; 
+  var currentMultiplier = '';
+  var multipler; 
+  var decodedStr = ''; 
+  var alphaReg = /[a-z]/i;  
+  var numReg = /^\d+$/; 
+  var peek; 
+
+  for (var i = 0; i < s.length; i++) {
+   if (s[i] !== ']') {
+    stack.push(s[i]);  
+   }
+   else {
+    var last = s.length - 1; 
+    peek = s.charAt(last);    
+       
+    // js has no peek method so use stack[-1]  
+    while (peek != '[' && stack.length != 0) {     // peek at val 
+      alphaString += stack.pop();
+    }
+    // remove [   
+    stack.pop();
+     
+    // create multiplier  
+    while (peek.match(numReg) && stack.length != 0) { // peek 
+      currentMultiplier = stack.pop() + currentMultiplier;   
+    }
+    
+    // once reach alpha char
+    if (peek.match(alphaReg)) {  // peek
+      multiplier = parseInt(currentMultiplier);  // convert str to int 122 
+      decodedStr = multiplier * alphaString;   // 3 * 'c'  
+      stack.push(decodedStr); 
+    } 
+   }  
+  }
+  
+return decodedStr;     
+};

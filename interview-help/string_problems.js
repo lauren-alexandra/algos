@@ -184,3 +184,47 @@ while(i < s.length) {
 
 return total;     
 };
+
+/*
+#551 Student Attendance Record I
+
+You are given a string representing an attendance record for a student. The record only contains the following three characters:
+'A' : Absent.
+'L' : Late.
+'P' : Present.
+A student could be rewarded if his attendance record doesn't contain more than one 'A' (absent) or more than two continuous 'L' (late).
+
+You need to return whether the student could be rewarded according to his attendance record.
+
+Example 1:
+Input: "PPALLP"
+Output: True
+Example 2:
+Input: "PPALLL"
+Output: False
+*/
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var checkRecord = function(s) {
+  // need to check for 2 conditions
+  // count of A less than 2
+  // and in string there can't be 'LLL'
+
+  var count = 0; // init
+
+  // and count must be less than 2 to proceed
+  for(var i = 0; i < s.length && count < 2; i++) {
+    // check if A 
+    if (s.charAt(i) == 'A') {
+      count++; 
+    }
+  }; 
+
+   // check for continous 'LLL' 
+  var notMoreThanTwoLate = s.indexOf('LLL') === -1;  // returns -1 if not found
+
+  // attendance good 
+  return count < 2 && notMoreThanTwoLate; 
+};

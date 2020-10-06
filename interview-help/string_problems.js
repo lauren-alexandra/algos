@@ -299,3 +299,47 @@ var decodeString = function(s) {
   
 return decodedStr;     
 };
+/*
+680. Valid Palindrome II
+
+Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome.
+
+Example 1:
+Input: "aba"
+Output: True
+Example 2:
+Input: "abca"
+Output: True
+Explanation: You could delete the character 'c'.
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var checkPalindrome = function(s) {
+    for (var i = 0; i < s.length / 2; i++) {
+        // compare char 
+        if (s.charAt(i) != s.charAt(s.length - 1 - i)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+var validPalindrome = function(s) {
+    for (var i = 0; i < s.length; i++) {
+        var c = s.charAt(i);
+        let str = s.split('');
+        str.splice(i, 1);
+        s = str.join(''); 
+      
+        if (checkPalindrome(s)) {
+          return true;  
+        } 
+      
+        let str2 = s.split('');
+        str2.splice(i, 0, c);
+        s = str2.join(''); 
+    }
+    return checkPalindrome(s);
+};

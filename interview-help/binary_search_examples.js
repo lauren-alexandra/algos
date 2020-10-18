@@ -315,3 +315,231 @@ var searchMatrix = function(matrix, target) {
 Time complexity : O(log(mn)) since it's a standard binary search.
 Space complexity : O(1).
 */
+#34 Find First and Last Position of Element in Sorted Array
+
+Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
+
+If target is not found in the array, return [-1, -1].
+
+Follow up: Could you write an algorithm with O(log n) runtime complexity?
+
+ 
+
+Example 1:
+
+Input: nums = [5,7,7,8,8,10], target = 8
+Output: [3,4]
+
+// need to 
+// use binary search to find the target and its index
+// once find the target, need to iterate both left and right until reach indices not target
+// return range
+// [firstTargetIndex, lastTargetIndex] 
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+
+
+ public int findFirstIdx(int []nums, int target){
+            int index=-1;
+            int low=0;
+            int high = nums.length-1;
+            int mid=0;
+            while(low<=high){
+                mid=(low+high)/2;
+                if(nums[mid]==target){
+                    index=mid;
+                     high=mid-1;
+                }else if(nums[mid] >= target){
+                    high=mid-1;
+                }else if(nums[mid]<target){
+                    low=mid+1;
+                }
+                
+            }
+        return index;
+        }
+
+
+
+
+var searchRange = function(nums, target) {
+// 2 subproblems
+// 1) find leftmost index
+// 2) find rightmost index
+  var result = []; 
+
+  // binary search
+  // start at mid
+  // continue traverse left until 
+  // low is target and
+  // low - 1 is not target 
+  
+  
+  var findLeftBinarySearch = function() {
+   // init low and high and mid
+   var low = 0;
+   var high = nums.length - 1;
+   var mid; 
+    
+   while (low <= high) {
+     mid = Math.floor((low + high) / 2); 
+     //   match then continue search left until no match 
+     if (nums[mid] === target) {    // check if target
+      // check if prev not target
+      // [5,7,7,8,8,99999,,8,8,8,8,10],
+       if (nums[mid - 1] !== target) { // mid=0
+          result.push(mid); // push left index to results  
+          break;  
+       }else{
+         // traverse left until
+         high = mid - 1; 
+       }
+       
+     
+     } else {
+        if (nums[mid] < nums[mid + 1]) {
+          low = mid + 1;
+        }
+        else {
+          high = mid - 1; 
+        } 
+       }
+     else {
+       // binary search here as well  
+     }
+     
+   }
+  }
+  
+  var findLeftmost = function() { // binary search
+   // given sorted array start from left
+   // iterate until find first instance of target
+   // return index
+    for(var i = 0; i < nums.length; i++) {
+      if (nums[i] === target) {
+        result.push(i); // push left 
+        break; 
+     }
+    }
+  }
+  
+  var findRightmost = function() { // apply binary search 
+    // given sorted array start from end of array
+    // iterate backwards
+    // until find first instance of target
+    // return index 
+    var end = nums.length - 1;
+    
+    for(var i = end; i > -1; i--) {
+      if (nums[i] === target) {
+        result.push(i); // push right 
+        break; 
+     }
+    }
+  }
+  
+  findLeftmost();
+  findRightmost();
+  
+  if (result.length === 0) {
+      return [-1, -1]; // if no target 
+  }
+  else {
+   return result;    
+  } 
+};
+
+
+
+#852 Peak Index in a Mountain Array
+
+Let's call an array arr a mountain if the following properties hold:
+
+arr.length >= 3
+There exists some i with 0 < i < arr.length - 1 such that:
+arr[0] < arr[1] < ... arr[i-1] < arr[i]
+arr[i] > arr[i+1] > ... > arr[arr.length - 1]
+Given an integer array arr that is guaranteed to be a mountain, return any i such that arr[0] < arr[1] < ... arr[i - 1] < arr[i] > arr[i + 1] > ... > arr[arr.length - 1].
+
+ 
+
+Example 1:
+
+Input: arr = [0,1,0]
+Output: 1
+
+int bms(int* arr, int begin, int end) {
+    int mid;
+    
+  while (begin <= end) {
+    mid = begin + (end - begin)/2;
+
+   
+    if ((arr[mid -1] < arr[mid]) && (arr[mid] > arr[mid +1])){
+        return mid;
+    }
+    else if (arr[mid] < arr[mid +1]){
+        begin = mid +1;
+        
+    } else if (arr[mid] > arr[mid +1]){
+        end = mid; 
+    }   
+  }
+
+
+[1 2 3 4 5 4 3 2 1]
+
+  return mid;
+  
+}
+  
+int peakIndexInMountainArray(int* arr, int arrSize){
+  return bms(arr, 0, arrSize -1);
+
+}
+
+
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+// O(N) solution 
+var peakIndexInMountainArray = function(arr) {
+    for(i of arr) {
+      if (arr[i] > arr[i + 1]) {
+        return i; 
+      }
+    }
+};
+
+// Binary Search
+// [0,10,5,2 1 0 -1] 
+// arr is a mountain - need to search until find largest value - return index 
+var peakIndexInMountainArray = function(arr) {
+  // identify mid
+  // where arr[i] < arr[i + 1] 
+  //   return index
+  
+  // init low and high and mid
+  var low = 0;
+  var high = arr.length - 1;
+  var mid;
+  
+  while (low < high) {// low <= high - infinite loop 
+   mid = Math.floor((low + high) / 2); // returns integer not float 
+   if (arr[mid] < arr[mid + 1]) {  // condition 
+      low = mid + 1;
+   }
+   else {
+     // do not want to discard value in search space
+     // thats why we don't want to do high = mid - 1
+      high = mid;    
+   } 
+  }
+  
+  return low; 
+};

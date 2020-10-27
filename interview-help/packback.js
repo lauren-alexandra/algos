@@ -100,3 +100,49 @@ var lenLongestFibSubseq = function(A) {
  
      return ans >= 3 ? ans : 0; 
  };
+
+/*
+#234 Palindrome Linked List
+
+Given a singly linked list, determine if it is a palindrome.
+
+Example 1:
+
+Input: 1->2
+Output: false
+Example 2:
+
+Input: 1->2->2->1
+Output: true
+*/
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function(head) {
+    var nums = [];
+    var currNode = head;
+    while(currNode != null) {
+     nums.push(currNode.val);
+     currNode = currNode.next; 
+    }
+    var front = 0;
+    var back = nums.length - 1;
+    while (front < back) {
+     if (!nums[front] === nums[back]) {
+         return false;
+     }
+     front++;
+     back--;
+    }
+    return true;
+ };
+ 

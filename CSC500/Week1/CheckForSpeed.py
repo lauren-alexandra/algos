@@ -11,8 +11,6 @@ Email: lauren.alexandra@csuglobal.edu
 """
 
 import sys
-import os
-import stat
 
 def main():
     f = open('CheckForSpeedResults.txt', 'w+')
@@ -41,7 +39,6 @@ def main():
     print("Quotient: ", quotient, file = f)
 
     f.close()
-    os.chmod("CheckForSpeedResults.txt", stat.S_IREAD)
 
 if __name__ == "__main__":
     main()

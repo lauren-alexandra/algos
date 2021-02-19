@@ -1,11 +1,6 @@
 """
-Compile and submit your source code and screenshots of the application executing the code 
-and the results in a single document.
-"""
-
-"""
 Title: Restaurant Total
-Description: Finds the total food charge, sales tax, and tip amounts.
+Description: Finds the total food charge, sales tax, and tip.
 
 Term: Winter D
 Course: CSC 500
@@ -23,7 +18,7 @@ def main():
     try:
         total = float(input('Enter the charge: '))
     except ValueError:
-        print("Not a number.")
+        print('Not a number.', file = f)
         sys.exit()
 
     # calculate sales tax of 7% 
@@ -34,9 +29,9 @@ def main():
     tip = round((total * 0.18), 2)
     total = round((total + tip), 2)
 
-    print("Sales tax: ", sales_tax, file = f)
-    print("Tip: ", tip, file = f)
-    print("Total: ", total, file = f)
+    print(f"Sales tax: ${format(sales_tax, '.2f')}", file = f)
+    print(f"Tip: ${format(tip, '.2f')}", file = f)
+    print(f"Total: ${format(total, '.2f')}", file = f)
 
     f.close()
 

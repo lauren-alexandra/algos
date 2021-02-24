@@ -32,19 +32,23 @@ def main():
     indices = check_indices(indices_input, arr_list)
 
     try:
-        target = float(input('Enter the target sum: '))
+        target = float(input('Enter sum: '))
         sum = find_sum(indices, arr_list)
 
-        print("Target = ", target , file = f)
-        print("Sum = ", sum, file = f)
-        print("Target and sum are equal." if target == sum else "Not equal.", file = f)
+        print("Your sum is", target , file = f)
+        print("Actual sum is", sum, file = f)
+        print("Equal." if target == sum else "Not equal.", file = f)
 
     except ValueError:
-        print('Not a number.', file = f)
-        sys.exit()  
+        log_err('Not a number.')
 
     f.close()
 
+def log_err(err):    
+    f = open('SumofArrays.txt', 'w+')   
+    f.write(err)
+    f.close()
+    sys.exit()
 
 def find_sum(indices_, list_):
     sum = 0
@@ -62,27 +66,23 @@ def check_input(input, arr, list_):
         list_.append(input_list)
 
     except ValueError:
-        print('Not numbers.', file = f)
-        sys.exit()  
+        log_err('Not numbers.')
 
 
 def check_indices(input_, list_):
     try:
         indices_ = list(map(int, input_.split(" ")))
         if len(indices_) != 3:
-            print('Three indices not provided.', file = f)
-            sys.exit()
+            log_err('Three indices not provided.')
 
         for (index, arr) in zip(indices_, list_): 
             if index > len(arr) - 1:
-                print('Indices must be in bounds.', file = f)
-                sys.exit()
+                log_err('Indices must be in bounds.')
 
         return indices_
 
     except ValueError:
-        print('Not numbers.', file = f)
-        sys.exit()
+        log_err('Not indices.')
 
 
 if __name__ == "__main__":

@@ -13,6 +13,7 @@ Email: lauren.alexandra@csuglobal.edu
 import sys
 import array
 
+
 def main():
     f = open('SumofArrays.txt', 'w+')
 
@@ -33,16 +34,19 @@ def main():
 
     try:
         target = float(input('Enter sum: '))
-        sum = find_sum(indices, arr_list)
+        result = find_sum(indices, arr_list)
 
-        print("Your sum is", target , file = f)
-        print("Actual sum is", sum, file = f)
-        print("Equal." if target == sum else "Not equal.", file = f)
+        print("Your sum:", file = f)
+        print(target, file = f)
+        print("\nActual sum:", file = f)
+        print(f"{result[0]} + {result[1]} + {result[2]} = {result[3]}", file = f)
+        print("\nEqual." if target == result[3] else "\nNot equal.", file = f)
 
     except ValueError:
         log_err('Not a number.')
 
     f.close()
+
 
 def log_err(err):    
     f = open('SumofArrays.txt', 'w+')   
@@ -50,13 +54,17 @@ def log_err(err):
     f.close()
     sys.exit()
 
+
 def find_sum(indices_, list_):
     sum = 0
+    values = []
 
     for (index, arr) in zip(indices_, list_):
         sum += arr[index]
+        values.append(arr[index])
 
-    return sum
+    values.append(sum)
+    return values
 
 
 def check_input(input, arr, list_):

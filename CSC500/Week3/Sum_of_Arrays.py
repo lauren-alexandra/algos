@@ -10,41 +10,11 @@ Author: Lauren Alexandra
 Email: lauren.alexandra@csuglobal.edu
 """
 
-"""
-the program checks the sum of three elements from three arrays. 
-user enters the index values of each of the three elements. note: each index will select an item from a separate array.
-
-the user needs to provide 3 arrays X, the indices that need to be checked, and the target value (does the sum meet the target?)
-"""
-
-"""
-Write a Python program to check the sum of three elements from three arrays. 
-Please have the code check to see if the sum is equal to the target value (inputted from the user). 
-Then have the program print the three-element combinations. ie the values adding to return a sum.
-
-Compile and submit your source code and screenshots of the application executing the code and the results in a single document.
-"""
-
 import sys
 import array
 
-    #f = open('SumOfArrays.txt', 'w+')
-
-    #try:
-        #total = input('Enter the numbers of the first array: ')
-
-    # try:
-    #     list(map(float, arr.split(" "))
-    # except ValueError:
-    #     print('Not numbers.', file = f)
-    #     sys.exit()
-
-    #purchases_week_01 = array.array('d', [2.19, 16.49, 3.50, 40.41])
-
-    #f.close()
-
 def main():
-    #f = open('RestaurantTotal.txt', 'w+')
+    f = open('SumOfArrays.txt', 'w+')
 
     first_arr = array.array('f', [])
     second_arr = array.array('f', [])
@@ -59,7 +29,29 @@ def main():
     check_input(third_input, third_arr, arr_list)
 
     indices = input('Enter the indices of the three elements starting with the first array: ')
-    check_indices(indices, arr_list)
+    elements = check_indices(indices, arr_list)
+
+    try:
+        target = float(input('Enter the target sum: '))
+        sum = find_sum(elements, arr_list)
+
+        print("Target: ", target , file = f)
+        print("Sum: ", sum, file = f)
+        print("Target and sum are equal." if target == sum else "Not equal.", file = f)
+
+    except ValueError:
+        print('Not a number.', file = f)
+        sys.exit()  
+
+    f.close()
+
+def find_sum(elements_, list_):
+    sum = 0
+
+    for (elem, arr) in zip(elements_, list_):
+        sum += arr[elem]
+
+    return sum
 
 
 def check_input(input, arr, list_):
@@ -69,7 +61,7 @@ def check_input(input, arr, list_):
         list_.append(input_list)
 
     except ValueError:
-        print('Not numbers.')
+        print('Not numbers.', file = f)
         sys.exit()  
 
 
@@ -77,17 +69,18 @@ def check_indices(indices_, list_):
     try:
         elements = list(map(int, indices_.split(" ")))
         if len(elements) != 3:
-            print('Not at least 3 indices provided.')
+            print('Not at least 3 indices provided.', file = f)
             sys.exit()
-        
-        for elem in elements:
-            for arr in list_: 
-                if elem > len(arr) - 1:
-                    print('Indices must be in bounds.')
-                    sys.exit()
+
+        for (elem, arr) in zip(elements, list_): 
+            if elem > len(arr) - 1:
+                print('Indices must be in bounds.', file = f)
+                sys.exit()
+
+        return elements
 
     except ValueError:
-        print('Not numbers.')
+        print('Not numbers.', file = f)
         sys.exit()
 
 

@@ -8,8 +8,8 @@ def showLastPurchase(purchases):
 
 def showAllPurchases(purchases):
     print("Weekly Purchases: ")
-    for purchase in purchases: 
-        print (f"${format(purchase, '.2f')}")
+    for purchase in purchases:
+        print(f'${purchase:.2f}') # f-strings are faster for string formatting
 
 purchases_week_01 = array.array('d', [2.19, 16.49, 3.50, 40.41])
 
@@ -27,3 +27,6 @@ $3.50
 $40.41
 $17.03
 '''
+
+import array as arr
+availability_by_room = array.array('i', [0, 1, 1, 1])

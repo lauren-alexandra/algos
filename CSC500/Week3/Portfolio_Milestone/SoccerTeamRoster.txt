@@ -1,5 +1,0 @@
-Weights:  [3.0, 4.0, 5.0, 6.0]
-
-Average weight: 4.50
-
-Max weight: 6.00

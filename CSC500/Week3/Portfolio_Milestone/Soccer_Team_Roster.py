@@ -22,6 +22,7 @@ def main():
             weights.append(float(input(f'Enter weight {n}: ')))
         except ValueError:
             print("Not a number.", file = f)
+            sys.exit()
 
     average_weight = sum(weights) / len(weights) 
     maximum_weight = max(weights)

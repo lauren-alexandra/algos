@@ -7,6 +7,56 @@ instead, in Python, the list is of dynamic nature i.e. we could just keep adding
 So, How does Python actually do this? Well, the answer is dynamic arrays.
 
 Big O https://bradfieldcs.com/algos/analysis/performance-of-python-types/
+
+Big O cheat sheet https://www.bigocheatsheet.com/ 
+"""
+"""
+Big O Efficiency
+
+index[]
+O(1)
+
+index assignment
+O(1)
+
+append
+O(1)
+
+pop()
+O(1)
+
+pop(i)
+O(n)
+
+insert(i, item)
+O(n)
+
+del
+O(n)
+
+iteration
+O(n)
+
+contains (in)
+O(n)
+
+get slice [x:y]
+O(k)                # k is the size of the slice
+
+del slice
+O(n)
+
+reverse
+O(n)
+
+concatenate
+O(k)                # k is the size of the concatenated list
+
+sort
+O(n log n)
+
+multiply
+O(nk)               # k-sized list, n times multiply
 """
 
 item_list = ['apples', 1, 1.5, ('apples', 'bananas', 'oranges'), {'apple': 1.0, 'bananas': 2.0}, ['nested list', 'hi']]

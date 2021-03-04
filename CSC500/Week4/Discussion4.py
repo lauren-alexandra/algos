@@ -65,7 +65,7 @@ An optional predicate part.
 """
 lst  =  [x ** 2  for x in range (1, 11)   if  x % 2 == 1] 
 
-here, x ** 2 is output expression, 
+      here, x ** 2 is output expression, 
       range (1, 11)  is input sequence, 
       x is variable and   
       if x % 2 == 1 is predicate part.

@@ -130,3 +130,26 @@ item_list.clear()
 
 # delete list
 del item_list
+
+"""
+List comprehension
+
+https://www.geeksforgeeks.org/python-list-comprehension-and-slicing/
+
+List comprehension is an elegant way to define and create a list in python. 
+We can create lists just like mathematical statements and in one line only. 
+The syntax of list comprehension is easier to grasp.
+
+A list comprehension generally consist of these parts:
+
+Output expression,
+Input sequence,
+A variable representing a member of the input sequence and
+An optional predicate part.
+"""
+lst  =  [x ** 2  for x in range (1, 11)   if  x % 2 == 1] 
+
+      here, x ** 2 is output expression, 
+      range (1, 11)  is input sequence, 
+      x is variable and   
+      if x % 2 == 1 is predicate part.

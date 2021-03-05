@@ -57,3 +57,24 @@ q.dequeue()
 
 q.size()
 # 1
+
+"""
+Queue Implementation
+
+In practice, many Python programmers will use the standard library’s 
+collections.deque class to achieve O(1)O(1) enqueues and dequeues. 
+"""
+# this is a ticketing queue
+
+from collections import deque
+deq = deque([1, 2, 3])
+deq.appendLeft(5)
+deq.append(6)
+deq
+# deque([5, 1, 2, 3, 6])
+deq.popleft()
+# 5
+deq.pop()
+# 6
+deq
+# deque([1, 2, 3])

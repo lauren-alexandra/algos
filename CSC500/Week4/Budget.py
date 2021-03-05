@@ -10,33 +10,43 @@ Author: Lauren Alexandra
 Email: lauren.alexandra@csuglobal.edu
 """
 
-"""
-Option #2: Budget
-Write a program that asks the user to enter the amount that they have budgeted for a month. 
-A loop should then prompt the user to enter each of their expenses for the month and keep a 
-running total. When the loop finishes, the program should display the amount that the user 
-is over or under budget.
-
-Compile and submit your source code and screenshots of the application executing the code 
-and the results in a single document.
-"""
-
 import sys
+import array
 
 def main():
     f = open('Budget.txt', 'w+')
 
-    # ask user What is your monthly budget
+    expense, total = 0, 0.00
+    
+    try:
+        budget = float(input(f'What is your monthly budget?: '))
+    except ValueError:
+        log_err('Budget must be a number.')
 
-    # enter an expense and add to total or hit "Enter" when done
+    while expense != "":
+        expense = input(f'Enter an expense or hit "Enter" when done: ')
+        if len(expense) == 0:
+            break
+        else:
+            try:
+                total += float(expense)
+            except ValueError:
+                log_err('Expense must be a number.')
 
-    # when enter hit, 
-    # 1) if total less than budget, subtract from budget and return that value under budget
-    # 2) else if total greater, return $ over budget
-    # 3) "Not over or under budget for month." 
+    if total < budget:
+        print(f'${(budget - total):.2f} under budget.', file = f)
+    elif total > budget:
+        print(f'${(total - budget):.2f} over budget.', file = f)
+    else:
+        print('Not over or under budget for month.', file = f)
 
+    sys.exit()
 
+def log_err(err):    
+    f = open('Budget.txt', 'w+')   
+    f.write(err)
     f.close()
+    sys.exit()
 
 if __name__ == "__main__":
     main()

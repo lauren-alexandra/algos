@@ -11,19 +11,18 @@ Email: lauren.alexandra@csuglobal.edu
 """
 
 import sys
-import array
 
 def main():
     f = open('Budget.txt', 'w+')
 
-    expense, total = 0, 0.00
+    total = 0.00
     
     try:
-        budget = float(input(f'What is your monthly budget?: '))
+        budget = float(input(f'What is your monthly budget? '))
     except ValueError:
         log_err('Budget must be a number.')
 
-    while expense != "":
+    while True:
         expense = input(f'Enter an expense or hit "Enter" when done: ')
         if len(expense) == 0:
             break

@@ -33,11 +33,11 @@ def main():
                 log_err('Expense must be a number.')
 
     if total < budget:
-        print(f'${(budget - total):.2f} under budget.', file = f)
+        f.write(f'${(budget - total):.2f} under budget.')
     elif total > budget:
-        print(f'${(total - budget):.2f} over budget.', file = f)
+        f.write(f'${(total - budget):.2f} over budget.')
     else:
-        print('Not over or under budget for month.', file = f)
+        f.write('Not over or under budget for month.')
 
     sys.exit()
 

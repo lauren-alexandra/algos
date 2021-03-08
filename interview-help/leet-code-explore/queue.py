@@ -78,3 +78,30 @@ deq.pop()
 # 6
 deq
 # deque([1, 2, 3])
+
+"""
+Queue class
+
+(use the queue implementation above not the class. this is for teaching purposes.)
+In practice, many Python programmers will use the standard library’s collections.deque class to achieve O(1)O(1) enqueues and dequeues.
+
+Use a Python list as a queue but only use queue features. create class
+
+The implementation shown below uses insert(0, item) to enqueue a new item, which will be an O(n)O(n) operation.
+"""
+
+class Queue(object):
+    def __init__(self):
+        self._items = []
+
+    def is_empty(self):
+        return self._items == []
+
+    def enqueue(self, item):
+        self._items.insert(0, item) # O(n)
+
+    def dequeue(self):
+        return self._items.pop()
+
+    def size(self):
+        return len(self._items)

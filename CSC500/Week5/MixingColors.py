@@ -15,12 +15,8 @@ Email: lauren.alexandra@csuglobal.edu
 import sys
 
 def main():
-    colors = get_colors()
-    mix_colors(colors)
 
-    sys.exit()
-
-def mix_colors(colors):
+  def mix_colors(colors):
     f = open('MixingColors.txt', 'w+')
 
     if 'red' in colors and 'blue' in colors:
@@ -32,32 +28,37 @@ def mix_colors(colors):
 
     f.close()
 
-def get_colors():
-    no_primary = True
+  def get_colors():
+    no_colors_to_mix = True
     colors = []
-    primary_colors = ('red', 'yellow', 'blue')
+    PRIMARY_COLORS = ('red', 'yellow', 'blue')
     
-    while no_primary:
-      no_primary = False
+    while no_colors_to_mix:
+      no_colors_to_mix = False
       for i in range(2):
-          color = str.lower(input('Enter a primary color to mix: '))
+        color = str.lower(input('Enter a primary color to mix: '))
 
-          if color not in primary_colors:
-            print('Color must be red or blue or yellow.')
-            colors = []
-            no_primary = True
-            break
+        if color not in PRIMARY_COLORS:
+          print('Color must be red or blue or yellow.')
+          colors = []
+          no_colors_to_mix = True
+          break
 
-          elif color in colors:
-            print('Enter different primary colors to mix.')
-            colors = []
-            no_primary = True
-            break
+        elif color in colors:
+          print('Enter different primary colors to mix.')
+          colors = []
+          no_colors_to_mix = True
+          break
 
-          else: 
-            colors.append(color)
+        else: 
+          colors.append(color)
               
     return colors
+
+  colors = get_colors()
+  mix_colors(colors)
+
+  sys.exit()
 
 if __name__ == "__main__":
     main()

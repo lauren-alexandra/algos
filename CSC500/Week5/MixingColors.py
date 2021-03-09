@@ -33,26 +33,29 @@ def mix_colors(colors):
     f.close()
 
 def get_colors():
-    colors = []
     no_primary = True
+    colors = []
     primary_colors = ('red', 'yellow', 'blue')
     
     while no_primary:
       no_primary = False
       for i in range(2):
-          colors.append(str.lower(input('Enter a primary color to mix: ')))
+          color = str.lower(input('Enter a primary color to mix: '))
 
-          if colors[i] not in primary_colors:
-              print('Color must be red or blue or yellow.')
-              colors = []
-              no_primary = True
-              break
+          if color not in primary_colors:
+            print('Color must be red or blue or yellow.')
+            colors = []
+            no_primary = True
+            break
 
-          if colors.count(colors[i]) > 1:
+          elif color in colors:
             print('Enter different primary colors to mix.')
             colors = []
             no_primary = True
             break
+
+          else: 
+            colors.append(color)
               
     return colors
 

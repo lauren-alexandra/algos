@@ -54,8 +54,8 @@ def main():
 
     course = get_course()
     f.write(f'Room Number: {COURSE_BY_ROOM[course]}')
-    f.write(f'Instructor: {COURSE_BY_INSTRUCTOR[course]}')
-    f.write(f'Meeting Time: {COURSE_BY_TIME[course]}')
+    f.write(f'\nInstructor: {COURSE_BY_INSTRUCTOR[course]}')
+    f.write(f'\nMeeting Time: {COURSE_BY_TIME[course]}')
     f.close()
 
     sys.exit()

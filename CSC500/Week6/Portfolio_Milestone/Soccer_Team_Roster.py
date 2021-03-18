@@ -1,6 +1,6 @@
 """
 Title: Soccer Team Roster
-Description: 
+Description: Asks the user for 5 jersey numbers and each player's rating. Displays the roster and a menu of options to modify the roster.
 
 Term: Winter D
 Course: CSC 500
@@ -10,14 +10,54 @@ Author: Lauren Alexandra
 Email: lauren.alexandra@csuglobal.edu
 """
 
-"""
-NOTE: YOU MAY NEED TO BRING IN STEPS 1-2 FROM WEEK3 PORTFOLIO
+import sys
+from collections import OrderedDict 
 
-Step 3 (of portfolio): Prompt the user to input five pairs of numbers: A player's jersey number (0 - 99) and the player's rating (1 - 9). Store the jersey numbers and the ratings in a dictionary. Output the dictionary's elements with the jersey numbers in ascending order (i.e., output the roster from smallest to largest jersey number). Hint: Dictionary keys can be stored in a sorted list. (3 pts)
+def main():
+    def get_roster(): 
+        players = dict()
+        needs_roster = True
 
-(see example in Assignment Instructions)
+        while needs_roster: 
+            needs_roster = False 
+            for n in range(1, 6):
+                try:
+                    jersey = int(input(f"Enter player {n}'s jersey number: "))
+                    rating = int(input(f"Enter player {n}'s rating: "))
+                except ValueError:
+                    print("Enter jersey number (0 - 99) and player's rating (1 - 9).")
+                    needs_roster = True
+                    break
 
-Step 4 (of portfolio): Step 4: Implement a menu of options for a user to modify the roster. Each option is represented by a single character. The program initially outputs the menu after a user chooses an option. The program ends when the user chooses the option to Quit. For this step, the other options do nothing.
+                # do a check if jersey number NOT greater than or equal to 0 and less than 100
+                # break and print jersey numbers must be between 0 and 99
 
-(see example in Assignment Instructions)
-"""
+                # do a check if rating not greater than 0 and less than 10
+                # break and print rating must be 1-9
+                
+                players[jersey] = rating 
+
+        roster = OrderedDict(sorted(players.items()))
+        print(f"\nROSTER")
+        for jersey, rating in roster.items(): 
+            print(f"Jersey number: {jersey}, Rating: {rating}")
+
+    def show_menu():
+        MENU_OPTIONS = ('a', 'd', 'u', 'r', 'o', 'q') 
+
+        opt = str.lower(input(f"\nMENU\na - Add player\nd - Remove player\nu - Update player rating\nr - Output players above a rating\no - Output roster\nq - Quit\nChoose an option:\n"))
+            
+        if opt not in MENU_OPTIONS:
+            print('Please enter option from menu.')
+            show_menu() 
+        elif opt == 'q':
+            sys.exit()
+        else:
+            needs_selection = True
+            show_menu() 
+
+    get_roster()
+    show_menu()
+
+if __name__ == "__main__":
+    main()

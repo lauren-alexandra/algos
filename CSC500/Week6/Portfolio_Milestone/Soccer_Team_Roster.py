@@ -29,13 +29,16 @@ def main():
                     needs_roster = True
                     break
 
-                # do a check if jersey number NOT greater than or equal to 0 and less than 100
-                # break and print jersey numbers must be between 0 and 99
-
-                # do a check if rating not greater than 0 and less than 10
-                # break and print rating must be 1-9
-                
-                players[jersey] = rating 
+                if not (jersey >= 0 and jersey < 100):
+                    print("Jersey numbers are from 0 to 99.")
+                    needs_roster = True
+                    break
+                elif not (rating > 0 and rating < 10):
+                    print("Ratings are from 1 to 9.")
+                    needs_roster = True
+                    break 
+                else:
+                    players[jersey] = rating 
 
         roster = OrderedDict(sorted(players.items()))
         print(f"\nROSTER")

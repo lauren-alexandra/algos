@@ -63,7 +63,6 @@ def main():
         elif opt == 'q':
             sys.exit()
         else:
-            needs_selection = True
             show_menu() 
 
     get_roster()

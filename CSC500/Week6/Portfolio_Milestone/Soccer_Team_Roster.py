@@ -23,22 +23,29 @@ def main():
             for n in range(1, 6):
                 try:
                     jersey = int(input(f"Enter player {n}'s jersey number: "))
-                    rating = int(input(f"Enter player {n}'s rating: "))
+
+                    if not (jersey >= 0 and jersey < 100):
+                        print("Jersey numbers are from 0 to 99.")
+                        needs_roster = True
+                        break
                 except ValueError:
-                    print("Enter jersey number (0 - 99) and player's rating (1 - 9).")
+                    print("Enter numbers only.")
                     needs_roster = True
                     break
 
-                if not (jersey >= 0 and jersey < 100):
-                    print("Jersey numbers are from 0 to 99.")
+                try:
+                    rating = int(input(f"Enter player {n}'s rating: "))
+
+                    if not (rating > 0 and rating < 10):
+                        print("Player ratings are from 1 to 9.")
+                        needs_roster = True
+                        break 
+                except ValueError: 
+                    print("Enter numbers only.")
                     needs_roster = True
                     break
-                elif not (rating > 0 and rating < 10):
-                    print("Ratings are from 1 to 9.")
-                    needs_roster = True
-                    break 
-                else:
-                    players[jersey] = rating 
+
+                players[jersey] = rating 
 
         roster = OrderedDict(sorted(players.items()))
         print(f"\nROSTER")

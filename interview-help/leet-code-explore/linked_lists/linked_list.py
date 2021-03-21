@@ -1,6 +1,4 @@
 """
-https://bradfieldcs.com/algos/lists/implementing-an-unordered-list/
-
 no requirement to store in continguous memory (pointers)
 
 the location of the first item must be specified. the reference

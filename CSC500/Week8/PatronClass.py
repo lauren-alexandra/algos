@@ -1,4 +1,4 @@
-class Patron():
+class Patron:
     # class attribute. accessible to all instances of the class.
     CHECKOUT_LIMIT = 5
 

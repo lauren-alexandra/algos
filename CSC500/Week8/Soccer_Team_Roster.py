@@ -97,9 +97,25 @@ def main():
             print('Please enter option from menu.')
             show_menu() 
         elif opt == 'a':
-            # ask for jersey and rating 
-            # save them to players dictionary 
-            print('Added player.')
+            need_player = True
+
+            while need_player: 
+                jersey_msg = f"Enter a new player's jersey number: "
+                jersey = get_jersey(jersey_msg)
+                if jersey == "Invalid":
+                    need_player = True
+                    break 
+
+                rating_msg = f"Enter the player's rating: "
+                rating = get_rating(rating_msg)
+                if rating == "Invalid":
+                    need_player = True
+                    break 
+
+                players[jersey] = rating 
+                break
+
+            print(f'New players: {players}')
             show_menu()
         elif opt == 'q':
             sys.exit()

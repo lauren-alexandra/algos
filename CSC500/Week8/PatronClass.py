@@ -6,7 +6,7 @@ class Patron():
     def __init__(self, name, age = None):
         # instance attribute. data only accessible to instance.
         self.name = name
-        self.inventory = []
+        self.inventory = dict()
 
         # private 
         self.__age = age
@@ -24,10 +24,15 @@ class Patron():
         for item in self.inventory:
             print(f"{item}")
 
-    # instance method (called by an instance)
+    # instance method 
     def checkout_items(self, items):
-        self.inventory.extend(items)
+        self.inventory.update(items)
         return self.inventory
+
+    def return_items(self, items):
+      for item in items:
+        del self.inventory[item]
+      return self.inventory 
 
     # class method. the cls argument refers to the class.
     @classmethod
@@ -55,7 +60,10 @@ james = Patron('James', 80)
 print('Age attribute public?', hasattr(james, '__age'))
 print(f"Patron's age: {james.get_age()}")
 
-items_out = james.checkout_items(['Jane Eyre', 'Emma', 'Little Women'])
+items_out = james.checkout_items({'Jane Eyre': 'Movie', 'Emma': 'Book', 'Little Women': 'Book'})
 Patron.show_receipt(items_out)
 
-print(james.info)
+print(james.return_items({'Emma': 'Book'}))
+
+james.info
+

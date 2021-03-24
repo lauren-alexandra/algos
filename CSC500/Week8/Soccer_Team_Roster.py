@@ -14,6 +14,8 @@ Email: lauren.alexandra@csuglobal.edu
 import sys
 
 def main():
+    players = dict()
+
     def get_weights():
         weights = []
         need_weights = True
@@ -35,36 +37,49 @@ def main():
         print(f'\nAverage weight: {average_weight:.2f}')
         print(f'\nMax weight: {maximum_weight:.2f}')
 
+    def get_jersey(jersey_msg): 
+        try: 
+            jersey = int(input(jersey_msg))
+        except ValueError:
+            print("Enter numbers only.")
+            return "Invalid" 
+
+        if not (jersey >= 0 and jersey < 100):
+            print("Jersey numbers are from 0 to 99.")
+            return "Invalid" 
+
+        return jersey 
+
+    def get_rating(rating_msg):
+        try:
+            rating = int(input(rating_msg))
+        except ValueError: 
+            print("Enter numbers only.")
+            return "Invalid" 
+
+        if not (rating > 0 and rating < 10):
+            print("Player ratings are from 1 to 9.")
+            return "Invalid"
+
+        return rating
+    
     def get_roster(): 
-        players = dict()
         need_roster = True
 
         while need_roster: 
             need_roster = False 
             for n in range(1, 6):
-                try:
-                    jersey = int(input(f"Enter player {n}'s jersey number: "))
-
-                    if not (jersey >= 0 and jersey < 100):
-                        print("Jersey numbers are from 0 to 99.")
-                        need_roster = True
-                        break
-                except ValueError:
-                    print("Enter numbers only.")
+                jersey_msg = f"Enter player {n}'s jersey number: "
+                jersey = get_jersey(jersey_msg)
+                if jersey == "Invalid":
                     need_roster = True
-                    break
+                    break 
 
-                try:
-                    rating = int(input(f"Enter player {n}'s rating: "))
-
-                    if not (rating > 0 and rating < 10):
-                        print("Player ratings are from 1 to 9.")
-                        need_roster = True
-                        break 
-                except ValueError: 
-                    print("Enter numbers only.")
+                rating_msg = f"Enter player {n}'s rating: "
+                rating = get_rating(rating_msg)
+                if rating == "Invalid":
                     need_roster = True
-                    break
+                    break 
 
                 players[jersey] = rating 
  
@@ -81,6 +96,11 @@ def main():
         if opt not in MENU_OPTIONS:
             print('Please enter option from menu.')
             show_menu() 
+        elif opt == 'a':
+            # ask for jersey and rating 
+            # save them to players dictionary 
+            print('Added player.')
+            show_menu()
         elif opt == 'q':
             sys.exit()
         else:

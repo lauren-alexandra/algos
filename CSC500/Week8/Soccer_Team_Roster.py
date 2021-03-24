@@ -96,17 +96,18 @@ def main():
         if opt not in MENU_OPTIONS:
             print('Please enter option from menu.')
             show_menu() 
+
         elif opt == 'a':
             need_player = True
 
             while need_player: 
-                jersey_msg = f"Enter a new player's jersey number: "
+                jersey_msg = "Enter a new player's jersey number: "
                 jersey = get_jersey(jersey_msg)
                 if jersey == "Invalid":
                     need_player = True
                     break 
 
-                rating_msg = f"Enter the player's rating: "
+                rating_msg = "Enter the player's rating: "
                 rating = get_rating(rating_msg)
                 if rating == "Invalid":
                     need_player = True
@@ -115,37 +116,31 @@ def main():
                 players[jersey] = rating 
                 break
 
-            print(f'New players: {players}')
             show_menu()
+
+        elif opt == 'd':
+            need_jersey = True
+
+            while need_jersey: 
+                jersey_msg = "Enter a jersey number: "
+                jersey = get_jersey(jersey_msg)
+                if jersey == "Invalid":
+                    need_jersey = True
+                    break 
+
+                del players[jersey]
+                break 
+
+            show_menu()
+
         elif opt == 'q':
             sys.exit()
+
         else:
             show_menu() 
 
-    """
-    Step 5: Implement the "Add player" menu option. Prompt the user for a new player's jersey number and rating. Append the values to the two vectors.
     
-    Example:
-
-    Enter a new player's jersey number:
-
-    49
-
-    Enter the player's rating:
-
-    8
-    """
-
-    """
-    Step 6: Implement the "Delete player" menu option. Prompt the user for a player's jersey number. Remove the player from the roster (delete the jersey number and rating).
-    
-    Example:
-
-    Enter a jersey number:
-
-    4
-    """
-
+  
     """
     Step 7: Implement the "Output players above a rating" menu option. Prompt the user for a rating. Print the jersey number and rating for all players with ratings above the entered value.
 

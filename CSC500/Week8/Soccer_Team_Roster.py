@@ -42,11 +42,11 @@ def main():
             jersey = int(input(jersey_msg))
         except ValueError:
             print("Enter numbers only.")
-            jersey = "Invalid" 
+            return "Invalid" 
 
         if not (jersey >= 0 and jersey < 100):
             print("Jersey numbers are from 0 to 99.")
-            jersey = "Invalid" 
+            return "Invalid" 
 
         return jersey 
 
@@ -55,11 +55,11 @@ def main():
             rating = int(input(rating_msg))
         except ValueError: 
             print("Enter numbers only.")
-            rating = "Invalid" 
+            return "Invalid" 
 
         if not (rating > 0 and rating < 10):
             print("Player ratings are from 1 to 9.")
-            rating = "Invalid"
+            return "Invalid"
 
         return rating
     

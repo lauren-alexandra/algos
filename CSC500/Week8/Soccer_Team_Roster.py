@@ -24,28 +24,28 @@ def main():
             need_weights = False 
             for n in range(1, 5):
                 try:
-                    weights.append(float(input(f'Enter weight {n}: ')))
+                    weights.append(float(input(f"Enter weight {n}: ")))
                 except ValueError:
-                    print("Not a number.")
+                    print("Not a number.\n")
                     need_weights = True
                     break
 
         average_weight = sum(weights) / len(weights) 
         maximum_weight = max(weights)
 
-        print(f'Weights: {weights}')
-        print(f'\nAverage weight: {average_weight:.2f}')
-        print(f'\nMax weight: {maximum_weight:.2f}')
+        print(f"\nWeights: {weights}")
+        print(f"\nAverage weight: {average_weight:.2f}")
+        print(f"\nMax weight: {maximum_weight:.2f}\n")
 
     def get_jersey(jersey_msg): 
         try: 
             jersey = int(input(jersey_msg))
         except ValueError:
-            print("Enter numbers only.")
+            print("Enter numbers only.\n")
             return "Invalid" 
 
         if not (jersey >= 0 and jersey < 100):
-            print("Jersey numbers are from 0 to 99.")
+            print("Jersey numbers are from 0 to 99.\n")
             return "Invalid" 
 
         return jersey 
@@ -54,11 +54,11 @@ def main():
         try:
             rating = int(input(rating_msg))
         except ValueError: 
-            print("Enter numbers only.")
+            print("Enter numbers only.\n")
             return "Invalid" 
 
         if not (rating > 0 and rating < 10):
-            print("Player ratings are from 1 to 9.")
+            print("Player ratings are from 1 to 9.\n")
             return "Invalid"
 
         return rating
@@ -69,7 +69,7 @@ def main():
         while need_roster: 
             need_roster = False 
             for n in range(1, 6):
-                jersey_msg = f"Enter player {n}'s jersey number: "
+                jersey_msg = f"\nEnter player {n}'s jersey number: "
                 jersey = get_jersey(jersey_msg)
                 if jersey == "Invalid":
                     need_roster = True
@@ -84,7 +84,7 @@ def main():
                 players[jersey] = rating 
  
         roster = dict(sorted(players.items()))
-        print(f"\nROSTER")
+        print("ROSTER")
         for jersey, rating in roster.items(): 
             print(f"Jersey number: {jersey}, Rating: {rating}")
 
@@ -94,7 +94,7 @@ def main():
         opt = str.lower(input(f"\nMENU\na - Add player\nd - Remove player\nu - Update player rating\nr - Output players above a rating\no - Output roster\nq - Quit\nChoose an option:\n"))
             
         if opt not in MENU_OPTIONS:
-            print('Please enter option from menu.')
+            print("\nPlease enter option from menu.")
             show_menu() 
 
         # Add player
@@ -103,7 +103,7 @@ def main():
 
             while need_player: 
                 need_player = False
-                jersey_msg = "Enter a new player's jersey number: "
+                jersey_msg = "\nEnter a new player's jersey number: "
                 jersey = get_jersey(jersey_msg)
                 if jersey == "Invalid":
                     need_player = True
@@ -125,7 +125,7 @@ def main():
 
             while need_jersey: 
                 need_jersey = False
-                jersey_msg = "Enter a jersey number: "
+                jersey_msg = "\nEnter a jersey number: "
                 jersey = get_jersey(jersey_msg)
                 if jersey == "Invalid":
                     need_jersey = True
@@ -141,13 +141,13 @@ def main():
 
             while need_rating: 
                 need_rating = False 
-                rating_msg = "Enter a rating: "
+                rating_msg = "\nEnter a rating: "
                 player_rating = get_rating(rating_msg)
                 if player_rating == "Invalid":
                     need_rating = True
                     break 
 
-                print(f"ABOVE {player_rating}\n")
+                print(f"\nABOVE {player_rating}\n")
                 for jersey, rating in players.items(): 
                     if player_rating < rating:
                         print(f"Jersey number: {jersey}, Rating: {rating}")

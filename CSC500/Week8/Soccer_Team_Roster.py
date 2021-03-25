@@ -75,7 +75,7 @@ def main():
                     need_roster = True
                     break 
 
-                rating_msg = f"Enter player {n}'s rating: "
+                ratingq_msg = f"Enter player {n}'s rating: "
                 rating = get_rating(rating_msg)
                 if rating == "Invalid":
                     need_roster = True
@@ -133,6 +133,25 @@ def main():
 
             show_menu()
 
+        elif opt == 'r':
+            need_rating = True
+
+            while need_rating: 
+                rating_msg = "Enter a rating: "
+                player_rating = get_rating(rating_msg)
+                if player_rating == "Invalid":
+                    need_rating = True
+                    break 
+
+                print(f"ABOVE {player_rating}:")
+                for jersey, rating in players.items(): 
+                    if player_rating < rating:
+                        print(f"Jersey number: {jersey}, Rating: {rating}")
+
+                break 
+
+            show_menu()
+
         elif opt == 'q':
             sys.exit()
 
@@ -142,7 +161,7 @@ def main():
     
   
     """
-    Step 7: Implement the "Output players above a rating" menu option. Prompt the user for a rating. Print the jersey number and rating for all players with ratings above the entered value.
+    Step 7: Print the jersey number and rating for all players with ratings above the entered value.
 
     Example:
 

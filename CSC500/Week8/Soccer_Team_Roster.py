@@ -42,11 +42,11 @@ def main():
             jersey = int(input(jersey_msg))
         except ValueError:
             print("Enter numbers only.")
-            return "Invalid" 
+            jersey = "Invalid" 
 
         if not (jersey >= 0 and jersey < 100):
             print("Jersey numbers are from 0 to 99.")
-            return "Invalid" 
+            jersey = "Invalid" 
 
         return jersey 
 
@@ -55,11 +55,11 @@ def main():
             rating = int(input(rating_msg))
         except ValueError: 
             print("Enter numbers only.")
-            return "Invalid" 
+            rating = "Invalid" 
 
         if not (rating > 0 and rating < 10):
             print("Player ratings are from 1 to 9.")
-            return "Invalid"
+            rating = "Invalid"
 
         return rating
     
@@ -75,7 +75,7 @@ def main():
                     need_roster = True
                     break 
 
-                ratingq_msg = f"Enter player {n}'s rating: "
+                rating_msg = f"Enter player {n}'s rating: "
                 rating = get_rating(rating_msg)
                 if rating == "Invalid":
                     need_roster = True
@@ -97,10 +97,12 @@ def main():
             print('Please enter option from menu.')
             show_menu() 
 
+        # Add player
         elif opt == 'a':
             need_player = True
 
             while need_player: 
+                need_player = False
                 jersey_msg = "Enter a new player's jersey number: "
                 jersey = get_jersey(jersey_msg)
                 if jersey == "Invalid":
@@ -114,14 +116,15 @@ def main():
                     break 
 
                 players[jersey] = rating 
-                break
 
             show_menu()
 
+        # Remove player
         elif opt == 'd':
             need_jersey = True
 
             while need_jersey: 
+                need_jersey = False
                 jersey_msg = "Enter a jersey number: "
                 jersey = get_jersey(jersey_msg)
                 if jersey == "Invalid":
@@ -129,52 +132,34 @@ def main():
                     break 
 
                 del players[jersey]
-                break 
 
             show_menu()
 
+        # Output players above a rating
         elif opt == 'r':
             need_rating = True
 
             while need_rating: 
+                need_rating = False 
                 rating_msg = "Enter a rating: "
                 player_rating = get_rating(rating_msg)
                 if player_rating == "Invalid":
                     need_rating = True
                     break 
 
-                print(f"ABOVE {player_rating}:")
+                print(f"ABOVE {player_rating}\n")
                 for jersey, rating in players.items(): 
                     if player_rating < rating:
                         print(f"Jersey number: {jersey}, Rating: {rating}")
 
-                break 
-
             show_menu()
 
+        # Quit
         elif opt == 'q':
             sys.exit()
 
         else:
             show_menu() 
-
-    
-  
-    """
-    Step 7: Print the jersey number and rating for all players with ratings above the entered value.
-
-    Example:
-
-    Enter a rating:
-
-    5
-
-    ABOVE 5
-
-    Jersey number: 66, Rating: 9
-
-    Jersey number: 84, Rating: 7
-    """
 
     get_weights()
     get_roster()

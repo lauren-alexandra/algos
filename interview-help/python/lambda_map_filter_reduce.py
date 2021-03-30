@@ -36,6 +36,7 @@ print(list(incorrect))
 
 
 # reduce(fn, iterable, initializer) is used when we want to iteratively APPLY AN OPERATOR to all elements in a list. 
+# Reduce is a really useful function for performing some computation on a list and returning the result.
 
 # For example, if we want to calculate the product of all elements in a list:
 # without reduce

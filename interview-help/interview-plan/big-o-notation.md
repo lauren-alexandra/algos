@@ -12,7 +12,7 @@ Big O is worst-case, always.
 
 2) Divide and conquer: O(log n). Logarithmic time
 - e.g. We’re continually splitting things in half in a sorted set until we arrive at the thing we want.
-- This is an inverse squaring operation as we’re going from 2^3 (8) down to 2^2 (4) down to 2^1 (2) and finally 2^0 (1).
+- This is an -->inverse squaring operation<-- as we’re going from 2^3 (8) down to 2^2 (4) down to 2^1 (2) and finally 2^0 (1).
 
 3) Looping over an iterable: O(N) "order n". Linear time
 - why: one operation for every n items in the iterable

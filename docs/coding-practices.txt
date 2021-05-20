@@ -1,0 +1,95 @@
+Coding Practices
+
+Three core principles for writing clean code:
+Use the right tool
+Remove noise from our code so the reader can easily understand the logic and intent 
+Write clear, expressive code that works as its own documentation
+
+
+Reduce noise 
+your code should not be excessively wordy, expressive, it's clear what the code is trying to do, and finally, the code should do one thing, it should have a clear responsibility and it should do that one thing well. 
+
+The Rule of Seven
+A 1956 study published in psychological review found humans can hold no more than seven items in short‑term memory at once, plus or minus two. Thus, having more than seven items in scope at one time makes it difficult for the reader to comprehend the code. The rule of seven has a big impact on how we should write code, including the number of parameters we should accept for a method, the number of methods in a class, and the number of local variables we keep in scope at a single point in time. Methods with more than seven parameters are certainly difficult to reason about. 
+
+
+The DRY Principle “Do Not Repeat Yourself”
+Duplication also creates a maintenance problem. When a bug is fixed in one spot, it may persist elsewhere. Eliminate duplication by creating a reusable function or adding a parameter to an existing function to make it more flexible.
+
+
+Self-documenting Code
+Self‑documenting code strives to do four core things. First, express intent clearly so that readers understand exactly what the programmer was trying to accomplish. Second, layers of abstraction should be used so that the problem domain can be considered and walked through at different levels of detail. Third, formatting in a friendly and consistent manner will optimize the reading experience. And finally, favoring code over comments when possible will assure that the code is as expressive as it can be without relying on comments to explain away unnecessary ambiguity. 
+
+
+Defensive Coding
+
+Murphy’s law: if something can go wrong, it will go wrong. 
+Defensive coding: an approach to improve software and source code in terms of general quality making the source code comprehensible and making the software behave in a predictable manner, despite unexpected inputs or user actions. 
+Defensive coding helps improve code quality, primarily through automated code tests that exercise each logical unit of the application. 
+Unit testing helps us evaluate the quality of our defenses, and we can run the tests after each code change protecting the application by affirming its operations are not adversely impacted by the change. 
+Additionally defensive coding helps improve code predictability through user entry validation, clearly‑defined method inputs and outputs, and exception management. 
+
+Evaluating Weaknesses 
+The first step in developing a good defense for our application is to identify its potential weaknesses, so we are better able to defend it against those weaknesses. 
+Is there duplication?
+Is the code well organized? 
+Is the presentation logic mixed with business logic? 
+Is the code written to easily use automated testing? 
+Is the code handling exceptions? 
+
+
+Improving Code Comprehension 
+Refactoring is the process of restructuring our code, altering its organization and layout without changing its behavior. We can apply principles while we refactor, e.g. the single responsibility principle, the DRY principle, and separation of concerns. 
+Classes that operate at the same abstraction level and tend to change at the same time for the same reasons can be tightly coupled. Other classes should be loosely coupled. Refactor if this is not the case.
+Also, reduce complexity wherever you can. 
+
+
+Improve Code Quality with Unit Testing 
+Unit testing involves writing code that tests a unit, often a single method of our code. It automates the execution of the code to efficiently confirm a multitude of scenarios. And unit testing provides a way to evaluate the state of our defenses.
+
+
+Improve Code Predictability
+Code predictability means that an application behaves as expected. Unit test. Write methods that guard against invalid arguments that could cause unpredictable behavior.  Write validation code for user inputs. 
+
+
+Refactoring 
+
+Refactoring: changing the internal structure of our software to make it easier to understand and cheaper to modify, without changing its observable behavior. 
+
+Why refactor? Refactoring is how we improve the design and quality of our code, and if we stop working on our code as soon as it seems to work, it's very likely that it is not well suited to future changes, and thus, future changes will be more expensive. 
+
+When to refactor? Don’t let issues go unchecked. Make cleanliness and maintenance a regular part of their ongoing operations. Refactoring should only take place while the system is working and all the tests are passing; the results of your changes can’t be verified within broken code. 
+
+
+Code Smells
+A code smell is code that may need refactoring. 
+Code smells: bloaters, object orientation abusers, change preventers, dispensables, and couplers.
+Bloaters are code smells that tend to result in your code base growing unnecessarily.
+Without polymorphism (the ability of an object to take on many forms), software systems written in strongly-typed, object-oriented languages tend to have tighter coupling, as well as increased repetition, both of which make the software more expensive to change and maintain.
+Change preventers are code smells that tend to touch many parts of the system. Thus, making a change requires touching, and therefore, testing more of the system than might otherwise have been necessary.
+Dispensables are code smells that represent things in your system that have little or no value. They can be safely removed with the result being a cleaner code base that is smaller and easier to work with.
+We should avoid unnecessary tight coupling, especially between parts of the system that don't need to be glued together. Ideally, coupling between these unrelated parts of the system should be loose and take place through well-defined interfaces.
+
+
+SOLID Principles of Object-Oriented Design
+
+Single Responsibility Principle
+A class should have one and only one reason to change, meaning that a class should have only one job.
+
+Open / Closed Principle
+Objects or entities should be open for extension, but closed for modification.
+
+
+Liskov Substitution Principle
+Let q(x) be a property provable about objects of x of type T. Then q(y) should be provable for objects y of type S where S is a subtype of T.
+Essentially: every subclass/derived class should be substitutable for their base/parent class.
+
+
+
+Interface Segregation Principle
+A client should never be forced to implement an interface that it doesn't use or clients shouldn't be forced to depend on methods they do not use.
+
+
+Dependency Inversion Principle 
+Entities must depend on abstractions not on concretions. It states that the high level module must not depend on the low level module, but they should depend on abstractions.
+This principle talks about the coupling between the different classes or modules. It focuses on the approach where the higher classes are not dependent on the lower classes instead depend upon the abstraction of the lower classes. This aims to reduce the coupling between the classes is achieved by introducing abstraction between the layer, thus doesn’t care about the real implementation.

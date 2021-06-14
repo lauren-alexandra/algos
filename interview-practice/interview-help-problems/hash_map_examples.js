@@ -243,6 +243,7 @@ Output: ["a","b","c"]
     
   // zips two arrays into one
   const zip = (a, b) => {
+      // map((element, index)
       return a.map((k, i) => [k, b[i]]);
   };
   
@@ -253,6 +254,7 @@ Output: ["a","b","c"]
       
       const compareTwo = zip(word.split(''), pattern.split(''));
       
+      // for (const [key, value] of iterable)
       for (const [w, p] of compareTwo) {
       
         if (!hashMap1.has(w)) {

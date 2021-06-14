@@ -212,3 +212,68 @@ Explanation: The robot moves left twice. It ends up two "moves" to the left of t
   
   return location[0] === 0 && location[1] === 0;
 };
+
+/* 890. Find and Replace Pattern
+Given a list of strings words and a string pattern, return a list of words[i] that match pattern. You may return the answer in any order.
+
+A word matches the pattern if there exists a permutation of letters p so that after replacing every letter x in the pattern with p(x), we get the desired word.
+
+Recall that a permutation of letters is a bijection from letters to letters: every letter maps to another letter, and no two letters map to the same letter.
+
+ 
+
+Example 1:
+
+Input: words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
+Output: ["mee","aqq"]
+Explanation: "mee" matches the pattern because there is a permutation {a -> m, b -> e, ...}. 
+"ccc" does not match the pattern because {a -> c, b -> c, ...} is not a permutation, since a and b map to the same letter.
+Example 2:
+
+Input: words = ["a","b","c"], pattern = "a"
+Output: ["a","b","c"]
+*/ 
+
+/**
+ * @param {string[]} words
+ * @param {string} pattern
+ * @return {string[]}
+ */
+ var findAndReplacePattern = function(words, pattern) {
+    
+  // zips two arrays into one
+  const zip = (a, b) => {
+      return a.map((k, i) => [k, b[i]]);
+  };
+  
+  const findMatch = word => {
+      const hashMap1 = new Map();
+      const hashMap2 = new Map();  
+      let foundMatch = true;
+      
+      const compareTwo = zip(word.split(''), pattern.split(''));
+      
+      for (const [w, p] of compareTwo) {
+      
+        if (!hashMap1.has(w)) {
+            hashMap1.set(w, p);
+        }
+          
+        if (!hashMap2.has(p)) {
+            hashMap2.set(p, w);
+        }
+        
+        const pair = [hashMap1.get(w), hashMap2.get(p)];
+          
+        if (pair[0] !== p || pair[1] !== w) {
+            foundMatch = false;
+        }    
+      }
+      
+      return foundMatch;
+  }; 
+  
+  const matches = words.filter(word => findMatch(word)); 
+  
+  return matches; 
+};

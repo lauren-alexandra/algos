@@ -112,3 +112,62 @@ function backspaceCompare(str1, str2) {
   // compare strings 
   return finStack1.join("") === finStack2.join(""); 
 }
+
+/*
+856. Score of Parentheses
+
+Given a balanced parentheses string s, compute the score of the string based on the following rule:
+
+() has score 1
+AB has score A + B, where A and B are balanced parentheses strings.
+(A) has score 2 * A, where A is a balanced parentheses string.
+ 
+
+Example 1:
+
+Input: s = "()"
+Output: 1
+Example 2:
+
+Input: s = "(())"
+Output: 2
+Example 3:
+
+Input: s = "()()"
+Output: 2
+Example 4:
+
+Input: s = "(()(()))"
+Output: 6
+
+*/
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ const scoreOfParentheses = function(s) {
+    
+    let stack = [0]; // current score
+    
+    // for...of can be used for iterating over Strings without 'array-fying' them first
+    for (const char of s) {
+        if (char === '(') {
+            stack.push(0); // not gaining a point with this paren
+        }
+        else {
+            let v = stack.pop(); // remove previous ( paren score
+            let w = stack.pop(); // remove score before prev (can be original 0)
+            
+            // then add twice the score of the previous paren which has a score of 1  
+            // Math.max() will return the higher value of the two provided
+            let addTwicePreviousScore = w + Math.max(2 * v, 1); 
+            
+            stack.push(addTwicePreviousScore); 
+        }
+    }
+    
+    return stack.pop(); // aka return last score which is current
+};
+
+

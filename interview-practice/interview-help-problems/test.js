@@ -2,86 +2,69 @@
 
 console.log('it runs\n');
 
-// work with 125. Valid Palindrome line by line log 
-
-/*
-#125 Valid Palindrome
-
-Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
-
-Note: For the purpose of this problem, we define empty string as valid palindrome.
-
-Example 1:
-
-Input: "A man, a plan, a canal: Panama"
-Output: true
-Example 2:
-
-Input: "race a car"
-Output: false
-*/
 /**
- * @param {string} s
- * @return {boolean}
+ * @param {number} n
+ * @return {string[]}
  */
- var isPalindrome = function(s) {
-    // set two pointers, one at each end of the string
-    // traverse inwards
-    // if space, skip comparison
-    // otherwise compare eq. if not eq, return false
-     
-    var firstP = 0;
-    var secondP = s.length - 1;
-     
-    var alphaReg = /[a-z]/i;  
-    var numReg = /^\d+$/; 
-    var first, second;
-     
-    while (firstP < secondP) {
-     // check first pointer 0-9 or a-z 
-     if(s[firstP].match(alphaReg) || s[firstP].match(numReg)) {
-        // convert to lowercase if str
-        if (s[firstP].match(alphaReg)) {
-           first = s[firstP].toLowerCase(); 
-        } else {
-            first = s[firstP].match(numReg);  
-        }     
-       
-       // check second pointer 0-9 or a-z 
-        if(s[secondP].match(alphaReg) || s[secondP].match(numReg)) {
-          // convert to lowercase if str
-          if (s[secondP].match(alphaReg)) {
-            second = s[secondP].toLowerCase();
-          } else {
-            second = s[secondP].match(numReg); 
-          }     
-       
-          // compare eq 
-          if (first != second) {
-           console.log("Not Valid");
-           return false;
-          } 
-          // if match 
-          else {
-           firstP++;   // traverse inwards from front
-           secondP--;  // traverse inwards from back
-          }
-          
+ const generateParenthesis = function(n) {
+    /*
+    this is about generating sequences and ensuring balanced parentheses.
+    this solution uses recursion.
+    
+    if you have 2 characters e.g. ( and )
+    
+    then generate all 2^2n sequences of those characters.
+    */
+
+    /*
+    To generate all sequences, we use a recursion. All sequences of length n is just '(' plus all sequences of length n-1, 
+    and then ')' plus all sequences of length n-1.
+    */
+    
+    const result = [];
+    
+    const generate = () => {
+        let arr = []; 
+        if (arr.length === 2**n) {
+            if (valid(arr)) {
+                result.push("".join(arr));
+                console.log({result})
+            }
         }
         else {
-          secondP--; 
+            arr.push('\(');
+            generate(arr); 
+            arr.pop();
+            arr.push('\)');
+            generate(arr);
+            arr.pop();
         }
-     } 
-     // if char not alphanumeric aka it's likely a space so move forward
-     else {
-      firstP++; 
-     }
-    }
-       
-    console.log("Valid Palindrome");    
-    return true;
+    };
+    
+    /* To check whether a sequence is valid, we keep track of balance, the net number of opening brackets minus closing brackets. 
+    If it falls below zero at any time, or doesn't end in zero, the sequence is invalid - otherwise it is valid. */
+    
+    const valid = (arr) => {
+        let bal = 0;
+        
+        for (let c in arr) {
+            
+            if (c === '\(') {
+                bal += 1; 
+            } else {
+                bal -= 1;
+            }
+            
+            if (bal < 0) {
+                return false;
+            }
+        }
+        
+        return bal === 0;
+    };
+    
+    generate();
+    console.log(result);
 };
 
-// test
-isPalindrome("race a car"); // will log Not Valid
-isPalindrome("A man, a plan, a canal: Panama"); // will log Valid Palindrome
+generateParenthesis(3);

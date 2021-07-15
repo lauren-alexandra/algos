@@ -374,8 +374,24 @@ Input: prices = [7,6,4,3,1]
 Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
 */ 
-
-
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+ var maxProfit = function(prices) {
+    let maxProfit = 0;
+    
+    for (let i = 0; i < prices.length - 1; i++) {
+        for (let j = i + 1; j < prices.length; j++) {
+            let profit = prices[j] - prices[i];
+            if(profit > maxProfit) {
+                maxProfit = profit;
+            }
+        }
+    }
+    
+    return maxProfit; 
+};
 
 
 /*

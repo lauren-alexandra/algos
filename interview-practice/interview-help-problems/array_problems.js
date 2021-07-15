@@ -316,7 +316,108 @@ Space complexity: O(1). Constant space needed.
     return maxProfit;
 };
 
+/*
+1480. Running Sum of 1d Array
+
+Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
+
+Return the running sum of nums.
+
+Example 1:
+
+Input: nums = [1,2,3,4]
+Output: [1,3,6,10]
+Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
+Example 2:
+
+Input: nums = [1,1,1,1,1]
+Output: [1,2,3,4,5]
+Explanation: Running sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].
+Example 3:
+
+Input: nums = [3,1,2,10,1]
+Output: [3,4,6,16,17]
+*/
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+ var runningSum = function(nums) {
+    for (let i = 1; i < nums.length; i++) {
+        // Result at index `i` is sum of result at `i-1` and element at `i` 
+        nums[i] += nums[i - 1];
+    } 
+    
+    return nums;    
+};
+
+/*
+121. Best Time to Buy and Sell Stock
+
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+ 
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+Example 2:
+
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are done and the max profit = 0.
+*/ 
 
 
+
+
+/*
+695. Max Area of Island
+
+You are given an m x n binary matrix grid. An island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
+
+The area of an island is the number of cells with a value 1 in the island.
+
+Return the maximum area of an island in grid. If there is no island, return 0.
+
+ 
+
+Example 1:
+Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+Output: 6
+Explanation: The answer is not 11, because the island must be connected 4-directionally.
+
+Example 2:
+Input: grid = [[0,0,0,0,0,0,0,0]]
+Output: 0
+*/
+
+
+/*
+78. Subsets
+
+Given an integer array nums of unique elements, return all possible subsets (the power set).
+
+The solution set must not contain duplicate subsets. Return the solution in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3]
+Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+
+Example 2:
+
+Input: nums = [0]
+Output: [[],[0]]
+*/
 
 

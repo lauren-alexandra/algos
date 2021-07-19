@@ -239,6 +239,53 @@ The total sum is 5 + 10 + 15 = 30.
     return finalSum; 
 };
 
+/*
+844. Backspace String Compare
+
+Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.
+
+Note that after backspacing an empty text, the text will continue empty.
+ 
+
+Example 1:
+
+Input: s = "ab#c", t = "ad#c"
+Output: true
+Explanation: Both s and t become "ac".
+
+Example 2:
+
+Input: s = "ab##", t = "c#d#"
+Output: true
+Explanation: Both s and t become "".
+*/ 
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+ var backspaceCompare = function(s, t) {
+    let stackS = [];
+    let stackT = [];
+    
+    const stackManipulate = (str, stack) => {
+        for (let letter of str) {
+            if (letter === '#') {
+                stack.pop();
+            }
+            else {
+                stack.push(letter);
+            }
+        }
+        
+        return stack;
+    };
+    
+    stackManipulate(s, stackS);
+    stackManipulate(t, stackT);
+    
+    return stackS.join("") === stackT.join(""); 
+};
 
 
 

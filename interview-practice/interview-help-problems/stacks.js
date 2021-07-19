@@ -288,4 +288,63 @@ Explanation: Both s and t become "".
 };
 
 
+/*
+921. Minimum Add to Make Parentheses Valid
+
+Given a string s of '(' and ')' parentheses, we add the minimum number of parentheses ( '(' or ')', and in any positions ) so that the resulting parentheses string is valid.
+
+Formally, a parentheses string is valid if and only if:
+
+It is the empty string, or
+It can be written as AB (A concatenated with B), where A and B are valid strings, or
+It can be written as (A), where A is a valid string.
+Given a parentheses string, return the minimum number of parentheses we must add to make the resulting string valid.
+
+
+Example 1:
+
+Input: s = "())"
+Output: 1
+Example 2:
+
+Input: s = "((("
+Output: 3
+Example 3:
+
+Input: s = "()"
+Output: 0
+Example 4:
+
+Input: s = "()))(("
+Output: 4
+
+Complexity Analysis
+
+Time Complexity: O(N), where N is the length of S.
+
+Space Complexity: O(1).
+*/
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ var minAddToMakeValid = function(s) {
+    let minAdd = 0; 
+    let balanceTracker = 0; 
+      
+    for (let char = 0; char < s.length; char++) {
+        balanceTracker += s[char] === '(' ? 1 : -1; 
+        
+        // requires an add 
+        if (balanceTracker === -1) {
+            minAdd += 1; // add 
+            balanceTracker += 1; // neutralize balance to 0
+        }
+    }
+      
+    // if the balance isn't 0 means we need to add a paren for it too 
+    return minAdd + balanceTracker;
+  };
+
+
 

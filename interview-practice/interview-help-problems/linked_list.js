@@ -496,3 +496,54 @@ Explanation: (101) in base 2 = (5) in base 10
   return parseInt(num, 2);
 };
 
+/*
+328. Odd Even Linked List
+
+Here's how it works:
+Even an ordered list aka odd followed by even, 
+set the pointers accordingly so that the odd list is created
+and the even list is created 
+and the end of the odd list points to the head of the even list
+
+Given: 1, 2, 3, 4, 5
+Return a linked list of 1, 3, 5, 2, 4
+
+Given the head of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return the reordered list.
+
+The first node is considered odd, and the second node is even, and so on.
+
+Note that the relative order inside both the even and odd groups should remain as it was in the input.
+
+You must solve the problem in O(1) extra space complexity and O(n) time complexity.
+*/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+ var oddEvenList = function(head) {    
+  if (head === null) {
+      return null;
+  }
+  
+  let odd = head;
+  let even = head.next;
+  let evenHead = even; 
+  
+  while (even !== null && even.next !== null) {
+      odd.next = even.next;
+      odd = odd.next;
+      even.next = odd.next;
+      even = even.next;
+  }
+  
+  odd.next = evenHead;
+  return head; 
+};
+

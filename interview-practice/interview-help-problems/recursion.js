@@ -111,9 +111,9 @@ Space complexity : O(1).
     
     while (curr !== null) {
         let currentNext = curr.next; 
-        curr.next = prev;
+        curr.next = prev; // this is how you swap
         prev = curr;
-        curr = currentNext;
+        curr = currentNext; // this is how you continue
     }
     
     return prev; // modified linked list

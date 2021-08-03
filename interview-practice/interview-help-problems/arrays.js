@@ -551,5 +551,66 @@ The shadow from the front will be 3 + 4, since the maximum value of the first co
     return answer;
 };
 
+/*
+888. Fair Candy Swap
+
+Alice and Bob have a different total number of candies. You are given two integer arrays aliceSizes and bobSizes where aliceSizes[i] is the number of candies of the ith box of candy that Alice has and bobSizes[j] is the number of candies of the jth box of candy that Bob has.
+
+Since they are friends, they would like to exchange one candy box each so that after the exchange, they both have the same total amount of candy. The total amount of candy a person has is the sum of the number of candies in each box they have.
+
+Return an integer array answer where answer[0] is the number of candies in the box that Alice must exchange, and answer[1] is the number of candies in the box that Bob must exchange. If there are multiple answers, you may return any one of them. It is guaranteed that at least one answer exists.
+
+Example 1:
+
+Input: aliceSizes = [1,1], bobSizes = [2,2]
+Output: [1,2]
+Example 2:
+
+Input: aliceSizes = [1,2], bobSizes = [2,3]
+Output: [1,2]
+*/
+
+/**
+ * @param {number[]} aliceSizes
+ * @param {number[]} bobSizes
+ * @return {number[]}
+ */
+ var fairCandySwap = function(aliceSizes, bobSizes) {
+    // objective: find the two boxes from each collection that would 
+    // balance out the two totals (if swapped)
+    
+    // the two boxes are guaranteed to exist
+    
+    // calcuate baseline totals for both arrays
+    
+    // brute force: 
+    // nested iteration
+    
+    // for each size in alice
+    // do a swap with a size in bob 
+    
+    // a swap can be defined as:
+    // subtracting a number from a total and adding a new number to the total
+    // do for both totals
+    // then do a compare. 
+    // if the totals are equal return the two sizes in array. 
+    
+    let aliceTotal = aliceSizes.reduce((a, b) => a + b, 0);
+    let bobTotal = bobSizes.reduce((a, b) => a + b, 0);
+    
+    for (let aSize of aliceSizes) {
+        for (let bSize of bobSizes) {
+            // swap
+            
+            let currAliceTotal = aliceTotal - aSize + bSize;
+            let currBobTotal = bobTotal - bSize + aSize;
+            
+            if (currAliceTotal === currBobTotal) {
+                return [aSize, bSize];
+            }
+        }
+    }
+};
+
 
 

@@ -1,4 +1,12 @@
 /*
+What is dynamic programming?
+
+Dynamic programming is used where we have problems, which can be divided into similar sub-problems, so that their results can be re-used.
+
+Wherever we see a recursive solution that has repeated calls for same inputs, we can optimize it using Dynamic Programming.
+*/
+
+/*
 #53 Maximum Subarray
 Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
 
@@ -196,4 +204,83 @@ var minCostClimbingStairs = function(cost) {
   }); 
   
   return Math.min(move1, move2); 
+};
+
+/* Arrays and Dynamic Programming example */
+
+/*
+221. Maximal Square
+
+Given an m x n binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
+
+Example 1:
+Input: matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]
+Output: 4
+*/
+
+/*
+Solution:
+
+Approach #2 (Dynamic Programming) [Accepted]
+Algorithm
+
+We will explain this approach with the help of an example.
+
+We initialize another matrix (dp) with the same dimensions as the original one initialized with all 0’s.
+
+dp(i,j) represents the side length of the maximum square whose bottom right corner is the cell with index (i,j) in the original matrix.
+
+Starting from index (0,0), for every 1 found in the original matrix, we update the value of the current element as
+dpMatrix[i][j] = Math.min(Math.min(dpMatrix[i][j-1], dpMatrix[i-1][j]), dpMatrix[i-1][j-1]) + 1; 
+
+We also remember the size of the largest square found so far. In this way, we traverse the original matrix once and find out the required maximum size. This gives the side length of the square (say maxsqlenmaxsqlen). The required result is the area maxsqlen^2maxsqlen 
+2
+ .
+
+ An entry 2 at (1, 3)(1,3) implies that we have a square of side 2 up to that index in the original matrix. Similarly, a 2 at (1, 2)(1,2) and (2, 2)(2,2) implies that a square of side 2 exists up to that index in the original matrix. Now to make a square of side 3, only a single entry of 1 is pending at (2, 3)(2,3). So, we enter a 3 corresponding to that position in the dp array.
+*/
+
+/*
+Complexity Analysis:
+
+Time complexity : O(mn)O(mn). Single pass.
+
+Space complexity : O(mn)O(mn). Another matrix of same size is used for dp.
+*/
+
+/**
+ * @param {character[][]} matrix
+ * @return {number}
+ */
+ var maximalSquare = function(matrix) {
+  let rows = matrix.length;
+  let cols = rows > 0 ? matrix[0].length : 0; 
+  
+  // create another matrix for keeping track of squares found.
+  // the matrix has to be 1 size larger for both rows and columns because we are 
+  // iterating 1 ahead below in search
+  
+  let dpMatrix = new Array(rows + 1);
+  for(let d = 0; d < dpMatrix.length; d++) {
+      if (cols > 0) {
+          dpMatrix[d] = new Array(cols + 1);
+          dpMatrix[d].fill(0);    
+      }
+  }
+  
+  /* Search for max square length */ 
+  
+  let maxSquareLen = 0; 
+  
+  for (let i = 1; i <= rows; i++) {
+      for (let j = 1; j <= cols; j++) {
+          if (matrix[i-1][j-1] === '1') {
+              // this is the formula for finding the largest square so far
+              dpMatrix[i][j] = Math.min(Math.min(dpMatrix[i][j-1], dpMatrix[i-1][j]), dpMatrix[i-1][j-1]) + 1; 
+              maxSquareLen = Math.max(maxSquareLen, dpMatrix[i][j]);
+          }
+      }
+  }
+  
+  return maxSquareLen * maxSquareLen;    
 };

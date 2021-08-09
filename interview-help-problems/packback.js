@@ -1,3 +1,10 @@
+/*
+The Fibonacci Sequence is the series of numbers:
+0, 1, 1, 2, 3, 5...
+
+The next number is found by adding up the two numbers before it.
+*/
+
 /* 
 Modified fibonacci
 Number palindrome

@@ -433,7 +433,64 @@ Space Complexity: O(1)O(1)
 };
 
 
+/*
+205. Isomorphic Strings
 
+Given two strings s and t, determine if they are isomorphic.
+
+Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+
+
+Example 1:
+
+Input: s = "egg", t = "add"
+Output: true
+Example 2:
+
+Input: s = "foo", t = "bar"
+Output: false
+*/
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+ var isIsomorphic = function(s, t) {
+  // create a hash map
+  
+  // if key already exists in hashmap, return false
+  
+  let charMapS = {};
+  let charMapT = {}; 
+  
+  for (let char of s) {
+      for (let char of t) {
+          // check S is valid 
+          if (charMapS[s]) {
+              if (!(charMapS[s] === t)) {
+                  return false;
+              }
+          }
+          else {
+              charMapS[s] = t; 
+          }
+          
+          // check T is valid
+          if (charMapT[t]) {
+              if (!(charMapT[t] === s)) {
+                  return false;
+              }
+          }
+          else {
+              charMapT[t] = s; 
+          }
+      }
+  }
+  
+  return true;
+};
 
 
 

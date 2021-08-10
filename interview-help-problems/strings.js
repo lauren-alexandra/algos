@@ -268,7 +268,7 @@ var decodeString = function(s) {
   var stack = new Array(); 
   var alphaString = ''; 
   var currentMultiplier = '';
-  var multipler; 
+  var multiplier; 
   var decodedStr = ''; 
   var alphaReg = /[a-z]/i;  
   var numReg = /^\d+$/; 

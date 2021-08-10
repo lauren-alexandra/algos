@@ -692,3 +692,80 @@ Space complexity : O(mn)O(mn). Another matrix of same size is used for dp.
 };
 
 
+/*
+941. Valid Mountain Array
+
+Given an array of integers arr, return true if and only if it is a valid mountain array.
+
+Recall that arr is a mountain array if and only if:
+
+arr.length >= 3
+There exists some i with 0 < i < arr.length - 1 such that:
+arr[0] < arr[1] < ... < arr[i - 1] < arr[i]
+arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
+
+Example 1:
+
+Input: arr = [2,1]
+Output: false
+Example 2:
+
+Input: arr = [3,5,5]
+Output: false
+*/
+
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+ var validMountainArray = function(arr) {
+    // check first condition greater than or equal to 3.
+    
+    // find "peak" - max value in array
+    
+    // then do two pointers
+    // stop iterating one side if next is peak
+    // the next element must be 1 or more greater than current
+    
+    let result = true;
+    
+    if (!(arr.length >= 3)) {
+        return false;
+    }
+    
+    const peak = Math.max(...arr);
+    let peakLoc = arr.indexOf(peak);
+    
+    const side1 = arr.slice(0, peakLoc); 
+    const side2 = arr.slice(peakLoc + 1).reverse(); 
+    
+    const sides = [side1, side2]; 
+    
+    if (side1.length !== 0 && side2.length !== 0) {
+        sides.forEach(side => {
+            for (let i = 0; i < side.length; i++) {
+                if (side[i] < peak) {
+                    if (side.length > 1 && i !== side.length - 1) {
+                        if (side[i] < side[i + 1]) {
+                            continue;
+                        }
+                        else {
+                            result = false;
+                        } 
+                    }
+                    else {
+                        continue;
+                    }   
+                }
+                else {
+                    result = false;
+                }
+            }
+        });   
+    }
+    else {
+        result = false;
+    }
+    
+    return result; 
+};

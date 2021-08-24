@@ -515,5 +515,66 @@ Output: ""
   return s.split('').filter(char => !vowels.includes(char)).join('');
 };
 
+/*
+1165. Single-Row Keyboard
 
+There is a special keyboard with all keys in a single row.
+
+Given a string keyboard of length 26 indicating the layout of the keyboard (indexed from 0 to 25). Initially, your finger is at index 0. To type a character, you have to move your finger to the index of the desired character. The time taken to move your finger from index i to index j is |i - j|.
+
+You want to type a string word. Write a function to calculate how much time it takes to type it with one finger.
+
+Example 1:
+
+Input: keyboard = "abcdefghijklmnopqrstuvwxyz", word = "cba"
+Output: 4
+Explanation: The index moves from 0 to 2 to write 'c' then to 1 to write 'b' then to 0 again to write 'a'.
+Total time = 2 + 1 + 1 = 4. 
+Example 2:
+
+Input: keyboard = "pqrstuvwxyzabcdefghijklmno", word = "leetcode"
+Output: 73
+*/
+
+/**
+ * @param {string} keyboard
+ * @param {string} word
+ * @return {number}
+ */
+ var calculateTime = function(keyboard, word) {
+  /*
+  preserving order matters
+  
+  current location and relative location to next matters
+  
+  find indices 
+  then add 1 to each (for calc purposes)
+  
+  iterate through the array of indices and perform absolute subtractions
+  
+  add each difference to the total
+  
+  return the total. 
+  */
+  let indices = []; 
+  let total = 0;
+  
+  for (letter of word) {
+      indices.push(keyboard.indexOf(letter) + 1);    
+  }
+  
+  // init total
+  if (indices) {
+   total += indices[0] - 1;   
+  }
+  
+  if (indices.length > 1) {
+     for (let i = 0; i < indices.length - 1; i++) {      
+          let next = i + 1;
+          total += Math.abs(indices[i] - indices[next]);
+      }
+  }
+  
+  return total; 
+};
 

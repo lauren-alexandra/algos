@@ -492,5 +492,28 @@ Output: false
   return true;
 };
 
+/*
+1119. Remove Vowels from a String
+
+Example 1:
+
+Input: s = "leetcodeisacommunityforcoders"
+Output: "ltcdscmmntyfrcdrs"
+Example 2:
+
+Input: s = "aeiou"
+Output: ""
+*/
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+ var removeVowels = function(s) {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  
+  return s.split('').filter(char => !vowels.includes(char)).join('');
+};
+
 
 

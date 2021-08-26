@@ -812,5 +812,98 @@ If the count obtained is greater than or equal to nn, the required number of flo
     return count >= n;
 };
 
+/*
+1213. Intersection of Three Sorted Arrays
+
+Given three integer arrays arr1, arr2 and arr3 sorted in strictly increasing order, return a sorted array of only the integers that appeared in all three arrays.
+
+
+Example 1:
+
+Input: arr1 = [1,2,3,4,5], arr2 = [1,2,5,7,9], arr3 = [1,3,4,5,8]
+Output: [1,5]
+Explanation: Only 1 and 5 appeared in the three arrays.
+*/
+
+/**
+ * @param {number[]} arr1
+ * @param {number[]} arr2
+ * @param {number[]} arr3
+ * @return {number[]}
+ */
+ var arraysIntersection = function(arr1, arr2, arr3) {
+    // 3 pointers
+    
+    let result = [];
+    
+    let pointer1 = 0;
+    let pointer2 = 0;
+    let pointer3 = 0; 
+    
+    while (pointer1 < arr1.length && pointer2 < arr2.length && pointer3 < arr3.length) {
+        if (arr1[pointer1] === arr2[pointer2] && arr2[pointer2] === arr3[pointer3]) {
+            result.push(arr1[pointer1]);
+            
+            pointer1 += 1;
+            pointer2 += 1;
+            pointer3 += 1;
+        }
+        else {
+            // if the value is smaller, you need to increment to compare appropriately
+            if (arr1[pointer1] < arr2[pointer2]) {
+                pointer1 += 1;
+            }
+            // if the value is smaller, you need to increment to compare appropriately
+            else if (arr2[pointer2] < arr3[pointer3]) {
+                pointer2 += 1;
+            }
+            // if the value is smaller, you need to increment to compare appropriately
+            else {
+                pointer3 += 1;
+            }
+        }
+    }
+    
+    return result; 
+};
+
+/*
+1085. Sum of Digits in the Minimum Number
+
+Given an integer array nums, return 0 if the sum of the digits of the minimum integer in nums is odd, or 1 otherwise.
+
+Example 1:
+
+Input: nums = [34,23,1,24,75,33,54,8]
+Output: 0
+Explanation: The minimal element is 1, and the sum of those digits is 1 which is odd, so the answer is 0.
+*/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var sumOfDigits = function(nums) {
+    /*
+    find math min of nums
+    
+    then convert into string and split
+    from there you need to add the integers - parseInt
+    to init value 0
+    
+    once you get this value, find modulo. if can divide by 2,
+    its even so return return 1. otherwise return 0. 
+    */
+    
+    let min = Math.min(...nums);
+    let minStr = min.toString().split('');
+    let result = 0;
+    
+    for (let num of minStr) {
+        result += parseInt(num, 10);    
+    }
+    
+    return result % 2 === 0 ? 1 : 0; 
+};
 
 

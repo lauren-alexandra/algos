@@ -279,3 +279,122 @@ Output: ["a","b","c"]
   
   return matches; 
 };
+
+/*
+1133. Largest Unique Number
+
+Given an integer array nums, return the largest integer that only occurs once. If no integer occurs once, return -1.
+
+ 
+
+Example 1:
+
+Input: nums = [5,7,3,9,4,9,8,3,1]
+Output: 8
+Explanation: The maximum integer in the array is 9 but it is repeated. The number 8 occurs only once, so it is the answer.
+Example 2:
+
+Input: nums = [9,9,8,8]
+Output: -1
+Explanation: There is no number that occurs only once.
+*/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var largestUniqueNumber = function(nums) {
+  /*
+  create hash map with counts from nums
+  each num in nums is key
+  
+  you need to find all keys filter where object[key] === 1
+  then find the max of that array and return it or 
+  return -1 if array empty. 
+  */
+  
+  let counts = {};
+  
+  for (let num of nums) {
+      if (counts[num]) {
+          counts[num] = counts[num] + 1;
+      }
+      else {
+          counts[num] = 1;
+      }
+  }
+  
+  let keys = Object.keys(counts);
+  
+  let keysWithOne = keys.filter(key => counts[key] === 1);
+  
+  if (keysWithOne.length > 0) {
+      return Math.max(...keysWithOne);
+  }
+  else {
+      return -1; 
+  }
+};
+
+/*
+266. Palindrome Permutation
+
+
+Given a string s, return true if a permutation of the string could form a palindrome.
+
+Example 1:
+
+Input: s = "code"
+Output: false
+Example 2:
+
+Input: s = "aab"
+Output: true
+*/
+
+/**
+* @param {string} s
+* @return {boolean}
+*/
+var canPermutePalindrome = function(s) {
+  /*
+  each character in the string must have an even count
+  but can have an exception: if only one character is odd,
+  then it can also be a palindrome
+  
+  you need to keep track of the number of odds
+  */
+  
+  // you need to write your edge cases before you submit your code
+  // edge case    
+  if (s.length === 2) {
+      if (s[0] !== s[1]) {
+          return false;
+      }
+  }
+  
+  let charCounts = {};
+  
+  for (let char of s) {
+      if (charCounts[char]) {
+          charCounts[char] += 1;
+      }
+      else {
+          charCounts[char] = 1;
+      }
+  }
+  
+  let oddCount = 0; 
+  
+  for (let key of Object.keys(charCounts)) {      
+      if (charCounts[key] % 2 !== 0) {
+          oddCount += 1;
+      }
+  }
+  
+  // handle result eval at the end
+  return oddCount > 1 ? false : true; 
+};
+
+
+

@@ -964,3 +964,76 @@ Explanation: Two 1s are counted cause 2 is in arr.
       
     return count;
   };
+
+
+/*
+1762. Buildings With an Ocean View
+
+There are n buildings in a line. You are given an integer array heights of size n that represents the heights of the buildings in the line.
+
+The ocean is to the right of the buildings. A building has an ocean view if the building can see the ocean without obstructions. Formally, a building has an ocean view if all the buildings to its right have a smaller height.
+
+Return a list of indices (0-indexed) of buildings that have an ocean view, sorted in increasing order.
+
+ 
+
+Example 1:
+
+Input: heights = [4,2,3,1]
+Output: [0,2,3]
+Explanation: Building 1 (0-indexed) does not have an ocean view because building 2 is taller.
+*/
+
+/**
+ * @param {number[]} heights
+ * @return {number[]}
+ */
+ var findBuildings = function(heights) {
+/*
+edge case:
+if no buildings, return heights
+
+if 1 building, return [0] 
+
+
+define building with ocean view:
+if every subsequent building is smaller than current building, then add the building index
+to results to return. 
+
+returning sorted results. the results are the indices of valid buildings i.e. have an ocean view
+sorted in increasing order as an array of indices. 
+*/
+    
+    if (heights.length === 0) {
+        return [];
+    }
+    
+    if (heights.length === 1) {
+        return [0];
+    }
+    
+    let results = []; 
+    
+    for (let b = 0; b < heights.length; b++) {
+        
+        
+        // push the last building - guaranteed to have an ocean view
+        if (heights.length - 1 === b) {
+            results.push(b);
+            break;
+        }
+        
+        let buildingToRightIndex = b + 1;
+        let buildingsToCompare = heights.slice(buildingToRightIndex);
+        let currentBuildingHeight = heights[b];
+        
+        if (buildingsToCompare.every(height => height < currentBuildingHeight)) {
+            results.push(b);
+        }
+    }
+    
+    return results.sort((a, b) => a - b); 
+};
+
+
+

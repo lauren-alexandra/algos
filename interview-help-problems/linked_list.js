@@ -584,11 +584,13 @@ Explanation: 2 appears twice in the linked list, so all 2's should be deleted. A
 
       return headPointer; 
   }
+  // this is an edge case
   else if (uniques.length === 1) {
       return new ListNode(uniques[0]);
   }
+  // this is an edge case
   else {
-      return null;
+      return null; // this is an empty linked list
   }
 };
 

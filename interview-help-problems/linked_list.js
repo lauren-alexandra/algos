@@ -155,17 +155,6 @@ var mergeTwoLists = function(l1, l2) {
 
 
 /*
-HW:
-- do single pass for 
-
-19. Remove Nth Node From End of List
-
-https://leetcode.com/problems/linked-list-cycle/ 
-https://leetcode.com/problems/partition-list/
-https://leetcode.com/problems/rotate-list/
-*/ 
-
-/*
 Linked lists big O
 
 Time complexity 
@@ -241,33 +230,6 @@ var hasCycle = function(head) {
   return true;
 };
 
-/*
-86. Partition List
-
-Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
-
-You should preserve the original relative order of the nodes in each of the two partitions.
-
-Example:
-
-Input: head = 1->4->3->2->5->2, x = 3
-Output: 1->2->2->4->3->5
-*/
-
-
-/*
-61. Rotate List
-
-Given a linked list, rotate the list to the right by k places, where k is non-negative.
-
-Example 1:
-
-Input: 1->2->3->4->5->NULL, k = 2
-Output: 4->5->1->2->3->NULL
-Explanation:
-rotate 1 steps to the right: 5->1->2->3->4->NULL
-rotate 2 steps to the right: 4->5->1->2->3->NULL
-*/ 
 
 /* 
 160. Intersection of Two Linked Lists
@@ -546,4 +508,90 @@ You must solve the problem in O(1) extra space complexity and O(n) time complexi
   odd.next = evenHead;
   return head; 
 };
+
+
+/*
+1836. Remove Duplicates From an Unsorted Linked List
+
+Given the head of a linked list, find all the values that appear more than once in the list and delete the nodes that have any of those values.
+
+Return the linked list after the deletions.
+
+Example 1:
+Input: head = [1,2,3,2]
+Output: [1,3]
+Explanation: 2 appears twice in the linked list, so all 2's should be deleted. After deleting all 2's, we are left with [1,3].
+
+*/
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+ var deleteDuplicatesUnsorted = function(head) {
+  /*
+  first traverse through linked list and extract values. push then into an array
+  
+  then get uniques from array 
+  
+  then build a new linked list from the values in uniques. while uniques.length > 0
+  make use of ListNode func to build it. 
+  */
+  
+  // you need to remember the order of the linked list. use a Map to preserve insertion order
+  let originalValues = new Map(); 
+  let currentOrgNode = head; 
+  
+  while(currentOrgNode) {
+      if (originalValues.get(currentOrgNode.val)) {
+          let updateVal = originalValues.get(currentOrgNode.val) + 1;
+          originalValues.set(currentOrgNode.val, updateVal); 
+      }
+      else {
+          originalValues.set(currentOrgNode.val, 1); 
+      }
+      
+      currentOrgNode = currentOrgNode.next; 
+  }
+  
+  // find all the values that appear more than once in the list and delete any of those values
+  let uniques = [];
+  
+  for (const key of originalValues.keys()) {
+      if (originalValues.get(key) === 1) {
+          uniques.push(key);
+      }
+  }
+  
+  if (uniques.length >= 2) {
+      let headPointer = new ListNode(uniques[0]);
+      headPointer.next = new ListNode(uniques[1]); 
+      let currentNewNode = head;
+
+      if (uniques.length > 2) {
+          for (let i = 2; i < uniques.length; i++) {
+              currentNewNode.next = new ListNode(uniques[i]); 
+              currentNewNode = currentNewNode.next; 
+          }   
+      }
+
+      return headPointer; 
+  }
+  else if (uniques.length === 1) {
+      return new ListNode(uniques[0]);
+  }
+  else {
+      return null;
+  }
+};
+
+
+
 

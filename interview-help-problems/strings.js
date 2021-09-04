@@ -578,3 +578,70 @@ Output: 73
   return total; 
 };
 
+
+/*
+293. Flip Game
+
+You are playing a Flip Game with your friend.
+
+You are given a string currentState that contains only '+' and '-'. You and your friend take turns to flip two consecutive "++" into "--". The game ends when a person can no longer make a move, and therefore the other person will be the winner.
+
+Return all possible states of the string currentState after one valid move. You may return the answer in any order. If there is no valid move, return an empty list [].
+
+Example 1:
+
+Input: currentState = "++++"
+Output: ["--++","+--+","++--"]
+Example 2:
+
+Input: currentState = "+"
+Output: []
+*/
+
+/**
+ * @param {string} currentState
+ * @return {string[]}
+ */
+ var generatePossibleNextMoves = function(currentState) {
+  /*
+  you flip ++ into -- only one way
+  
+  return all possible consecutive flips. meaning order matters and length matters
+  
+  for each possible flip: make a copy of the string. then splice at the copy and replace 2 with - 
+  then push onto results array 
+  */
+  
+  // edge case: length is 1, then return [] 
+  
+  let results = [];
+  
+  if (currentState.length < 2) {
+      return [];
+  }
+  
+  for (let i = 0; i < currentState.length - 1; i++) {
+      let next = i + 1;
+      let possible = "";
+      
+      if (currentState[i] === '+' && currentState[next] === '+') {
+          let strCopy = currentState.slice();
+          let modArr = [];
+          for (const char of strCopy) {
+              modArr.push(char);
+          }
+          
+          // do flip 
+          modArr.splice(i, 2, '-', '-'); 
+          for (const item of modArr) {
+              possible += item;
+          }
+          // add possible flip to results 
+          results.push(possible); 
+      }
+  }
+  
+  return results;
+};
+
+

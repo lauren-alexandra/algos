@@ -1077,3 +1077,124 @@ Explanation: In this case it is not possible to get a pair sum less that 15.
 };
 
 
+/*
+1243. Array Transformation
+
+Given an initial array arr, every day you produce a new array using the array of the previous day.
+
+On the i-th day, you do the following operations on the array of day i-1 to produce the array of day i:
+
+If an element is smaller than both its left neighbor and its right neighbor, then this element is incremented.
+If an element is bigger than both its left neighbor and its right neighbor, then this element is decremented.
+The first and last elements never change.
+After some days, the array does not change. Return that final array.
+
+ 
+
+Example 1:
+
+Input: arr = [6,2,3,4]
+Output: [6,3,3,4]
+Explanation: 
+On the first day, the array is changed from [6,2,3,4] to [6,3,3,4].
+No more operations can be done to this array.
+*/
+
+
+/**
+ * @param {number[]} arr
+ * @return {number[]}
+ */
+ var transformArray = function(arr) {
+    
+    let changed = true;
+    let result = arr.slice();
+    
+    while (changed) {
+        changed = false;
+        
+        for (var i = 1; i < arr.length - 1; i++) {
+            
+            if (arr[i - 1] > arr[i] && arr[i + 1] > arr[i]) {
+                result[i] = arr[i] + 1;
+                changed = true;
+            } else if (arr[i - 1] < arr[i] && arr[i + 1] < arr[i]) {
+                result[i] = arr[i] - 1;
+                changed = true;
+            }
+        }
+        
+        if (changed) {
+            arr = result.slice();
+        }
+    }
+    
+    return result;
+};
+
+/*
+1196. How Many Apples Can You Put into the Basket
+
+You have some apples, where arr[i] is the weight of the i-th apple.  You also have a basket that can carry up to 5000 units of weight.
+
+Return the maximum number of apples you can put in the basket.
+
+ 
+
+Example 1:
+
+Input: arr = [100,200,150,1000]
+Output: 4
+Explanation: All 4 apples can be carried by the basket since their sum of weights is 1450.
+Example 2:
+
+Input: arr = [900,950,800,1000,700,800]
+Output: 5
+Explanation: The sum of weights of the 6 apples exceeds 5000 so we choose any 5 of them.
+*/
+
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+ var maxNumberOfApples = function(arr) {
+    /*
+    initialize apple count at 0. 
+    
+    if we want the maximum number of apples, we
+    can sort the arr in increasing order.
+    then iterate through list 
+    add increase apple count by 1
+    and add the weight to the currentWeight
+    if the currentWeight is greater than or equal to basketMaxWeight
+    then break
+    
+    note: before you add an apple, you must make sure that adding the apple does not
+    go above basket max weight. 
+    
+    return apple count
+    */
+    
+    let appleCount = 0; 
+    let currentWeight = 0; 
+    const BASKET_MAX_WEIGHT = 5000; 
+    
+    let sortedWeights = arr.sort((a, b) => a - b); 
+    
+    for (let weight of arr) {
+        if (currentWeight > BASKET_MAX_WEIGHT) {
+            break;
+        }
+        else {
+            if (currentWeight + weight < BASKET_MAX_WEIGHT) {
+                appleCount++;
+                currentWeight += weight; 
+                continue;
+            }
+            break; 
+        }
+    }
+    
+    return appleCount;
+};
+

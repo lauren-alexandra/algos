@@ -1198,3 +1198,199 @@ Explanation: The sum of weights of the 6 apples exceeds 5000 so we choose any 5 
     return appleCount;
 };
 
+
+/*
+1150. Check If a Number Is Majority Element in a Sorted Array
+
+Given an integer array nums sorted in non-decreasing order and an integer target, return true if target is a majority element, or false otherwise.
+
+A majority element in an array nums is an element that appears more than nums.length / 2 times in the array.
+
+ 
+
+Example 1:
+
+Input: nums = [2,4,5,5,5,5,5,6,6], target = 5
+Output: true
+Explanation: The value 5 appears 5 times and the length of the array is 9.
+Thus, 5 is a majority element because 5 > 9/2 is true.
+Example 2:
+
+Input: nums = [10,100,101,101], target = 101
+Output: false
+Explanation: The value 101 appears 2 times and the length of the array is 4.
+Thus, 101 is not a majority element because 2 > 4/2 is false.
+*/
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {boolean}
+ */
+ var isMajorityElement = function(nums, target) {
+    /*
+    
+    find target count aka how many times target occurs in array
+    
+    majority means target count greater than nums.length / 2 
+    */
+    
+    let targetCount = 0; 
+    let result = false;
+    
+    for (let num of nums) {
+        if (num === target) {
+            targetCount++;
+        }
+    }
+    
+    if (targetCount > (nums.length / 2)) {
+        result = true;
+    }
+    
+    return result;
+};
+
+
+/*
+163. Missing Ranges
+
+You are given an inclusive range [lower, upper] and a sorted unique integer array nums, where all elements are in the inclusive range.
+
+A number x is considered missing if x is in the range [lower, upper] and x is not in nums.
+
+Return the smallest sorted list of ranges that cover every missing number exactly. That is, no element of nums is in any of the ranges, and each missing number is in one of the ranges.
+
+Each range [a,b] in the list should be output as:
+
+"a->b" if a != b
+"a" if a == b
+ 
+
+Example 1:
+
+Input: nums = [0,1,3,50,75], lower = 0, upper = 99
+Output: ["2","4->49","51->74","76->99"]
+Explanation: The ranges are:
+[2,2] --> "2"
+[4,49] --> "4->49"
+[51,74] --> "51->74"
+[76,99] --> "76->99"
+Example 2:
+
+Input: nums = [], lower = 1, upper = 1
+Output: ["1"]
+Explanation: The only missing range is [1,1], which becomes "1".
+Example 3:
+
+Input: nums = [], lower = -3, upper = -1
+Output: ["-3->-1"]
+Explanation: The only missing range is [-3,-1], which becomes "-3->-1".
+Example 4:
+
+Input: nums = [-1], lower = -1, upper = -1
+Output: []
+Explanation: There are no missing ranges since there are no missing numbers.
+Example 5:
+
+Input: nums = [-1], lower = -2, upper = -1
+Output: ["-2"]
+*/
+
+/**
+ * @param {number[]} nums
+ * @param {number} lower
+ * @param {number} upper
+ * @return {string[]}
+ */
+ var findMissingRanges = function(nums, lower, upper) {
+    /*
+    iterate nums up until second to last number: arr.length - 2
+    if the next integer is not an increase by 1, 
+    then add one to current and subtract one from next (values only do not touch original)
+    
+    if these values are the same, then add "value" to listToReturn 
+    else add "valueOne->valueTwo" to listToReturn 
+    */
+    
+    
+    /*
+    if nums is length 0, then add the ranges: "lower->upper" to list
+    
+    if nums is length 1, check if it contains "lower" or "upper". return missing one. 
+    if neither occur then add range of "lower->current - 1" and "current + 1->upper" to list 
+    */ 
+    
+    let missingRanges = []; 
+    
+    // edge case 
+    if (nums.length === 0) {
+        if (lower === upper) {
+            return [lower.toString()];
+        }
+        else {
+            let lowToUpper = `${lower}->${upper}`; 
+            return [lowToUpper];   
+        }
+    }
+    
+    // edge case 
+    if (nums.length === 1) {
+        let includesLower = nums.includes(lower.toString());
+        let includesUpper = nums.includes(upper.toString());
+        
+        if (includesLower) {
+            return [upper.toString()];
+        }
+        else if (includesUpper) {
+            return [lower.toString()];
+        }
+        else {
+            let onlyNum = parseInt(nums[0], 10);
+            let firstRange = `${lower}->${onlyNum - 1}`;
+            let secondRange = `${onlyNum + 1}->${upper}`;
+            
+            return [firstRange, secondRange];
+        }
+    }
+    
+    // add missing lower range if it exists first 
+    if (parseInt(nums[0], 10) > lower) {
+        let firstMinus = parseInt(nums[0], 10) - 1;
+        let missingLower = `${lower}->${firstMinus}`; 
+        missingRanges.push(missingLower);
+    }
+    
+    for (let i = 0; i < nums.length - 1; i++) {
+        let nextIndex = i + 1; 
+        let current = parseInt(nums[i], 10); 
+        let next = parseInt(nums[nextIndex], 10);
+        let currentPlus = 0;
+        let nextMinus = 0;
+        
+        if (next - 1 !== current) {
+            currentPlus = current + 1;
+            nextMinus = next - 1; 
+            
+            if (currentPlus === nextMinus) {
+                missingRanges.push(currentPlus.toString());
+            }
+            else {
+                let newMissingRange = `${currentPlus}->${nextMinus}`; 
+                missingRanges.push(newMissingRange);
+            }
+        }
+    }
+    
+    // add missing upper range if it exists last 
+    if (parseInt(nums[nums.length - 1], 10) < upper) {
+        let lastPlus = parseInt(nums[nums.length - 1], 10) + 1;
+        let missingHigher = `${lastPlus}->${upper}`; 
+        missingRanges.push(missingHigher);
+    }
+    
+    return missingRanges; 
+};
+
+
+

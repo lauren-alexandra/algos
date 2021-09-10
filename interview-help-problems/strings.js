@@ -945,4 +945,53 @@ Output: 3
   return uniqueEmails.length; 
 };
 
+/*
+1065. Index Pairs of a String
+
+Given a string text and an array of strings words, return an array of all index pairs [i, j] so that the substring text[i...j] is in words.
+
+Return the pairs [i, j] in sorted order (i.e., sort them by their first coordinate, and in case of ties sort them by their second coordinate).
+
+ 
+
+Example 1:
+
+Input: text = "thestoryofleetcodeandme", words = ["story","fleet","leetcode"]
+Output: [[3,7],[9,13],[10,17]]
+Example 2:
+
+Input: text = "ababa", words = ["aba","ab"]
+Output: [[0,1],[0,2],[2,3],[2,4]]
+Explanation: Notice that matches can overlap, see "aba" is found in [0,2] and [2,4].
+*/
+
+/**
+ * @param {string} text
+ * @param {string[]} words
+ * @return {number[][]}
+ */
+ var indexPairs = function(text, words) {
+  const res = [];
+  
+  /*
+  handle finding words by iterating by char through text
+  and comparing the char to the first letter of a given word 
+  
+  then handle sort by sorting by the first index of the array
+  if not the second index if the first indices are the same
+  */
+  
+  for(let i = 0; i < text.length; i++) {
+      words.forEach(word => {
+      // check the first letter
+          // text slice must be a valid equivalent of a word to confirm it exists 
+          if(word[0] === text[i] && word === text.slice(i, i + word.length)) {
+              res.push([i, i + word.length - 1])
+          }
+      })
+  }
+  return res.sort((a, b) => a[0] !== b[0] ? a[0] - b[0] : a[1] - b[1]);
+};
+
+
 

@@ -1155,6 +1155,54 @@ Explanation: The first three characters "app" match, and the second string is sh
     return true;
 };
 
+/*
+242. Valid Anagram
+
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+ 
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+ 
+
+Constraints:
+
+1 <= s.length, t.length <= 5 * 104
+s and t consist of lowercase English letters.
+ 
+*/
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+/*
+anagram: a word, phrase, or name formed by rearranging the letters of another, such as cinema, formed from iceman.
+*/
+var isAnagram = function(s, t) {
+    let sStr = s.split("").sort().join("");
+    let tStr = t.split("").sort().join("");
+        
+    if (sStr.length !== tStr.length) {
+        return false;
+    }
+    
+    for (let i = 0; i < tStr.length; i++) {
+        if (tStr[i] !== sStr[i]) {
+            return false;
+        }
+    }
+    
+    return true;
+};
 
 
 

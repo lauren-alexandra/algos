@@ -1393,4 +1393,211 @@ Output: ["-2"]
 };
 
 
+/*
+1275. Find Winner on a Tic Tac Toe Game
+
+Tic-tac-toe is played by two players A and B on a 3 x 3 grid.
+
+Here are the rules of Tic-Tac-Toe:
+
+Players take turns placing characters into empty squares (" ").
+The first player A always places "X" characters, while the second player B always places "O" characters.
+"X" and "O" characters are always placed into empty squares, never on filled ones.
+The game ends when there are 3 of the same (non-empty) character filling any row, column, or diagonal.
+The game also ends if all squares are non-empty.
+No more moves can be played if the game is over.
+Given an array moves where each element is another array of size 2 corresponding to the row and column of the grid where they mark their respective character in the order in which A and B play.
+
+Return the winner of the game if it exists (A or B), in case the game ends in a draw return "Draw", if there are still movements to play return "Pending".
+
+You can assume that moves is valid (It follows the rules of Tic-Tac-Toe), the grid is initially empty and A will play first.
+
+ 
+
+Example 1:
+
+Input: moves = [[0,0],[2,0],[1,1],[2,1],[2,2]]
+Output: "A"
+Explanation: "A" wins, he always plays first.
+"X  "    "X  "    "X  "    "X  "    "X  "
+"   " -> "   " -> " X " -> " X " -> " X "
+"   "    "O  "    "O  "    "OO "    "OOX"
+*/
+
+/**
+ * @param {number[][]} moves
+ * @return {string}
+ */
+ var tictactoe = function(moves) {
+    /*
+        if moves.flat().length > 9, return "Pending"
+        
+        you need to fill boardArray. 
+        create Array, then push filler array on it 3 times
+        [0, 0, 0] this is the filler array
+        
+        iterate through moves. starting with currentPlayer A, make mark X at 
+        location in boardArray
+        
+        then you can do checks
+        start with A: do rowCheck, do columnCheck, do diagonalCheck
+        if any are true, return true. 
+        create a function and pass in "X" do check with that
+        
+        call the function with "O" too and return true if true otherwise false
+        
+        then return as appropriate: 
+        if A_Winner = true, return "A"
+        if B_Winner = true, return "B"
+        else return "Draw"
+    */
+    
+    // check if possible first: Pending case
+    if (moves.length > 9) {
+       return "Pending";
+    }
+    
+    let gameBoard = [];
+    let fillerArray = [0, 0, 0];
+    
+    for (let i = 0; i < 3; i++) {
+        gameBoard.push(fillerArray);
+    }
+    
+    for (let move of moves) {
+        let row = move[0];
+        let col = move[1];
+        let currentPlayer = "B";
+        let mark = "";
+        
+        // flip currentPlayer 
+        // if B then A and set mark to "X" 
+        // if A then B and set mark to "O" 
+        if (currentPlayer === "B") {
+            currentPlayer = "A";
+            mark = "X";
+        }
+        else {
+            currentPlayer = "B";
+            mark = "O";
+        }
+        
+        gameBoard[row][col] = mark;
+    }
+    
+    const boardCheck = (mark) => {
+        let col0 = [];
+        let col1 = [];
+        let col2 = [];
+        let columns = [col0, col1, col2];
+        
+        // rowCheck (a win across the row)
+        for (let row of gameBoard) {
+            if ([...new Set(row)].length === 1) {
+                return true;
+            }
+            // generate columns
+            col0.push(row[0]);
+            col1.push(row[1]);
+            col2.push(row[2]);
+        }
+        
+        // columnCheck
+        for (let c of columns) {
+            if ([...new Set(c)].length === 1) {
+                return true;
+            }
+        }
+        
+        // diagonalCheck
+        // a diagonal is [0,0], [1,1], [2,2]
+        // or [0, 2], [1, 1], [2, 0]
+        let firstDiagonal = [gameBoard[0][0], gameBoard[1][1], gameBoard[2][2]];
+        let secondDiagonal = [gameBoard[0][2], gameBoard[1][1], gameBoard[2][0]];
+        if ([...new Set(firstDiagonal)].length === 1) {
+            return true;
+        }
+        if ([...new Set(secondDiagonal)].length === 1) {
+            return true;
+        }
+                
+        // if no wins
+        return false; 
+    };
+    
+    let A_Winner = boardCheck("X");
+    let B_Winner = boardCheck("O");
+    
+    if (A_Winner) {
+        return "A";
+    } 
+    else if (B_Winner) {
+        return "B";
+    }
+    else {
+        return "Draw";
+    }
+};
+
+
+/*
+496. Next Greater Element I
+
+The next greater element of some element x in an array is the first greater element that is to the right of x in the same array.
+
+You are given two distinct 0-indexed integer arrays nums1 and nums2, where nums1 is a subset of nums2.
+
+For each 0 <= i < nums1.length, find the index j such that nums1[i] == nums2[j] and determine the next greater element of nums2[j] in nums2. If there is no next greater element, then the answer for this query is -1.
+
+Return an array ans of length nums1.length such that ans[i] is the next greater element as described above.
+
+ 
+
+Example 1:
+
+Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
+Output: [-1,3,-1]
+Explanation: The next greater element for each value of nums1 is as follows:
+- 4 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+- 1 is underlined in nums2 = [1,3,4,2]. The next greater element is 3.
+- 2 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+*/
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+ var nextGreaterElement = function(nums1, nums2) {
+    /*
+    for each num in nums1:
+    
+    find the indexOf the num in nums2.
+    create a slice array starting at that index
+    
+    then iterate through that array and find next greater element
+    add that to ans array to return. if no greater, add -1 to ans.
+    */
+  
+    let ans = [];
+      
+    for (let n of nums1) {
+        let startingIndex = nums2.indexOf(n);
+        let searchArr = nums2.slice(startingIndex);
+        let resultElem = -1;
+        
+        for (let elem of searchArr) {
+            if (elem > n) {
+                resultElem = elem;
+                break;
+            }
+        }
+        
+        ans.push(resultElem);
+    }
+      
+    return ans; 
+  };
+
+
 

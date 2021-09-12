@@ -993,5 +993,169 @@ Explanation: Notice that matches can overlap, see "aba" is found in [0,2] and [2
   return res.sort((a, b) => a[0] !== b[0] ? a[0] - b[0] : a[1] - b[1]);
 };
 
+/*
+771. Jewels and Stones
+
+You're given strings jewels representing the types of stones that are jewels, and stones representing the stones you have. Each character in stones is a type of stone you have. You want to know how many of the stones you have are also jewels.
+
+Letters are case sensitive, so "a" is considered a different type of stone from "A".
+
+ 
+
+Example 1:
+
+Input: jewels = "aA", stones = "aAAbbbb"
+Output: 3
+Example 2:
+
+Input: jewels = "z", stones = "ZZ"
+Output: 0
+*/
+
+/**
+ * @param {string} jewels
+ * @param {string} stones
+ * @return {number}
+ */
+ var numJewelsInStones = function(jewels, stones) {
+    /*
+    keep track of count
+    
+    as you iterate through stones, check if jewels (convert to array), includes stone
+    if so, increase count
+    
+    return count
+    
+    edge cases:
+    if jewels is empty,
+    return 0
+    
+    if stones is empty,
+    return 0
+    */
+    
+    let stoneJewelCount = 0;
+    
+    if (jewels.length === 0 || stones.length === 0) {
+        return 0;
+    }
+    
+    jewels = jewels.split("");
+    
+    for (let stone of stones) {
+        if (jewels.includes(stone)) {
+            stoneJewelCount++; 
+        }
+    }
+    
+    return stoneJewelCount;
+};
+
+
+/*
+953. Verifying an Alien Dictionary
+
+In an alien language, surprisingly, they also use English lowercase letters, but possibly in a different order. The order of the alphabet is some permutation of lowercase letters.
+
+Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographically in this alien language.
+
+ 
+
+Example 1:
+
+Input: words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"
+Output: true
+Explanation: As 'h' comes before 'l' in this language, then the sequence is sorted.
+Example 2:
+
+Input: words = ["word","world","row"], order = "worldabcefghijkmnpqstuvxyz"
+Output: false
+Explanation: As 'd' comes after 'l' in this language, then words[0] > words[1], hence the sequence is unsorted.
+Example 3:
+
+Input: words = ["apple","app"], order = "abcdefghijklmnopqrstuvwxyz"
+Output: false
+Explanation: The first three characters "app" match, and the second string is shorter (in size.) According to lexicographical rules "apple" > "app", because 'l' > '∅', where '∅' is defined as the blank character which is less than any other character (More info).
+*/
+
+/**
+ * @param {string[]} words
+ * @param {string} order
+ * @return {boolean}
+ */
+ var isAlienSorted = function(words, order) {
+    /*
+    order of language matters
+    for check - do findIndex(char) - returns index. 
+    if smaller index appears before larger then in correct order
+    
+    you need to iterate the length of the smallest word.
+    
+    if the smallest word is the second word and both are same flag is still true
+    and not flipped to false on a different comparison, then you need to return false
+    
+    you have to compare two words at a time, letter by letter
+    iterate through words until letters differ.
+    then do findIndex check on the order language.
+    if the larger index appears before the smaller one, return false
+    
+    // edge cases 
+    if words empty and order empty, return true
+    if words empty only return true
+    if order empty and words greater than 0 return false 
+    if word length === 1 and order length > 0, return true
+    */
+    
+    // edge cases 
+    if (words.length === 0) {
+        return true;
+    }
+    if (order.length === 0 && words.length > 0) {
+        return false;
+    }
+    if (words.length === 1 && order.length > 0) {
+        return true;
+    }
+    
+    // main application 
+    for (let i = 0; i < words.length - 1; i++) {
+        let lettersSame = true;
+        let next = i + 1;
+        
+        let currentWord = words[i];
+        let nextWord = words[next];
+        
+        let shorterWord = currentWord.length < nextWord.length ? currentWord : nextWord; 
+        
+        for (let j = 0; j < shorterWord.length; j++) {
+            if (currentWord[j] === nextWord[j]) {
+                continue;
+            }
+            else {
+                lettersSame = false;
+                              
+                let currWordIndex = order.indexOf(currentWord[j]);
+                let nextWordIndex = order.indexOf(nextWord[j]);
+
+                if (currWordIndex < nextWordIndex) {
+                    lettersSame = true;
+                    break;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+        
+        if (shorterWord === nextWord && lettersSame) {
+            return false;
+        }        
+    }
+    
+    return true;
+};
+
+
+
 
 

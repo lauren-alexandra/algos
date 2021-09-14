@@ -1204,6 +1204,105 @@ var isAnagram = function(s, t) {
     return true;
 };
 
+/*
+387. First Unique Character in a String
+
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+ 
+
+Example 1:
+
+Input: s = "leetcode"
+Output: 0
+Example 2:
+
+Input: s = "loveleetcode"
+Output: 2
+Example 3:
+
+Input: s = "aabb"
+Output: -1
+*/
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ var firstUniqChar = function(s) {
+    let charCount = {};
+    
+    for (let char of s) {
+        if (charCount[char]) {
+            charCount[char] += 1;
+        }
+        else {
+            charCount[char] = 1;
+        }
+    }
+    
+    let charVal = s.split("").find(char => charCount[char] === 1);
+    
+    if (charVal) {
+        return s.indexOf(charVal);
+    }
+    else {
+        return - 1;
+    }
+};
+
+/*
+Implement strStr()
+
+Implement strStr().
+
+Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+Clarification:
+
+What should we return when needle is an empty string? This is a great question to ask during an interview.
+
+For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C's strstr() and Java's indexOf().
+
+ 
+
+Example 1:
+
+Input: haystack = "hello", needle = "ll"
+Output: 2
+Example 2:
+
+Input: haystack = "aaaaa", needle = "bba"
+Output: -1
+Example 3:
+
+Input: haystack = "", needle = ""
+Output: 0
+*/
+
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+ var strStr = function(haystack, needle) {
+    // if h 0 and n 0 return 0
+    // if n is 0 return 0
+    
+    if (haystack.length === 0 && needle.length === 0) {
+        return 0;
+    }
+    if (needle.length === 0) {
+        return 0;
+    }
+    
+    let index = haystack.indexOf(needle);
+    
+    return index;
+};
+
+
+
 
 
 

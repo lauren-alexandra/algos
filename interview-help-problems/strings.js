@@ -1301,6 +1301,56 @@ Output: 0
     return index;
 };
 
+/*
+125. Valid Palindrome 
+
+Given a string s, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+ 
+
+Example 1:
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+Example 2:
+
+Input: s = "race a car"
+Output: false
+Explanation: "raceacar" is not a palindrome.
+*/
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+ var isPalindrome = function(s) {
+    // considering only alphanumeric characters and ignoring cases 
+    // letters and numbers. 
+    
+    let str = [...s.matchAll(/[a-zA-Z0-9]/g)].join("");
+    str = str.split("").map(char => char.toLowerCase()).join("");
+    
+    
+    // two pointers
+    // iterate from front and back
+    let back = str.length - 1;
+    
+    for (let front = 0; front < str.length; front++) {
+        let frontChar = str[front];
+        let backChar = str[back];
+        let comparison = str[front] === str[back];
+        if (comparison) {
+            back--;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    return true;
+};
+
 
 
 

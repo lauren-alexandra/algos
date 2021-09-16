@@ -396,4 +396,164 @@ var canPermutePalindrome = function(s) {
   return oddCount > 1 ? false : true; 
 };
 
+/*
+1512. Number of Good Pairs
+
+Given an array of integers nums, return the number of good pairs.
+
+A pair (i, j) is called good if nums[i] == nums[j] and i < j.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3,1,1,3]
+Output: 4
+Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+Example 2:
+
+Input: nums = [1,1,1,1]
+Output: 6
+Explanation: Each pair in the array are good.
+Example 3:
+
+Input: nums = [1,2,3]
+Output: 0
+*/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var numIdenticalPairs = function(nums) {
+    /*
+    good pair if
+    index i less than index j
+    
+    and 
+    
+    nums[i] === nums[j]
+    
+    so for each index until the last one (stop here)
+    do a check with remaining indices
+    if good pair create it
+    add pair (even if duplicate value - looking for all pairs)
+    that is the key exists and it's value array includes the value
+    if not, add the pair to hashmap with key and value as [value]
+    - because a key can have multiple values to right
+    
+    finally
+    return length of hashmap values (because this identifies all uniques)
+    */
+    
+    // edge cases
+    // if nums length 0 or 1, return 0. 
+    
+    if (nums.length === 0 || nums.length === 1) {
+        return 0;
+    }
+    
+    let pairs = {};
+    
+    for (let i = 0; i < nums.length - 1; i++) {
+        let next = i + 1;
+        
+        while (next < nums.length) {
+            // do check
+            if (nums[i] === nums[next]) {
+                let key = nums[i];
+                let val = nums[next];
+                
+                // check if pairs contains it
+                if (pairs[key]) {
+                    pairs[key] = [...pairs[key], val];
+                }
+                // if not add it to pairs
+                else {
+                    pairs[key] = [val];
+                }              
+            }
+            
+            next++;
+        }
+    }
+    
+    let total = 0;
+    
+    for (let pair of Object.values(pairs)) {
+        total += pair.length; 
+    }
+    
+    return total;
+};
+
+/*
+1832. Check if the Sentence Is Pangram
+
+A pangram is a sentence where every letter of the English alphabet appears at least once.
+
+Given a string sentence containing only lowercase English letters, return true if sentence is a pangram, or false otherwise.
+
+ 
+
+Example 1:
+
+Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
+Output: true
+Explanation: sentence contains at least one of every letter of the English alphabet.
+Example 2:
+
+Input: sentence = "leetcode"
+Output: false
+*/
+
+/**
+ * @param {string} sentence
+ * @return {boolean}
+ */
+ var checkIfPangram = function(sentence) {
+    /*
+    prior to doing this:
+    to save time:
+    check if sentence length >= 26. if so continue
+    if not, return false
+    
+    create a hashmap of alphabet - letters as keys
+    values are 0 
+    
+    iterate over sentence. 
+    check if hashmap contains hashmap[letter]
+    
+    if so, increase hashmap[letter] by 1
+    
+    at end:
+    // this filters list of values that have been found/incremented
+    filter Object.values(val => val >= 1) save in array
+    
+    return array.length === 26
+    */
+    
+    // can not include entire alphabet 
+    if (sentence.length < 26) {
+        return false;
+    }
+    
+    let letterTracker = {};
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    
+    for (let letter of alphabet) {
+        letterTracker[letter] = 0;
+    }
+    
+    for (let char of sentence) {
+        if (Object.keys(letterTracker).includes(char)) {
+            letterTracker[char] += 1;
+        }
+    }
+    
+    let lettersFound = Object.values(letterTracker).filter(val => val >= 1);
+    
+    return lettersFound.length === 26; 
+};
+
 

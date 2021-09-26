@@ -1352,6 +1352,219 @@ Explanation: "raceacar" is not a palindrome.
 };
 
 
+/*
+1694. Reformat Phone Number
+
+You are given a phone number as a string number. number consists of digits, spaces ' ', and/or dashes '-'.
+
+You would like to reformat the phone number in a certain manner. Firstly, remove all spaces and dashes. Then, group the digits from left to right into blocks of length 3 until there are 4 or fewer digits. The final digits are then grouped as follows:
+
+2 digits: A single block of length 2.
+3 digits: A single block of length 3.
+4 digits: Two blocks of length 2 each.
+The blocks are then joined by dashes. Notice that the reformatting process should never produce any blocks of length 1 and produce at most two blocks of length 2.
+
+Return the phone number after formatting.
+
+ 
+
+Example 1:
+
+Input: number = "1-23-45 6"
+Output: "123-456"
+Explanation: The digits are "123456".
+Step 1: There are more than 4 digits, so group the next 3 digits. The 1st block is "123".
+Step 2: There are 3 digits remaining, so put them in a single block of length 3. The 2nd block is "456".
+Joining the blocks gives "123-456".
+Example 2:
+
+Input: number = "123 4-567"
+Output: "123-45-67"
+Explanation: The digits are "1234567".
+Step 1: There are more than 4 digits, so group the next 3 digits. The 1st block is "123".
+Step 2: There are 4 digits left, so split them into two blocks of length 2. The blocks are "45" and "67".
+Joining the blocks gives "123-45-67".
+Example 3:
+
+Input: number = "123 4-5678"
+Output: "123-456-78"
+Explanation: The digits are "12345678".
+Step 1: The 1st block is "123".
+Step 2: The 2nd block is "456".
+Step 3: There are 2 digits left, so put them in a single block of length 2. The 3rd block is "78".
+Joining the blocks gives "123-456-78".
+Example 4:
+
+Input: number = "12"
+Output: "12"
+Example 5:
+
+Input: number = "--17-5 229 35-39475 "
+Output: "175-229-353-94-75"
+*/
+
+
+/**
+ * @param {string} number
+ * @return {string}
+ */
+ var reformatNumber = function(number) {
+    // first: split string on ' '.join. split on -.join     
+    
+    /*
+    given number length 2 or 3 return number
+    given number length 4 return digits joined by -
+    
+    if number length 5 or greater
+    chunk into blocks of 3 if remaining length is greater than 4
+    otherwise you need to split accordingly:
+    given remaining
+    - if 4 split into 2 blocks of length 2 each
+    - if 3 split into a single block of length 3
+    - if 2 split into a single block of length 2
+    */
+    
+    let strToReturn = "";
+    let mod = number.split(" ").join("").split("-").join("");
+    
+    if (mod.length === 2 || mod.length === 3) {
+        return mod; 
+    }
+    else if (mod.length === 4) {
+        return mod.slice(0, 2) + "-" + mod.slice(2);
+    }
+    else {
+        let curr = mod; 
+        
+        while (curr.length > 4) {
+            strToReturn += curr.slice(0, 3) + "-";
+            curr = curr.slice(3);
+        }
+        if (curr.length === 4) {
+            strToReturn += curr.slice(0, 2) + "-" + curr.slice(2);
+        }
+        else {
+            strToReturn += curr; 
+        }
+    }
+    
+    return strToReturn; 
+};
+
+
+
+/*
+1021. Remove Outermost Parentheses
+
+A valid parentheses string is either empty "", "(" + A + ")", or A + B, where A and B are valid parentheses strings, and + represents string concatenation.
+
+For example, "", "()", "(())()", and "(()(()))" are all valid parentheses strings.
+A valid parentheses string s is primitive if it is nonempty, and there does not exist a way to split it into s = A + B, with A and B nonempty valid parentheses strings.
+
+Given a valid parentheses string s, consider its primitive decomposition: s = P1 + P2 + ... + Pk, where Pi are primitive valid parentheses strings.
+
+Return s after removing the outermost parentheses of every primitive string in the primitive decomposition of s.
+
+ 
+
+Example 1:
+
+Input: s = "(()())(())"
+Output: "()()()"
+Explanation: 
+The input string is "(()())(())", with primitive decomposition "(()())" + "(())".
+After removing outer parentheses of each part, this is "()()" + "()" = "()()()".
+*/
+
+/*
+	go in and count how many times '(' and ') occurs in the string
+	if they equal each other than re set the count
+	and remove the first and last letter of that substring
+	add that new substring to your final string
+	then set the start of the next upcoming substring to the next character
+	in the string
+*/
+
+var removeOuterParentheses = function(S) {
+    
+    let leftCount = 0 
+    let rightCount = 0 
+    let start = 0
+    let final = ''
+    
+    for (let i = 0; i < S.length; i++){
+        S[i] === '(' && (leftCount++)
+        S[i] === ')' && (rightCount++)
+        
+        if (leftCount === rightCount){
+            leftCount = 0
+            rightCount = 0
+            final += S.substring(start + 1, i)
+            start = i + 1
+        }
+    }
+    
+    return final
+};
+
+
+/*
+1268. Search Suggestions System
+
+Given an array of strings products and a string searchWord. We want to design a system that suggests at most three product names from products after each character of searchWord is typed. Suggested products should have common prefix with the searchWord. If there are more than three products with a common prefix return the three lexicographically minimums products.
+
+Return list of lists of the suggested products after each character of searchWord is typed. 
+
+ 
+
+Example 1:
+
+Input: products = ["mobile","mouse","moneypot","monitor","mousepad"], searchWord = "mouse"
+Output: [
+["mobile","moneypot","monitor"],
+["mobile","moneypot","monitor"],
+["mouse","mousepad"],
+["mouse","mousepad"],
+["mouse","mousepad"]
+]
+Explanation: products sorted lexicographically = ["mobile","moneypot","monitor","mouse","mousepad"]
+After typing m and mo all products match and we show user ["mobile","moneypot","monitor"]
+After typing mou, mous and mouse the system suggests ["mouse","mousepad"]
+*/
+
+/**
+ * @param {string[]} products
+ * @param {string} searchWord
+ * @return {string[][]}
+ */
+ var suggestedProducts = function(products, searchWord) {
+    /*
+    first sort the words in products
+    
+    then on products filter words that begin with user input (typed chars)
+    if length less than 3 push filtered arr
+    if 3 or more push first 3 from filtered arr
+    */
+    
+    let output = [];
+    let prod = products.sort();
+    let currSearch = "";
+    
+    for (let char of searchWord) {
+        currSearch += char; 
+        
+        let matches = prod.filter(word => word.slice(0, currSearch.length) === currSearch);
+        if (matches.length < 3) {
+            output.push(matches);
+        }
+        else {
+            output.push(matches.slice(0, 3));
+        }
+    }
+    
+    return output; 
+};
+
 
 
 

@@ -403,5 +403,63 @@ Explanation: 1 cannot be popped before 2.
     return i === popped.length; 
 };
 
+/*
+1249. Minimum Remove to Make Valid Parentheses
 
+Given a string s of '(' , ')' and lowercase English characters.
+
+Your task is to remove the minimum number of parentheses ( '(' or ')', in any positions ) so that the resulting parentheses string is valid and return any valid string.
+
+Formally, a parentheses string is valid if and only if:
+
+It is the empty string, contains only lowercase characters, or
+It can be written as AB (A concatenated with B), where A and B are valid strings, or
+It can be written as (A), where A is a valid string.
+ 
+
+Example 1:
+
+Input: s = "lee(t(c)o)de)"
+Output: "lee(t(c)o)de"
+Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
+Example 2:
+
+Input: s = "a)b(c)d"
+Output: "ab(c)d"
+*/
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+ var minRemoveToMakeValid = function(s) {
+    /*
+    you are learning how to do stacks. 
+    */
+      let stack = []; // only monitors left parens
+      let indexesToRemove = [];
+      let newStr = "";
+            
+      for (let i = 0; i < s.length; i++) {
+              if (s.charAt(i) === '\(') {
+                  stack.push(i);
+              } 
+              else if (s.charAt(i) === '\)') {
+                  if (stack.length === 0) {
+                      indexesToRemove.push(i);
+                  } else {
+                      stack.pop(); // remove left paren if right paren found
+                  }
+              }
+      }
+      
+      for (let j = 0; j < s.length; j++) {
+          if (!indexesToRemove.includes(j) && !stack.includes(j)) {
+              newStr += s[j];
+          }
+      }
+      
+      return newStr; 
+  };
+  
 

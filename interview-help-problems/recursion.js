@@ -52,6 +52,8 @@ To solve the problem, call helper function passing the head and tail indexes as 
  */
  var reverseString = function(s) {
     const helper = (s, left, right) => {
+        console.log("This is on every helper call: ");
+        console.log("s: ", s, ". left: ", left, ". right: ", right);
         if (left < right) {
             // swap operation 
             let leftChar = s[left];
@@ -66,7 +68,14 @@ To solve the problem, call helper function passing the head and tail indexes as 
     // init call
     helper(s, 0, s.length - 1);
 };
-
+/*
+This is on every helper call: 
+s:  (5) ['h', 'e', 'l', 'l', 'o'] . left:  0 . right:  4
+This is on every helper call: 
+s:  (5) ['o', 'e', 'l', 'l', 'h'] . left:  1 . right:  3
+This is on every helper call: 
+s:  (5) ['o', 'l', 'l', 'e', 'h'] . left:  2 . right:  2 
+*/
 
 /*
 206. Reverse Linked List

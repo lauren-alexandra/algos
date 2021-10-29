@@ -336,7 +336,7 @@ var validPalindrome = function(s) {
     for (var i = 0; i < s.length; i++) {
         var c = s.charAt(i);
         let str = s.split('');
-        str.splice(i, 1);
+        str.splice(i, 1); // remove
         s = str.join(''); 
       
         if (checkPalindrome(s)) {
@@ -344,7 +344,7 @@ var validPalindrome = function(s) {
         } 
       
         let str2 = s.split('');
-        str2.splice(i, 0, c);
+        str2.splice(i, 0, c); // reinsert char removed
         s = str2.join(''); 
     }
     return checkPalindrome(s);
@@ -1247,7 +1247,7 @@ Output: -1
         return s.indexOf(charVal);
     }
     else {
-        return - 1;
+        return -1;
     }
 };
 

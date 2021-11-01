@@ -94,7 +94,7 @@ For the given array, A[0] = -10, A[1] = -5, A[2] = 0, A[3] = 3, thus the output 
 Solved without binary search. Since I am 
 returning the smallest index I search 
 in consecutive ascending order rather
-than divide and conquer search. 
+than divide and conquer search.  // but this is o(n) should be o(log n) better time complexity w bin search
 */
 
 /**
@@ -543,3 +543,66 @@ var peakIndexInMountainArray = function(arr) {
   
   return low; 
 };
+
+/*
+Find Minimum Element in Rotated Sorted Array
+
+Find the min element in a sorted array that has been rotated at some pivot point. 
+
+You may assume no duplicates exist in this array.
+
+Input = [3, 4, 5, 1, 2]
+Output = 1
+
+How to Solve: Modified Binary Search
+
+In this question we would essentially apply a modified version of binary search where the condition that decides the 
+search direction would be different than in a standard binary search.
+
+This means there is a point in the array at which you would notice a change. This is the point which would help us in this 
+question. We call this the Inflection Point.
+
+All the elements to the left of inflection point > first element of the array.
+All the elements to the right of inflection point < first element of the array.
+
+Algorithm
+
+1. Find the mid element of the array.
+
+2. If mid element > first element of array this means that we need to look for the inflection point on the right of mid.
+
+3. If mid element < first element of array this that we need to look for the inflection point on the left of mid.
+
+4. We stop our search when we find the inflection point, when either of the two conditions is satisfied:
+
+nums[mid] > nums[mid + 1] Hence, mid+1 is the smallest.
+
+nums[mid - 1] > nums[mid] Hence, mid is the smallest.
+*/
+
+const getMin = nums => {
+  let left = 0;
+  let right = nums.length - 1;
+
+  // don't need to account for out of bounds because there will be a target aka minimum value
+  while (left < right) {
+    let mid = left + Math.floor((right - left) / 2); // mid should be middle of search space from left
+
+    // this would be for handling duplicates on right.
+    // you actually don't need this. could remove this block. 
+    if (nums[mid] === nums[right]) {
+      right--;
+    }
+    // move left to the left to close window
+    else if (nums[mid] > mid[right]) {
+      left = mid + 1;
+    }
+    // move right to mid if mid less (moving towards minimum)
+    else {
+      right = mid;
+    }
+  }
+
+  // return the minimum found on the right 
+  return nums[right]; 
+}

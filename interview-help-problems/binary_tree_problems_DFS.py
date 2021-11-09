@@ -15,7 +15,7 @@ Solution: the maximum value is the maximum between the root and the maximum of e
 In Python, float("-inf") is the minimum possible numeric value. This guarantees that the max() function always chooses the other value.
 """
 
-def maxValue(root):
+def maxValue(root): 
   if not root: return float("-inf")
   return max(root.val, max(maxValue(root.left), maxValue(root.right)))
 

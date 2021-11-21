@@ -387,5 +387,115 @@ class Solution:
         elif right: return right
 
 
+"""
+129. Sum Root to Leaf Numbers
 
+You are given the root of a binary tree containing digits from 0 to 9 only.
 
+Each root-to-leaf path in the tree represents a number.
+
+For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123.
+Return the total sum of all root-to-leaf numbers. Test cases are generated so that the answer will fit in a 32-bit integer.
+
+A leaf node is a node with no children.
+
+Example 1:
+Input: root = [1,2,3]
+Output: 25
+Explanation:
+The root-to-leaf path 1->2 represents the number 12.
+The root-to-leaf path 1->3 represents the number 13.
+Therefore, sum = 12 + 13 = 25.
+
+Example 2:
+Input: root = [4,9,0,5,1]
+Output: 1026
+Explanation:
+The root-to-leaf path 4->9->5 represents the number 495.
+The root-to-leaf path 4->9->1 represents the number 491.
+The root-to-leaf path 4->0 represents the number 40.
+Therefore, sum = 495 + 491 + 40 = 1026.
+"""
+
+"""
+I think it's a traverse and accumlate
+You need to go down every root to leaf path and add each value in the
+path to a path sum.
+That path sum should be added to the total to return.
+"""
+
+"""
+It is Traverse-and-accumulate template. 
+
+Traverse-and-accumulate template: we visit all the nodes with a traversal, and accumulate the wanted information in a nonlocal variable.
+
+If we need to accumulate some global information about the entire tree, we can use the traverse-and-accumulate template. 
+This template is like doing a for loop through all the nodes, which is often very convenient. It would be great to be able to simply do
+
+initialize some data
+for node in tree:
+  do_something(node)
+
+The traverse-and-accumulate template is basically a way to achieve this. It doesn’t look like a for loop, because it uses recursion, but it can be used like a for loop!
+"""
+
+# Template
+def solution(root):
+  res = ... #initial value
+ 
+  def visit(node):
+    if not node: return
+    res = ... #update res here
+    visit(node.left)
+    visit(node.right)
+  
+  visit(root)
+  return res
+
+"""
+We use Depth First Search to reach to every leaf node. 
+Since we are adding the digits together, e.g. 1 + 2 + 3 = 123 as we traverse, 
+we can multiply by 10 so that in the next recursive call, we will just need to add the 
+current root.val number which will be in the single digits. 
+
+Step 1: Define base case and append all the sum
+Step 2: Recurse through child and pass sum * 10 as a parameter
+
+Big O: O(n) Linear
+If we visit every node (e.g., if we are doing one of the traversals), then the runtime is O(n*T), 
+where T is the time spent at each node. Usually, T is just constant, so the runtime is O(n).
+"""
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+      # to store sum till each child
+      res = []
+      
+      def dfs(root, sum):
+          nonlocal res
+          sum += root.val
+          #base case - this includes reaching the leaf values and having the sum be someting like 123. 
+          if root.left == None and root.right == None:
+              res.append(sum)
+              return
+          
+          # As we traverse, we can multiply by 10 so that in the next recursive call, we will just need 
+          # to add the current root.val number which will be in the single digits.
+          if root.left: dfs(root.left, sum * 10)
+          if root.right: dfs(root.right, sum * 10)
+      
+      if root:   
+          # starting the process with 0 as the initial sum
+          dfs(root, 0) 
+
+          # return sum of all child
+          return sum(res) # will return the total of all sums in res array.
+
+      # return 0 as edge case if no root. 
+      return 0 

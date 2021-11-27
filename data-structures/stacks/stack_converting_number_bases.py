@@ -1,6 +1,4 @@
 """
-https://bradfieldcs.com/algos/stacks/converting-number-bases/
-
 How can we easily convert integer values into binary numbers? 
 The answer is an algorithm called “Divide by 2” that uses a stack to keep track of the digits for the binary result.
 

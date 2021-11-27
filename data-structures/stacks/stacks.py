@@ -1,5 +1,3 @@
-# https://bradfieldcs.com/algos/stacks/introduction/
-
 """
 Linear data structure (stacks, queues, deques, and lists):  Once an item is added, it stays in the same position relative to its neighbors. 
 

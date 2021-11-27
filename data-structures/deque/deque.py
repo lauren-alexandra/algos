@@ -1,6 +1,4 @@
 """
-https://bradfieldcs.com/algos/deques/introduction/
-
 Deque
 
 is a double-ended queue.

@@ -1,6 +1,4 @@
 """
-https://bradfieldcs.com/algos/queues/introduction/
-
 Queue
 (abstract data type)
 
@@ -14,9 +12,8 @@ removal of items from the "front"
 think of as a line.
 
 FIFO "first-in first-out"
-"""
 
-"""
+
 Queue operations:
 
 - Queue() creates a new empty queue. 
@@ -31,9 +28,8 @@ the item.
 - size() returns the number of items in the queue. retuns an integer.
 """
 
-"""
-operations
-"""
+# operations
+
 q = []
 
 q.is_empty()
@@ -61,8 +57,7 @@ q.size()
 """
 Queue Implementation
 
-In practice, many Python programmers will use the standard library’s 
-collections.deque class to achieve O(1)O(1) enqueues and dequeues. 
+use the standard library’s collections.deque class to achieve O(1) enqueues and dequeues
 """
 # this is a ticketing queue
 
@@ -78,30 +73,3 @@ deq.pop()
 # 6
 deq
 # deque([1, 2, 3])
-
-"""
-Queue class
-
-(use the queue implementation above not the class. this is for teaching purposes.)
-In practice, many Python programmers will use the standard library’s collections.deque class to achieve O(1)O(1) enqueues and dequeues.
-
-Use a Python list as a queue but only use queue features. create class
-
-The implementation shown below uses insert(0, item) to enqueue a new item, which will be an O(n)O(n) operation.
-"""
-
-class Queue(object):
-    def __init__(self):
-        self._items = []
-
-    def is_empty(self):
-        return self._items == []
-
-    def enqueue(self, item):
-        self._items.insert(0, item) # O(n)
-
-    def dequeue(self):
-        return self._items.pop()
-
-    def size(self):
-        return len(self._items)

@@ -6,11 +6,7 @@ When you build a list in Python, you really don’t need to specify how large th
 instead, in Python, the list is of dynamic nature i.e. we could just keep adding the item constantly. 
 So, How does Python actually do this? Well, the answer is dynamic arrays.
 
-Big O https://bradfieldcs.com/algos/analysis/performance-of-python-types/
 
-Big O cheat sheet https://www.bigocheatsheet.com/ 
-"""
-"""
 Big O Efficiency
 
 index[]
@@ -133,8 +129,6 @@ del item_list
 
 """
 List comprehension
-
-https://www.geeksforgeeks.org/python-list-comprehension-and-slicing/
 
 List comprehension is an elegant way to define and create a list in python. 
 We can create lists just like mathematical statements and in one line only. 

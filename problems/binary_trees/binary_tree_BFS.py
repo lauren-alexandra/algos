@@ -67,7 +67,3 @@ def solution(root):
             if node.left: Q.append(node.left)
             if node.right: Q.append(node.right)
     return len(res) 
-
-
-
-

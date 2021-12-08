@@ -66,3 +66,66 @@ for i in range(len(board)):
                 return True
 
 return False
+
+
+"""
+22. Generate Parentheses
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+Example 1:
+
+Input: n = 3
+Output: ["((()))","(()())","(())()","()(())","()()()"]
+
+Example 2:
+
+Input: n = 1
+Output: ["()"]
+ 
+
+Constraints:
+
+1 <= n <= 8
+"""
+
+def genParens(n):
+    partialSolution = []
+    allSolutions = []
+
+    def backtracking(openCount, closeCount):
+        # deadends - aka pruning the decision tree. 
+        # backtrack (return) immediately at deadend
+
+        # deadend: if there are too many open parentheses
+        if openCount > n: return
+        # deadend: if there are unmatched/unbalanced parentheses 
+        if closeCount > openCount: return 
+
+        # a complete solution is reached: no more decisions to make  
+        if len(partialSolution) == 2*n: # all parens used in a combination
+            allSolutions.append(''.join(partialSolution))
+        else:
+            # Surround the recursive call with the code to transform
+            # the current partial solution into the child before the call,
+            # and the code to reverse the change after the call. 
+            # Why? Optimization. Add extra state so you don't need to recompute it at each node.
+            
+            partialSolution.append('(')
+            # try adding open parens
+            backtracking(openCount+1, closeCount)
+            partialSolution.pop()
+
+            partialSolution.append(')')
+            # try adding closing parens
+            backtracking(openCount, closeCount+1)
+            partialSolution.pop()
+
+    # init call
+    backtracking(0, 0) 
+
+    print(allSolutions)
+    return allSolutions 
+
+# example
+genParens(3)
+# ['((()))', '(()())', '(())()', '()(())', '()()()'] 

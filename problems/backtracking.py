@@ -129,3 +129,77 @@ def genParens(n):
 # example
 genParens(3)
 # ['((()))', '(()())', '(())()', '()(())', '()()()'] 
+
+"""
+37. Sudoku Solver
+
+Write a program to solve a Sudoku puzzle by filling the empty cells.
+
+A sudoku solution must satisfy all of the following rules:
+
+Each of the digits 1-9 must occur exactly once in each row. -> no dup check in a row. track the row.
+Each of the digits 1-9 must occur exactly once in each column. - no dup check in a col. track the col. 
+Each of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes SUB-BOXES of the grid.
+-> this means you need to search for duplicates in EACH 3x3 sub-grid. 
+
+The '.' character indicates empty cells.
+
+so if cell is not '.' remove that number from possible options.
+if cell is '.' then pop off a cell from possible options and use that as the cell. 
+
+Example 1:
+
+The board is 9x9 cells. It can be split into sub-boxes of 3x3. 
+Input: board = [
+    ["5","3",".",".","7",".",".",".","."],
+    ["6",".",".","1","9","5",".",".","."],
+    [".","9","8",".",".",".",".","6","."],
+    ["8",".",".",".","6",".",".",".","3"],
+    ["4",".",".","8",".","3",".",".","1"],
+    ["7",".",".",".","2",".",".",".","6"],
+    [".","6",".",".",".",".","2","8","."],
+    [".",".",".","4","1","9",".",".","5"],
+    [".",".",".",".","8",".",".","7","9"]]
+Output: [["5","3","4","6","7","8","9","1","2"],["6","7","2","1","9","5","3","4","8"],["1","9","8","3","4","2","5","6","7"],["8","5","9","7","6","1","4","2","3"],["4","2","6","8","5","3","7","9","1"],["7","1","3","9","2","4","8","5","6"],["9","6","1","5","3","7","2","8","4"],["2","8","7","4","1","9","6","3","5"],["3","4","5","2","8","6","1","7","9"]]
+"""
+
+def solver(board): 
+    res = None 
+
+    # deadend 
+    # if duplicate found, return True
+    def foundConflict(row, col, num): 
+        for i in range(9):
+            if board[row][i] == num: return True
+            if board[i][col] == num: return True 
+            # check sub-grid 
+            if board[3*(row//3)+i//3][3*(col//3)+i%3] == num: return True 
+        return False 
+
+    def backtracking(currIndex):
+        nonlocal res, board # res, board is in outer scope
+        
+        if res: return # solution found. 
+        if currIndex == 81: # 9x9=81 : all cells filled. 
+            res = [row[:] for row in board]
+            return 
+
+        # dividing by the current index, e.g. 35 gives you the row 3
+        r, c = currIndex//9, currIndex%9 # current row, column 
+
+        if board[r][c] != '.':
+            # skip cell
+            backtracking(currIndex+1)
+            return
+        for option in '123456789': # option for cell 
+            # prune deadends (children nodes) before decide on visit
+            if not foundConflict(r, c, option):
+                # fill the cell
+                board[r][c] = option; 
+                backtracking(currIndex+1)
+                # undo change 
+                board[r][c] = '.'
+
+    backtracking(0)
+    
+    return res  

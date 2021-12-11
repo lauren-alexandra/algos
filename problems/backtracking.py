@@ -203,3 +203,85 @@ def solver(board):
     backtracking(0)
     
     return res  
+
+"""
+93. Restore IP Addresses
+
+A valid IP address consists of exactly four integers separated by single dots. Each integer is between 0 and 255 (inclusive) and 
+cannot have leading zeros.
+
+For example, "0.1.2.201" and "192.168.1.1" are valid IP addresses, but "0.011.255.245", "192.168.1.312" and "192.168@1.1" are invalid 
+IP addresses.
+Given a string s containing only digits, return all possible valid IP addresses that can be formed by inserting dots into s. 
+You are not allowed to reorder or remove any digits in s. You may return the valid IP addresses in any order.
+
+Example 1:
+
+Input: s = "25525511135"
+Output: ["255.255.11.135","255.255.111.35"]
+"""
+
+"""
+implementation: think of the problem as a decision tree.
+
+The root is the original string. 
+
+At each partial solution, the decision to make is where to place the next dot:
+generate 3 children by placing the next dot 1, 2, or 3 characters to the right of the last dot.
+
+Prune a branch if any of the integers generated is not between 0 and 255
+and/or is not valid - includes other non integer characters.
+
+The leaves are combinations that have all the dots placed. Validate the leaves
+and only return the correct ones.
+"""
+
+def restoreAllIps(s):
+    # invalid ip address.
+    if len(s) > 12:
+        return [] 
+
+    # pruning 
+    def isValidIPNumber(t):
+        # deadend - prune: an integer can not be greater than 3 digits or have no digits.
+        if len(t) > 3 or len(t) == 0: return False
+        # deadend - prune: an integer that has more than one digit can not start with 0. invalid.
+        if len(t) > 1 and t[0] == '0': return False
+        # if integer is greater than 255, prune. 
+        return int(t) <= 255 
+
+    # format a leaf to add to final answer
+    # the dots are inserted into the string.
+    def formatIPWithDots():
+        return '.'.join([s[:dots[0]], s[dots[0]:dots[1]], s[dots[1]:dots[2]], s[dots[2]:]])
+
+    res = []
+    # these are the indices of the dots to be placed in string
+    dots = [] 
+
+    def backtracking():
+        # if all dots have been placed, validate string and add to result
+        if len(dots) == 3:
+            if isValidIPNumber(s[dots[2]:]):
+                res.append(formatIPWithDots())
+        # validate the integer and determine where to place the next dot - if integer valid
+        else:
+            # find the starting index of the integer given last dot index or start at 0 index if no dots yet
+            start = dots[-1] if len(dots) > 0 else 0
+            # determine where to place the next end dot of an integer - try all in range
+            # you take the minimum of start+3 and the length(s) - 1 because
+            # for the second dot, adding 3 indices may go beyond the remaining digits.
+            # so take the smaller index which may be the last index in the string.
+            for end in range(start, min(start+3, len(s)-1)):
+                # end index is exclusive 
+                if isValidIPNumber(s[start:end+1]):
+                    # if you find a valid integer chunk, append a new dot index to dots
+                    dots.append(end+1)
+                    # once you add the next dot, call backtracking again to traverse down the decision tree
+                    backtracking()
+                    # reverse the change made to turn the current partial solution into the child
+                    # in order to navigate back up one node to validate the other children of that node
+                    dots.pop()
+    
+    backtracking()
+    return res 

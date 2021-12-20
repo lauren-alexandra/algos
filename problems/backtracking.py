@@ -285,3 +285,53 @@ def restoreAllIps(s):
     
     backtracking()
     return res 
+
+
+"""
+Number of paths in a grid
+
+Count the number of paths in an nxm grid from the top-left cell to the 
+bottom-right cell, that go through every cell once.
+"""
+
+"""
+Think of the decision tree of possible paths starting from the top-left corner 
+of the grid.
+
+The leaves are valid paths.
+"""
+
+def countPaths(n):
+    res = 0
+    path = [(0, 0)]
+    
+    def backtracking():
+        head = path[-1]
+        if len(path) == n*n:
+            nonlocal res
+            # base case: check all cells have been visited 
+            # and that the path has reached the bottom right corner.
+            # path found -> increase path count. 
+            if head == (n-1, n-1): res += 1
+            return
+        
+        # general case: check neighbor cells in all 4 directions
+        # if it is within bounds and not visted, we backtrack there
+        for d in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            # nbr[0] is the row, nbr[1] is the column 
+            # moving to new cell on grid
+            nbr = (head[0]+d[0], head[1]+d[1])
+
+            # skip option if out of bounds
+            if nbr[0] < 0 or nbr[0] >= n or nbr[1] < 0 or nbr[1] >= n: continue 
+            # skip option if cell has been visited
+            if nbr in path: continue
+
+            # transform the partial solution before recursive call 
+            path.append(nbr) # current partial solution -> child
+            backtracking()
+            # undo the partial solution after recursive call 
+            path.pop() # child -> current partial solution 
+
+    backtracking()
+    return res 

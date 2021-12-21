@@ -335,3 +335,56 @@ def countPaths(n):
 
     backtracking()
     return res 
+
+
+"""
+Knight's tour
+
+Find one knight's tour.
+A knight starts at the top-left corner of an nxn chess board,
+and the knight has to visit every square, making knight moves,
+and without repeating any square.
+
+Nodes are partial tours. 
+The children represent the possible next moves of the knight.
+Deadends occur when all possible next moves have been visited.
+Full solutions occur when the knight has made n*n-1 steps (not including starting square). 
+
+Implementation:
+- The board is a 2D array of size nxn.
+- A -1 means the cell has not been visited.
+- A positive number indicates the visit index.
+- Keep track of the current position of the knight, and the total number of steps
+  made by the knight.
+"""
+
+def findKnightsTour(n):
+    # -1 is not visited. >=0 is the visit index.
+    board = [[-1 for i in range(n)] for j in range(n)]
+    board[0][0] = 0 # knight starting position in top left corner
+
+    moves = [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)]
+
+    res = None 
+
+    def backtracking(currX, currY, currStep):
+        nonlocal res # res from outer scope
+        if res: return 
+
+        # valid solution found
+        if currStep == n*n: 
+            res = [row[:] for row in board]
+            return 
+
+        for moveX, moveY in moves:
+            x, y = currX + moveX, currY + moveY # new position
+            # valid move
+            if 0 <= x < n and 0 <= y < n and board[x][y] == -1:
+                # update the board
+                board[x][y] = currStep # visit index 
+                backtracking(x, y, currStep+1)
+                # undo change after recursive call
+                board[x][y] = -1 
+
+    backtracking(0, 0, 1)
+    return res 

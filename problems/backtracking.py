@@ -388,3 +388,62 @@ def findKnightsTour(n):
 
     backtracking(0, 0, 1)
     return res 
+
+
+"""
+knapsack problem
+
+A knapsack with a total capacity C. 
+Item
+- values[i]
+- weights[i]
+
+Goal is to fill the knapsack with the maximum value
+without exceeding the total capacity C. O
+Optimization problem: find the best value.
+
+Example: 
+C = 10
+values = [3, 6, 8, 10]
+weights = [1, 4, 5, 6]
+
+Output: [0, 1, 2]. Items have a weight of 10 and value of 17 
+
+Implementation:
+All subsets need to be considered.
+For each item, choose to add or leave out of the knapsack (binary decision).
+Thus there are 2^n subsets. 
+
+Time complexity: O(2^n)
+"""
+
+def knapsack(C, values, weights):
+    n = len(values)
+    bestPicked = []
+    bestPickedVal = 0
+    picked = []
+
+    # i - index of the next item
+    # w - total weight so far
+    # val - total value so far
+    def backtracking(i, w, val):
+        # prune
+        if w > C: return 
+
+        # a decision has been made for all items
+        if i == n:
+            nonlocal bestPicked, bestPickedVal
+            if val > bestPickedVal:
+                bestPicked = picked[:] # copy picked
+                bestPickedVal = val 
+            else:
+                # skip item
+                backtracking(i+1, w, val)
+
+                # pick item i
+                picked.append(i)
+                backtracking(i+1, w+weights[i], val+values[i])
+                picked.pop()
+    
+    backtracking(0, 0, 0)
+    return bestPicked 

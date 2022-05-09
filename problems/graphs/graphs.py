@@ -13,6 +13,7 @@ We choose the node with the smallest value as the “current node” and visit a
 Once we visit all of the current node’s neighbors and update their distances, we mark the current node as “visited.” Marking a node as “visited” means that we’ve arrived at its final cost.
 We go back to step one. The algorithm loops until it visits all the nodes in the graph
 """
+import sys 
 
 def dijkstra_algorithm(graph, start_node):
     unvisited_nodes = list(graph.get_nodes())
@@ -52,5 +53,19 @@ def dijkstra_algorithm(graph, start_node):
         # After visiting its neighbors, we mark the node as "visited"
         unvisited_nodes.remove(current_min_node)
     
+    print("previous nodes: ", previous_nodes)
+    print("shortest path: ", shortest_path)
     return previous_nodes, shortest_path
     
+# create our graph using an adjacency list representation
+# each "node" in our list should be a node name and a distance
+graph = {
+    0: [(1, 1)],
+    1: [(0, 1), (2, 2), (3, 3)],
+    2: [(1, 2), (3, 1), (4, 5)],
+    3: [(1, 3), (2, 1), (4, 1)],
+    4: [(2, 5), (3, 1)]
+}
+
+
+dijkstra_algorithm(graph, 1)

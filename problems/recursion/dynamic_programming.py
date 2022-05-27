@@ -28,6 +28,12 @@ Constraints:
 1 <= values[i] <= 1000
 """
 
+from asyncio.subprocess import SubprocessStreamProtocol
+from subprocess import CalledProcessError
+from tkinter import N
+from unittest import result
+
+
 def best_sightseeing_pair(values): 
     n = len(values)
     ans = 0
@@ -83,27 +89,66 @@ def maximal_square(matrix):
     # O(row*col)
     for i in range(row):
         for j in range(col):
-            # for first row and col 
+            #base case - for the first column or row - max value stored can be 1. check for that
             if i == 0 or j == 0:
-                # if it's 1, update to 1
+                # if 1 is found in matrix, update dp to 1 for size of square
                 if matrix[i][j] == '1':
                     dp[i][j] = 1
 
             else:
                 if matrix[i][j] == '1':
-                    # find the min value of previous left, top, and top-left diagonal + 1 if it's 1
+                    # to make a square check left, top, top-left diagonal
+                    # take the min value of these boxes to add to 1, storing the largest square found so far
                     dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
 
+            # answer is the largest square
             ans = max(ans, dp[i][j])
 
-    return ans * ans 
+    return ans * ans # square area
+
+# memo
+def mainFunction(input):
+	n = len(input)
+	memo = dict()
+	def recurrence(i): # i is the index of a subproblem
+		if isBaseCase(i): return # result for base case
+		if i in memo: return memo[i]
+		memo[i] = aggregate(option1, option2, ...) # aggregate can be max/min/sum ...
+		return memo[i]
+	return recurrence(goalIndex) 
+
+
+# tab
+def mainFunction(input):
+	n = # number of subproblems
+	DP = n * [0] # table with one entry per subproblem
+
+	DP[0] = # fill in base cases 
+
+	for i in range(generalCaseStart, generalCaseEnd):
+		DP[i] = aggregate(option1, option2, ...) # aggregate can be max/min/sum/...
+
+	return DP[goalIndex] 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 """
 198. House Robber
 
-You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint 
-stopping you from robbing each of them is that adjacent houses have security systems connected and **it will automatically contact 
-the police if two adjacent houses were broken into on the same night**.
+You are a professional robber planning to rob nums along a street. Each house has a certain amount of money stashed, the only constraint 
+stopping you from robbing each of them is that adjacent nums have security systems connected and **it will automatically contact 
+the police if two adjacent nums were broken into on the same night**.
 
 Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob 
 tonight without alerting the police.
@@ -117,10 +162,10 @@ Total amount you can rob = 1 + 3 = 4.
 """
 # Top Down (Memoization)- store the result for each subproblem in a dictionary and use the stored value if you revisit a repeated subproblem 
 
-# Rob(i): max value we can get from the suffix of houses houses[i..n-1]
+# Rob(i): max value we can get from the suffix of nums nums[i..n-1]
 
-def houseRobber(houses):
-	n = len(houses)
+def house_robber(nums):
+	n = len(nums)
 	memo = dict()
 
 	def rob(i):
@@ -131,10 +176,27 @@ def houseRobber(houses):
 		if i in memo: return memo[i] # return cached solution to a subproblem
 		
 		# General case (0 <= i <= n-1):
-		# Rob(i) = max(houses[i]+Rob(i+2), Rob(i+1))
+		# Rob(i) = max(nums[i]+Rob(i+2), Rob(i+1))
 		# store the result of each subproblem in the memo dictionary if not there
-		memo[i] = max(houses[i]+rob(i+2), rob(i+1))
+		memo[i] = max(nums[i]+rob(i+2), rob(i+1))
 		return memo[i]
 		
 	# Goal: Rob(0)
 	return rob(0) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
